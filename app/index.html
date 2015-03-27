@@ -26,7 +26,45 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
   </head>
   <link rel="stylesheet" href="partials/style.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
   <body>
+<style type="text/css">
+    #sideBar {
+    position:absolute;
+    left:0; top:100px; bottom: 0;
+    width: 178px;
+    background-color: lightblue;
+    }
+    #header {
+        background-color: lightblue;
+        position: absolute;
+        left: 0; right: 0;
+        top: 0px;
+        height: 100px;
+    }
+    #startView {
+        position: absolute;
+        left: 178px; right: 0; bottom: 0;
+        top: 100px;
+    }
+    #bottomStuff{
+        position: absolute;
+        bottom: 10px; left: 0;
+    }
+    #topStuff {
+        top: 10px; left: 0;
+        position: absolute;
+    }
+</style>
+    <div class="container-fluid" id="header">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <h1>Meetingplanner</h1>
+            </div>
+        </div>
+        
+    </div>
+
    <div class="container" id="sideBar">
             <div class="container" id="topStuff">
                 <button id="shareButton" type="button" class="btn btn-primary">

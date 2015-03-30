@@ -75,9 +75,9 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
             <div class="container" id="bottomStuff">
                 <div class="row">
                     <div class="col-md-4">
-                        <button id="newM">
+                        <a href="#/meetingAgendaEditor"><button id="newM">
                             New meeting
-                        </button>
+                        </button></a>
                     </div>
                 </div>
                 <div class="row">
@@ -162,7 +162,6 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
     where you specify which partial should be loaded when. -->
     <div ng-view>   
-       
     </div>
 
   </body>

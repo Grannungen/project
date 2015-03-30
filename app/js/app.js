@@ -10,10 +10,13 @@ meetingAgendaPlanner.config(['$routeProvider',
         controller: 'view1Ctrl'
       })
       .when('/view2', {
-        templateUrl: 'partials/view2.html'
+        templateUrl: 'partials/view2.html',
       })
       .when('/view3', {
-        templateUrl: 'partials/view3.html'
+        templateUrl: 'partials/view3.html',
+      })
+      .when('/meetingAgendaEditor', {
+        templateUrl: 'partials/meetingAgendaEditor.html',
       })
       .otherwise({
         redirectTo: '/view1'

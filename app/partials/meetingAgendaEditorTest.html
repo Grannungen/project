@@ -1,4 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+  	<meta charset="utf-8">
+</head>
 
+<body>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <style type="text/css">
 	html{
 		height: 100%;
@@ -26,7 +36,7 @@
 
 	#edit-activity-window{
 		float:none;
-		/*display: none;*/
+		display: none;
 		/*background: blue;*/
 		position: absolute;
 		left: 0;
@@ -104,6 +114,7 @@
  -->
 
 
+	<div class="col-sm-3 side"></div>
 
 	<div class="meetingAgendaEditor col-sm-6">
 		<div class="col-sm-12 editor-head">
@@ -115,9 +126,9 @@
 		<div class="col-sm-6">
 			<!-- test activities -->
 			<div class="day well">
-				
-				<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
-				
+				<a href="#edit-activity-window">
+					<div class="presentation activity" style="height: 12%">Press here!</div>
+				</a>
 				<div class="break activity" style="height: 5%">break</div>
 				<div class="group-activity activity" style="height: 40%">dancing on the tables</div>
 				<div class="activity" style="height: 12%"></div>
@@ -164,13 +175,15 @@
 					<label>Description:</label>
 					<textarea></textarea>
 				</div>
-				<button class="btn btn-info" ng-click="showEditor=false">Done</button>
+				<button class="btn btn-info">Done</button>
 			</div>
 		</div>
 	</div>
 
 
-<div id="edit-activity-window" class="well" ng-show="showEditor" ng-hide="!showEditor">
+
+	<div class="col-sm-3 side"></div>
+<div id="edit-activity-window" class="well">
 	<div class="col-sm-5 edit-activity-window-editor">
 		<div class="form-group">
 			<label>Activity Name:</label>
@@ -204,3 +217,8 @@
 	</div>
 
 </div>
+
+	
+
+</body>
+</html>

@@ -17,6 +17,7 @@ meetingAgendaPlanner.config(['$routeProvider',
       })
       .when('/meetingAgendaEditor', {
         templateUrl: 'partials/meetingAgendaEditor.html',
+        controller: 'meetingEditorCtrl'
       })
       .otherwise({
         redirectTo: '/login'

@@ -5,9 +5,9 @@ var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ng
 meetingAgendaPlanner.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
-      .when('/view1', {
-        templateUrl: 'partials/view1.html',
-        controller: 'view1Ctrl'
+      .when('/login', {
+        templateUrl: 'partials/start-log-in.html',
+        // controller: 'view1Ctrl'
       })
       .when('/view2', {
         templateUrl: 'partials/view2.html',
@@ -19,6 +19,6 @@ meetingAgendaPlanner.config(['$routeProvider',
         templateUrl: 'partials/meetingAgendaEditor.html',
       })
       .otherwise({
-        redirectTo: '/view1'
+        redirectTo: '/login'
       });
   }]);

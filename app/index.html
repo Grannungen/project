@@ -29,6 +29,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   </head>
   <link rel="stylesheet" href="partials/style.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
   <body>
 <style type="text/css">
     html{
@@ -84,7 +85,16 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
                 <button id="shareButton" type="button" class="btn btn-primary">
                     Share
                 </button>
-
+    <div class="col-md-3" id="Menu">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#">Menu-nu-nu</a></li>
+        <li><a href="#">Weekly view</a></li>
+        <li><a href="#">Daily view</a></li>        
+        <li><a href="#">Annual</a></li>
+        <li><a href="#">Advice</a></li>
+        <li><a href="#/meetingAgendaEditor">New meeting</a></li>
+      </ul>
+    </div>
             </div>
             <div class="container" id="bottomStuff">
                 <div class="row">

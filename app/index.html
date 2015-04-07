@@ -29,157 +29,109 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   </head>
   <link rel="stylesheet" href="partials/style.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="main.css">
   <body>
-<style type="text/css">
-    html{
-        height: 100%;
-    }
-    body{
-        height: 100%;
-    }
-
-    #sideBar {
-    /*position:absolute;*/
-    height: 100%;
-    float: left;
-    left:0; top:100px; bottom: 0;
-    width: 178px;
-    background-color: lightblue;
-
-    }
-    #header {
-        background-color: lightblue;
-        /*position: absolute;*/
-        left: 0; right: 0;
-        top: 0px;
-        height: 100px;
-    }
-    #startView {
-        position: absolute;
-        left: 178px; right: 0; bottom: 0;
-        top: 100px;
-    }
-    #bottomStuff{
-
-        position: absolute;
-        bottom: 10px; left: 0;
-    }
-    #topStuff {
-        top: 10px; left: 0;
-        position: absolute;
-    }
-</style>
 
     <div id="header">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <h1>Meeting planner</h1>
-            </div>
+        <div class="logo">
+            Meeting Ace Logo
         </div>
-        
+        <div class="loginstuff">
+          <a href="" ng-click="">Log in</a> / 
+          <a href="" ng-click="">Registration</a>
+          <form method="post" action="index.html">
+                <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
+                <p><input type="password" name="password" value="" placeholder="Password"></p>
+                <p class="submit"><input type="submit" name="commit" value="Login"></p>
+          
+            </form> 
+        </div>         
     </div>
 
-   <div class="container" id="sideBar">
-            <div class="container" id="topStuff">
-                <button id="shareButton" type="button" class="btn btn-primary">
-                    Share
-                </button>
-    <div class="col-md-3" id="Menu">
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#">Menu-nu-nu</a></li>
-        <li><a href="#">Weekly view</a></li>
-        <li><a href="#">Daily view</a></li>        
-        <li><a href="#">Annual</a></li>
-        <li><a href="#">Advice</a></li>
-        <li><a href="#/meetingAgendaEditor">New meeting</a></li>
-      </ul>
-    </div>
+   <div id="sideBar">
+        <div class="container" id="topStuff">
+            <div class="col-md-3" id="Menu">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#">Menu-nu-nu</a></li>
+                <li><a href="#">Weekly view</a></li>
+                <li><a href="#">Daily view</a></li>        
+                <li><a href="#">Annual</a></li>
+                <li><a href="#">Advice</a></li>
+                <li><a href="#/meetingAgendaEditor">New meeting</a></li>
+              </ul>
             </div>
-            <div class="container" id="bottomStuff">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="#/meetingAgendaEditor"><button id="newM">
-                            New meeting
-                        </button></a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <button id="calBtn">
-                            Calendar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        
-        
+        </div>
+    
+
     <table class="datepicker">
-    <caption class="datepicker-caption">
-      <a href="index.html" class="datepicker-prev">Previous</a>
-      <span class="datepicker-title">April 2013</span>
-      <a href="index.html" class="datepicker-next">Next</a>
-    </caption>
-    <thead class="datepicker-head">
-      <tr>
-        <th class="datepicker-th">Mo</th>
-        <th class="datepicker-th">Tu</th>
-        <th class="datepicker-th">We</th>
-        <th class="datepicker-th">Th</th>
-        <th class="datepicker-th">Fr</th>
-        <th class="datepicker-th">Sa</th>
-        <th class="datepicker-th">Su</th>
-      </tr>
-    </thead>
-    <tbody class="datepicker-body">
-      <tr>
-        <td class="datepicker-td"><a href="index.html">1</a></td>
-        <td class="datepicker-td"><a href="index.html">2</a></td>
-        <td class="datepicker-td"><a href="index.html">3</a></td>
-        <td class="datepicker-td"><a href="index.html">4</a></td>
-        <td class="datepicker-td"><a href="index.html">5</a></td>
-        <td class="datepicker-td"><a href="index.html">6</a></td>
-        <td class="datepicker-td"><a href="index.html">7</a></td>
-      </tr>
-      <tr>
-        <td class="datepicker-td"><a href="index.html">8</a></td>
-        <td class="datepicker-td"><a href="index.html">9</a></td>
-        <td class="datepicker-td today"><a href="index.html">10</a></td>
-        <td class="datepicker-td"><a href="index.html">11</a></td>
-        <td class="datepicker-td"><a href="index.html">12</a></td>
-        <td class="datepicker-td"><a href="index.html">13</a></td>
-        <td class="datepicker-td"><a href="index.html">14</a></td>
-      </tr>
-      <tr>
-        <td class="datepicker-td"><a href="index.html">15</a></td>
-        <td class="datepicker-td"><a href="index.html">16</a></td>
-        <td class="datepicker-td"><a href="index.html">17</a></td>
-        <td class="datepicker-td"><a href="index.html">18</a></td>
-        <td class="datepicker-td"><a href="index.html">19</a></td>
-        <td class="datepicker-td"><a href="index.html">20</a></td>
-        <td class="datepicker-td"><a href="index.html">21</a></td>
-      </tr>
-      <tr>
-        <td class="datepicker-td"><a href="index.html">22</a></td>
-        <td class="datepicker-td"><a href="index.html">23</a></td>
-        <td class="datepicker-td"><a href="index.html">24</a></td>
-        <td class="datepicker-td"><a href="index.html">25</a></td>
-        <td class="datepicker-td"><a href="index.html">26</a></td>
-        <td class="datepicker-td"><a href="index.html">27</a></td>
-        <td class="datepicker-td"><a href="index.html">28</a></td>
-      </tr>
-      <tr>
-        <td class="datepicker-td"><a href="index.html">29</a></td>
-        <td class="datepicker-td"><a href="index.html">30</a></td>
-        <td class="datepicker-td off"><a href="index.html">1</a></td>
-        <td class="datepicker-td off"><a href="index.html">2</a></td>
-        <td class="datepicker-td off"><a href="index.html">3</a></td>
-        <td class="datepicker-td off"><a href="index.html">4</a></td>
-        <td class="datepicker-td off"><a href="index.html">5</a></td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
+        <caption class="datepicker-caption">
+          <a href="index.html" class="datepicker-prev">Previous</a>
+          <span class="datepicker-title">April 2013</span>
+          <a href="index.html" class="datepicker-next">Next</a>
+        </caption>
+        <thead class="datepicker-head">
+          <tr>
+            <th class="datepicker-th">Mo</th>
+            <th class="datepicker-th">Tu</th>
+            <th class="datepicker-th">We</th>
+            <th class="datepicker-th">Th</th>
+            <th class="datepicker-th">Fr</th>
+            <th class="datepicker-th">Sa</th>
+            <th class="datepicker-th">Su</th>
+          </tr>
+        </thead>
+        <tbody class="datepicker-body">
+          <tr>
+            <td class="datepicker-td"><a href="index.html">1</a></td>
+            <td class="datepicker-td"><a href="index.html">2</a></td>
+            <td class="datepicker-td"><a href="index.html">3</a></td>
+            <td class="datepicker-td"><a href="index.html">4</a></td>
+            <td class="datepicker-td"><a href="index.html">5</a></td>
+            <td class="datepicker-td"><a href="index.html">6</a></td>
+            <td class="datepicker-td"><a href="index.html">7</a></td>
+          </tr>
+          <tr>
+            <td class="datepicker-td"><a href="index.html">8</a></td>
+            <td class="datepicker-td"><a href="index.html">9</a></td>
+            <td class="datepicker-td today"><a href="index.html">10</a></td>
+            <td class="datepicker-td"><a href="index.html">11</a></td>
+            <td class="datepicker-td"><a href="index.html">12</a></td>
+            <td class="datepicker-td"><a href="index.html">13</a></td>
+            <td class="datepicker-td"><a href="index.html">14</a></td>
+          </tr>
+          <tr>
+            <td class="datepicker-td"><a href="index.html">15</a></td>
+            <td class="datepicker-td"><a href="index.html">16</a></td>
+            <td class="datepicker-td"><a href="index.html">17</a></td>
+            <td class="datepicker-td"><a href="index.html">18</a></td>
+            <td class="datepicker-td"><a href="index.html">19</a></td>
+            <td class="datepicker-td"><a href="index.html">20</a></td>
+            <td class="datepicker-td"><a href="index.html">21</a></td>
+          </tr>
+          <tr>
+            <td class="datepicker-td"><a href="index.html">22</a></td>
+            <td class="datepicker-td"><a href="index.html">23</a></td>
+            <td class="datepicker-td"><a href="index.html">24</a></td>
+            <td class="datepicker-td"><a href="index.html">25</a></td>
+            <td class="datepicker-td"><a href="index.html">26</a></td>
+            <td class="datepicker-td"><a href="index.html">27</a></td>
+            <td class="datepicker-td"><a href="index.html">28</a></td>
+          </tr>
+          <tr>
+            <td class="datepicker-td"><a href="index.html">29</a></td>
+            <td class="datepicker-td"><a href="index.html">30</a></td>
+            <td class="datepicker-td off"><a href="index.html">1</a></td>
+            <td class="datepicker-td off"><a href="index.html">2</a></td>
+            <td class="datepicker-td off"><a href="index.html">3</a></td>
+            <td class="datepicker-td off"><a href="index.html">4</a></td>
+            <td class="datepicker-td off"><a href="index.html">5</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+  </div><!-- sideBar end -->
     <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
 

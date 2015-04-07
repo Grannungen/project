@@ -1,6 +1,6 @@
 // JavaScript Document
 
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
+// meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
 
 	// The possible activity types
@@ -9,16 +9,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
+
 	function Activity(name,length,typeid,description){
 		var _name = name;
 		var _length = length;
 		var _typeid = typeid;
 		var _description = description;
 		
+		
+
 		// sets the name of the activity
 		this.setName = function(name) {
 			_name = name;
-			model.notifyObservers();
 		}
 
 		// get the name of the activity
@@ -29,7 +31,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		// sets the length of the activity
 		this.setLength = function(length) {
 			_length = length;
-			model.notifyObservers();
 		}
 
 		// get the name of the activity
@@ -40,7 +41,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		// sets the typeid of the activity
 		this.setTypeId = function(typeid) {
 			_typeid = typeid;
-			model.notifyObservers();
 		}
 
 		// get the type id of the activity
@@ -51,7 +51,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		// sets the description of the activity
 		this.setDescription = function(description) {
 			_description = description;
-			model.notifyObservers();
 		}
 
 		// get the description of the activity
@@ -76,7 +75,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		// sets the start time to new value
 		this.setStart = function(startH,startM) {
 			this._start = startH * 60 + startM;
-			model.notifyObservers();
 		}
 
 		// returns the total length of the acitivities in 
@@ -147,12 +145,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
 
 	// this is our main module that contians days and praked activites
-	function Model(){
+	// this.Model = function(){
+	meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		this.days = [];
 		this.parkedActivities = [];
 		
 		// adds a new day. if startH and startM (start hours and minutes)
 		// are not provided it will set the default start of the day to 08:00
+			this.hello = function () {
+			alert("hej");
+		}
+
+
 		this.addDay = function (startH,startM) {
 			var day;
 			if(startH){
@@ -161,7 +165,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 				day = new Day(8,0);
 			}
 			this.days.push(day);
-			this.notifyObservers();
 			return day;
 		};
 		
@@ -175,7 +178,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 				}
 				else this.parkedActivities.push(activity);
 			}
-			this.notifyObservers();
 		}
 		
 		// add an activity to parked activities
@@ -186,7 +188,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		// remove an activity on provided position from parked activites 
 		this.removeParkedActivity = function(position) {
 			act = this.parkedActivities.splice(position,1)[0];
-			this.notifyObservers();
 			return act;
 		};
 		
@@ -210,26 +211,12 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 				var activity = this.days[oldday]._removeActivity(oldposition);
 				this.days[newday]._addActivity(activity,newposition);
 			}
-			this.notifyObservers();
 		};
-		
-		//*** OBSERVABLE PATTERN ***
-		var listeners = [];
-		
-		this.notifyObservers = function (args) {
-		    for (var i = 0; i < listeners.length; i++){
-		        listeners[i].update(args);
-		    }
-		};
-		
-		this.addObserver = function (listener) {
-		    listeners.push(listener);
-		};
-		//*** END OBSERVABLE PATTERN ***
-	}
-
+	// }
 	// this is the instance of our main model
 	// this is what you should use in your application
+	return this;
+
 
 }); // model end
 	// var model = new Model();

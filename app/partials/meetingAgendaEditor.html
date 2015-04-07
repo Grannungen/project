@@ -62,14 +62,20 @@
 		margin-top: 100 pt;
 		cursor: pointer;
 		vertical-align: middle;
-	}
-	.day{
-		border: solid;
-		border-width: 1pt;
-		height: 600pt;
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
 
-		/*background: blue;*/
-		/*margin-right: auto;*/
+	}
+	.meeting{
+		/*border: solid;*/
+		/*border-width: 1pt;*/
+		/*height: 600pt;*/
+		margin-left: 10pt;
+		height: 850pt;
+		background: none;
+		margin-right: 0;
+		padding: 0;
 	}
 	#meetingAgendaEditor {
 
@@ -91,8 +97,28 @@
 		background-color: cyan;
 	}
 
+	.time{
+		position: absolute;
+		opacity: 0.3;
+		width: 100%;
+		z-index: -1;
+	}
 
+		.hour{
 
+		margin-top: 20pt;
+		margin-bottom: 0;
+		/*color: rgb(224, 224, 224);*/
+		color: black;
+	}
+	hr{
+
+		/*border-top-color: rgb(224, 224, 224);*/
+		border-top-color: black;
+
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 
 
 </style>
@@ -106,6 +132,7 @@
 
 
 	<div class="meetingAgendaEditor col-sm-6">
+
 		<div class="col-sm-12 editor-head">
 			<h1>Awsome meeting</h1>
 		</div>
@@ -114,8 +141,24 @@
 		</div>
 		<div class="col-sm-6">
 			<!-- test activities -->
-			<div class="day well">
+			<div class="meeting">
+				<!-- <div class="time">8:00</div> -->
 				
+				<div class="time">
+					<div ng-repeat="hour in hourList">
+						<p class="hour">{{hour}}</p>
+				 		<hr>
+					</div>
+				
+				</div>
+
+				
+
+
+		
+
+
+
 				<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
 				
 				<div class="break activity" style="height: 5%">break</div>
@@ -124,7 +167,7 @@
 				<div class="presentation activity" style="height: 12%">Pres</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 right-sidebar">
 			<div class="well break activity">
 				Break
 			</div>

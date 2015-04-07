@@ -1,0 +1,29 @@
+<style type="text/css">
+
+
+
+</style>
+<div id="table">
+	<table>
+
+		<div class="col-sm-1" ng-init="days = ['Mo','Tu','We','Th','Fr','Sa','Su']">
+			Time
+			<table ng-repeat="y in days">
+				<tr>
+					<td>
+						{{ y }}
+					</td>
+				</tr>
+				<div ng-init="time = ['08.00', '09.00', '10.00', '11.00', '12.00','13.00','14.00']">
+					<tr ng-repeat="x in time" class="times">
+						<td> {{ x }}</td>
+					</tr>
+				</div>
+		
+
+			</table>
+		</div>
+		
+
+	</table>
+</div>

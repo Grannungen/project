@@ -16,6 +16,7 @@
 		var _typeid = typeid;
 		var _description = description;
 		
+		console.log("name: " + _name);
 		
 
 		// sets the name of the activity
@@ -68,7 +69,8 @@
 	// This is a day consturctor. You can use it to create days, 
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
-	function Day(startH,startM) {
+	function Day(startH,startM, name) {
+		this.name;
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
@@ -160,7 +162,7 @@
 		this.addDay = function (startH,startM) {
 			var day;
 			if(startH){
-				day = new Day(startH,startM);
+				day = new Day(startH,startM, name);
 			} else {
 				day = new Day(8,0);
 			}

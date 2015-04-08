@@ -1,6 +1,9 @@
 meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel) {
 	$scope.showEditor = false;
-	$scope.hourList = [];
+	$scope.showMeetingEditorPopUp = true;
+	$scope.hej = "hej!";
+	$scope.hourList = ["a"];
+	$scope.hej1 = "hej";
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	
@@ -11,6 +14,59 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		}
 	}
 	this.setHourList();
+
+
+	
+	// create new metting when the new meeting page is loaded. The meeting (day) is pushed to meetingAgenfaModel.days
+	
+	//put in start time of the meeting in hours and minutes as a parameter in addDay
+	
+	$scope.days = meetingAgendaModel.days;
+
+	// Gör lokal!!!!!!!!!!!!!!!!!!!!
+	$scope.ActivityType = ActivityType;
+	
+
+	$scope.addNewDay = function () {
+		var day = meetingAgendaModel.addDay(8,0,"hasse");
+		$scope.dayIndex = $scope.days.indexOf(day);
+		alert($scope.dayIndex);
+	}
+
+
+	// Add activities to day by using addAvtivity(activity, day, position)
+	$scope.addNewActivity = function(){
+		console.log("activityName" + $scope.ActivityName)
+		// activity = New Activity(name,length,typeid,description)
+		meetingAgendaModel.addActivity(new Activity($scope.ActivityName,$scope.length,$scope.typeId,$scope.description),$scope.dayIndex);
+		// meetingAgendaModel.addActivity(new Activity("ethoieonehehrtlonethrkln",$scope.length,$scope.typeId,$scope.description),0);
+			
+			$.each(ActivityType,function(index,type){
+			console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
+			 });
+			// meetingAgendaModel.days[0]._activities[0].setName();	
+			$scope.test = meetingAgendaModel.days[0]._activities[0].getName();
+		// console.log($scope.test);
+		console.log($scope.days);
+	}
+
+
+	$scope.hej = function () {
+		// showMeetingEditorPopUp=true;
+		// $scope.showMeetingEditorPopUp = true;
+		// alert($scope.showMeetingEditorPopUp);
+			}
+	
+
+
+	// setName, setLength mm...
+
+
+	// getName mm... to scope to print out data
+
+
+	// list in scope thats contains all days and activities. Use  ng-repeat="day in days"
+
 	// meetingAgendaModel.hello();
 	// meetingAgendaModel.addActivity();
 	// meetingAgendaModel.model.addDay();
@@ -18,22 +74,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 
 	// you can use this method to create some test data and test your implementation
-	
-
-
-
-
-	// använd setName för att lägga till info om aktivitet
-	$scope.addNewActivity = function(){
-		meetingAgendaModel.addDay();
-		meetingAgendaModel.addActivity(new Activity($scope.ActivityType,$scope.length,0,$scope.description),0);
-				$.each(ActivityType,function(index,type){
-			console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
-			 });
-		console.log(meetingAgendaModel.days[0]._activities[0].getName);
-	}
-
-
 	function createTestData(){
 		// meetingAgendaModel.addDay();
 		// meetingAgendaModel.addActivity(new Activity("Introduction",10,0,""),0);

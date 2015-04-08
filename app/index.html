@@ -14,6 +14,10 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- less.js makes styling easier -->
+    <script src="bower_components/less/dist/less.min.js"></script>
+
     <!-- Angular JavaScript including routing and resource modules  -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -31,115 +35,20 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   <link rel="stylesheet" href="partials/style.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="partials/meetingAgendaEditor.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
+  <!-- <link rel="stylesheet" href="main.less"> -->
+
+
+
   <body>
 
-    <div id="header">
-        <div class="logo col-sm-4">
-            <a title="To Homepage" href="#/start-log-in.html">
-            <img alt="Header-logo" class="en-noborder" style="max-width:702px;max-height:130px" src="/Pictures/header-logo.png"></a>
-        </div>
-        <div class="loginstuff">
-          <a href="" ng-click="">Log in</a> / 
-          <a href="" ng-click="">Registration</a>
-          <form method="post" action="index.html">
-                <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-                <p><input type="password" name="password" value="" placeholder="Password"></p>
-                <p class="submit"><input type="submit" name="commit" value="Login"></p>
-          
-            </form> 
-        </div>         
-    </div>
-
-   <div id="sideBar">
-        <div class="container" id="topStuff">
-            <div class="col-md-3" id="Menu">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Menu-nu-nu</a></li>
-                <li><a href="#/weekView">Weekly view</a></li>
-                <li><a href="#">Daily view</a></li>        
-                <li><a href="#">Annual</a></li>
-                <li><a href="#">Advice</a></li>
-                <li><a href="#/meetingAgendaEditor">New meeting</a></li>
-              </ul>
-            </div>
-        </div>
-    
-
-    <table class="datepicker">
-        <caption class="datepicker-caption">
-          <a href="index.html" class="datepicker-prev">Previous</a>
-          <span class="datepicker-title">April 2013</span>
-          <a href="index.html" class="datepicker-next">Next</a>
-        </caption>
-        <thead class="datepicker-head">
-          <tr>
-            <th class="datepicker-th">Mo</th>
-            <th class="datepicker-th">Tu</th>
-            <th class="datepicker-th">We</th>
-            <th class="datepicker-th">Th</th>
-            <th class="datepicker-th">Fr</th>
-            <th class="datepicker-th">Sa</th>
-            <th class="datepicker-th">Su</th>
-          </tr>
-        </thead>
-        <tbody class="datepicker-body">
-          <tr>
-            <td class="datepicker-td"><a href="index.html">1</a></td>
-            <td class="datepicker-td"><a href="index.html">2</a></td>
-            <td class="datepicker-td"><a href="index.html">3</a></td>
-            <td class="datepicker-td"><a href="index.html">4</a></td>
-            <td class="datepicker-td"><a href="index.html">5</a></td>
-            <td class="datepicker-td"><a href="index.html">6</a></td>
-            <td class="datepicker-td"><a href="index.html">7</a></td>
-          </tr>
-          <tr>
-            <td class="datepicker-td"><a href="index.html">8</a></td>
-            <td class="datepicker-td"><a href="index.html">9</a></td>
-            <td class="datepicker-td today"><a href="index.html">10</a></td>
-            <td class="datepicker-td"><a href="index.html">11</a></td>
-            <td class="datepicker-td"><a href="index.html">12</a></td>
-            <td class="datepicker-td"><a href="index.html">13</a></td>
-            <td class="datepicker-td"><a href="index.html">14</a></td>
-          </tr>
-          <tr>
-            <td class="datepicker-td"><a href="index.html">15</a></td>
-            <td class="datepicker-td"><a href="index.html">16</a></td>
-            <td class="datepicker-td"><a href="index.html">17</a></td>
-            <td class="datepicker-td"><a href="index.html">18</a></td>
-            <td class="datepicker-td"><a href="index.html">19</a></td>
-            <td class="datepicker-td"><a href="index.html">20</a></td>
-            <td class="datepicker-td"><a href="index.html">21</a></td>
-          </tr>
-          <tr>
-            <td class="datepicker-td"><a href="index.html">22</a></td>
-            <td class="datepicker-td"><a href="index.html">23</a></td>
-            <td class="datepicker-td"><a href="index.html">24</a></td>
-            <td class="datepicker-td"><a href="index.html">25</a></td>
-            <td class="datepicker-td"><a href="index.html">26</a></td>
-            <td class="datepicker-td"><a href="index.html">27</a></td>
-            <td class="datepicker-td"><a href="index.html">28</a></td>
-          </tr>
-          <tr>
-            <td class="datepicker-td"><a href="index.html">29</a></td>
-            <td class="datepicker-td"><a href="index.html">30</a></td>
-            <td class="datepicker-td off"><a href="index.html">1</a></td>
-            <td class="datepicker-td off"><a href="index.html">2</a></td>
-            <td class="datepicker-td off"><a href="index.html">3</a></td>
-            <td class="datepicker-td off"><a href="index.html">4</a></td>
-            <td class="datepicker-td off"><a href="index.html">5</a></td>
-          </tr>
-        </tbody>
-      </table>
-
-
-
-  </div><!-- sideBar end -->
-    <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
+<!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
-
+    <ng-include src="'partials/header.html'" ></ng-include>
+    <ng-include src="'partials/sidebar.html'"></ng-include>
     <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
     where you specify which partial should be loaded when. -->
-
     <div  ng-view>   
     </div>
 

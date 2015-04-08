@@ -1,0 +1,112 @@
+	input{
+		width: 100%;
+	}
+	textarea{
+		width: 100%;
+	}
+
+	.editor-head{
+		text-align: center;
+	}
+	.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+
+	#edit-activity-window{
+		float:none;
+		/*display: none;*/
+		/*background: blue;*/
+		position: absolute;
+		left: 0;
+		right: 0;
+	    margin-right: auto;
+	    margin-left: auto;
+	    margin-top: 30pt;
+	    z-index: 1;
+	    width: 30%;
+	    text-align: center;
+	    background-color: white;
+	}
+	#edit-activity-window:target{
+		display: block;
+	}
+	.edit-activity-window-editor{
+
+		float:none;
+		vertical-align: middle;
+		margin-right: auto;
+	    margin-left: auto;
+	}
+
+
+
+	.side{
+		height: 100%;
+		background: black;
+	}
+	.activity{
+		text-align: center;
+		margin-top: 100 pt;
+		cursor: pointer;
+		vertical-align: middle;
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+	.meeting-schedule{
+		/*border: solid;*/
+		/*border-width: 1pt;*/
+		/*height: 600pt;*/
+		margin-left: 10pt;
+		height: 850pt;
+		background: none;
+		margin-right: 0;
+		padding: 0;
+	}
+	#meetingAgendaEditor {
+
+		text-align: center;
+
+	}
+
+	.break{
+		background-color: yellow;
+		
+	}
+	.presentation{
+		background-color: pink;
+	}
+	.group-activity{
+		background-color: green;
+	}
+	.new-activity{
+		background-color: cyan;
+	}
+
+	.time{
+		position: absolute;
+		opacity: 0.3;
+		width: 100%;
+		z-index: -1;
+	}
+
+		.hour{
+
+		margin-top: 20pt;
+		margin-bottom: 0;
+		/*color: rgb(224, 224, 224);*/
+		color: black;
+	}
+	.time-hr{
+
+		/*border-top-color: rgb(224, 224, 224);*/
+		border-top-color: black;
+
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+

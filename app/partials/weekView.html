@@ -1,29 +1,166 @@
 <style type="text/css">
+	#weekView {
+		position: absolute;
+		left: 175px;
+		top: 130px;
+		background-color: yellow;
+		right: 0px;
+		bottom: 0px;
+		
+	}
+	#weektable {
+		position: absolute;
+		top: 0px; left: 0px; right: 0px; bottom: 0;
+		background-color: lightblue;
+		border: 1px solid black;
+		overflow: scroll;
+	}
 
+	th {
+		font-weight: bold;
+		text-align: center;
+	}
 
 
 </style>
-<div id="table">
-	<table>
 
-		<div class="col-sm-1" ng-init="days = ['Mo','Tu','We','Th','Fr','Sa','Su']">
-			Time
-			<table ng-repeat="y in days">
-				<tr>
-					<td>
-						{{ y }}
-					</td>
-				</tr>
-				<div ng-init="time = ['08.00', '09.00', '10.00', '11.00', '12.00','13.00','14.00']">
-					<tr ng-repeat="x in time" class="times">
-						<td> {{ x }}</td>
-					</tr>
-				</div>
-		
 
-			</table>
+
+		<div id="weekView" class="container">
+		<table id="weektable">
+			<tbody>
+			<tr>
+				<th>
+				time
+					<div style="height:30px">08.00</div>
+					<div style="height:30px">09.00</div>
+					<div style="height:30px">10.00</div>
+					<div style="height:30px">11.00</div>
+					<div style="height:30px">12.00</div>
+					<div style="height:30px">13.00</div>
+					<div style="height:30px">14.00</div>
+					<div style="height:30px">15.00</div>
+					<div style="height:30px">16.00</div>
+					<div style="height:30px">17.00</div>
+					<div style="height:30px">19.00</div>
+					<div style="height:30px">20.00</div>
+				</th>
+			
+				<th id="monday">
+					monday
+					<div style="height:30px">h</div>
+					<div style="height:30px">h</div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>
+				<th id="tuesday">
+				tuesday
+					<div style="height:30px">f</div>
+					<div style="height:30px">f</div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>
+				<th id="wednesday">
+				wednesday
+					<div style="height:30px">j</div>
+					<div style="height:30px">j</div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>
+				<th id="thirsday">
+				thirsday
+					<div style="height:30px">k</div>
+					<div style="height:30px">k</div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>
+				<th id="friday">
+				friday
+					<div style="height:30px">o</div>
+					<div style="height:30px">o</div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>	
+				<th id="saturday">
+				saturday
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>
+				<th id="sunday">
+				sunday
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+					<div style="height:30px"></div>
+				</th>
+			</tr>
+		</tbody>
+		</table>
 		</div>
 		
+		<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">
+		<div ng-init="times = ['08.00','09.00','10.00','11.00','12.00','13.00','14.00','15.00','16.00','17.00','18.00','19.00','20.00','21.00']">		
 
-	</table>
-</div>
+
+		</div>
+		</div>
+
+

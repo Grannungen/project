@@ -17,7 +17,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 
 	
-	// create new metting when the new meeting page is loaded. The meeting (day) is pushed to meetingAgenfaModel.days
+	// create new metting when the new meeting page is loaded. The meeting (day) is pushed to meetingAgendaModel.days
 	
 	//put in start time of the meeting in hours and minutes as a parameter in addDay
 	
@@ -26,11 +26,16 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	// Gör lokal!!!!!!!!!!!!!!!!!!!!
 	$scope.ActivityType = ActivityType;
 	
-
+	// Add a new meeting
 	$scope.addNewDay = function () {
-		var day = meetingAgendaModel.addDay(8,0,"hasse");
+		// Av någon anledning hittas inte $scope.nameOfMeeing...
+		// alert($scope.nameOfMeeting);
+		// var day = meetingAgendaModel.addDay($scope.startHoursMeeting, $scope.startMinutesMeeting, $scope.nameOfMeeting);
+		var day = meetingAgendaModel.addDay(5,0, "bengt");
 		$scope.dayIndex = $scope.days.indexOf(day);
-		alert($scope.dayIndex);
+		alert("This is meeting number " + $scope.dayIndex);
+		// console.log("meeting " + $scope.dayIndex + ": ");
+		// console.log($scope.days);
 	}
 
 
@@ -51,37 +56,23 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	}
 
 
-	$scope.hej = function () {
-		// showMeetingEditorPopUp=true;
-		// $scope.showMeetingEditorPopUp = true;
-		// alert($scope.showMeetingEditorPopUp);
-			}
-	
-
-
-	// setName, setLength mm...
-
-
-	// getName mm... to scope to print out data
-
-
-	// list in scope thats contains all days and activities. Use  ng-repeat="day in days"
-
-	// meetingAgendaModel.hello();
-	// meetingAgendaModel.addActivity();
-	// meetingAgendaModel.model.addDay();
-	// meetingAgendaModel.hello();
 
 
 	// you can use this method to create some test data and test your implementation
-	function createTestData(){
-		// meetingAgendaModel.addDay();
-		// meetingAgendaModel.addActivity(new Activity("Introduction",10,0,""),0);
-		// meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),0);
-		// meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),0);
-		// meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),0);
-		// meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),0);
-		
+	$scope.createTestData = function(){
+		meetingAgendaModel.addDay(8,0,"Test1");
+		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,"Here we will have some introduction"),0);
+		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),0);
+		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),0);
+		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),0);
+		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),0);
+
+		meetingAgendaModel.addDay(9,0,"Test2");
+		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,""),1);
+		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),1);
+		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);
+		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
+		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
 		// console.log("Day Start: " + meetingAgendaModel.days[0].getStart());
 		// console.log("Day End: " + meetingAgendaModel.days[0].getEnd());
 		// console.log("Day Length: " + meetingAgendaModel.days[0].getTotalLength() + " min");
@@ -90,17 +81,18 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		// });
 		console.log(meetingAgendaModel.days)
 	}
-	createTestData();
 
 
 
 
 
-
-
-
-
-
+	// $scope.hej = function () {
+	// 	alert()
+	// 	// showMeetingEditorPopUp=true;
+	// 	// $scope.showMeetingEditorPopUp = true;
+	// 	// alert($scope.showMeetingEditorPopUp);
+	// 		}
+	
 	// var test = meetingmeetingAgendaModel.test;
 	// alert = test;
 

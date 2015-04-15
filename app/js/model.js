@@ -2,6 +2,7 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
+//GÖR ALLA FUNTIONER LOKALA!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	// The possible activity types
 	var ActivityType = ["Presentation","Group Work","Discussion","Break"]
@@ -70,7 +71,7 @@
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
 	function Day(startH,startM, name) {
-		this.name;
+		this.name = name; //Simon added this line
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
@@ -94,6 +95,7 @@
 		this.getEnd = function() {
 			var end = this._start + this.getTotalLength();
 			return Math.floor(end/60) + ":" + end % 60;
+	
 		};
 		
 		// returns the string representation Hours:Minutes of 
@@ -159,7 +161,7 @@
 		}
 
 
-		this.addDay = function (startH,startM) {
+		this.addDay = function (startH,startM, name) {
 			var day;
 			if(startH){
 				day = new Day(startH,startM, name);

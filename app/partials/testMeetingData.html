@@ -1,12 +1,18 @@
 <!-- testPrint -->
 
 	<div class="testData">
+		<button ng-click="createTestData()">Create test data</button>
 		<h1>Test Data</h1>
+		
 
-		<div ng-repeat="day in days">
-			{{day.name}}
+		<div ng-repeat="day in days" class="col-sm-4">
+			<h3>Name of the meeting: {{day.name}}</h3>
+			<h3>Total length of the meeting: {{day.getTotalLength()}}</h3>
+			<h3>Start time: {{day.getStart()}}</h3>
+			<h3>End time: {{day.getEnd()}}</h3>
+			
 			<ul ng-repeat="activity in day._activities">
-				<h4>{{activity.getName()}}</h4>
+				<h4>Activity name: {{activity.getName()}}</h4>
 				<li>
 					Length: {{activity.getLength()}} min
 				</li>

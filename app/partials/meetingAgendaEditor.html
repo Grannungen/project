@@ -4,7 +4,6 @@
 
 		<div class="col-sm-12 editor-head">
 			<h1>Awsome meeting</h1>
-			<!-- {{hej1}} här ska det stå...{{hej}} -->
 		</div>
 		
 		<div class="col-sm-3">
@@ -13,9 +12,8 @@
 			
 			<div class="meeting-schedule">
 				<div class="time">
-					{{hej1}}
 					<div ng-repeat="hour in hourList">
-						<p class="hour">{{hej}}{{hour}}</p>
+						<p class="hour">{{hour}}</p>
 				 		<hr class="time-hr">
 					</div>
 				</div>
@@ -80,7 +78,7 @@
 
 										<!-- testPrint -->
 
-											<div class="testData">
+											<div class="testData" ng-hide="true">
 												<h1>Test Data</h1>
 												<ul ng-repeat="activity in days[0]._activities">
 													<h4>{{activity.getName()}}</h4>
@@ -100,12 +98,10 @@
 
 
 <div id="edit-activity-window" class="well" ng-show="showEditor">
-	här ska det stå... {{hej}}
 	<div class="col-sm-5 edit-activity-window-editor">
 		<div class="form-group">
 			<label>Activity Name:</label>
 			<input type:"text" class"form-control" ng-model="ActivityName" value="fuck yeah!">
-			{{ActivityName}}
 		</div>
 		<div class="form-group">
 			<form action="action_page.php">

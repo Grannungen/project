@@ -2,7 +2,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.showEditor = false;
 	$scope.showMeetingEditorPopUp = true;
 	$scope.hej = "hej!";
-	$scope.hourList = ["a"];
+	$scope.hourList = [];
 	$scope.hej1 = "hej";
 	this.setHourList = function () {
 		var i = 1;

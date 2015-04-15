@@ -11,7 +11,7 @@
 		overflow: scroll;
 	}
 
-	.dataElement {
+	th {
 		font-weight: bold;
 		text-align: center;
 		border-left:thin solid;
@@ -33,7 +33,7 @@
 
 				</th>
 			
-				<th class="dataElement" id="  {{ y }}  " style="width:150px" ng-repeat="y in days">
+				<th id="  {{ y }}  " style="width:150px" ng-repeat="y in days">
 					{{ y }}
 					<div id="{{ y }} {{ hour }}"style="height:50px" ng-repeat="hour in hourList">
 						<hr class="time-hr">

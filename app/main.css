@@ -22,6 +22,7 @@ html{
        /* left: 0; right: 0;
         top: 0px;*/
         height: 130px;
+        border-bottom: thick dotted #ff0000;
     }
     .logo{
         width: 10%;

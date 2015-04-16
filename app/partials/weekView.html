@@ -1,12 +1,6 @@
 <style type="text/css">
-	#weekView {
-		left:240px;
-		background-color: yellow;
-	
-	}
 	#weektable {
-		top: 0px; left: 0px; right: 0px; bottom: 0;
-		background-color: lightblue;
+		background-color: white;
 		border: 1px solid black;
 		overflow: scroll;
 	}
@@ -15,42 +9,47 @@
 		font-weight: bold;
 		text-align: center;
 		border-left:thin solid;
+		width:200px;
 	}
 
 
 </style>
 
-		
+	<div style="height:700px; overflow:scroll;">
 		<table id="weektable">
 			<tbody>
 			<tr>
 				<th style="width:100px">
-				time
-					<div style="height:50px" ng-repeat="hour in hourList">
-						<hr class="time-hr">
-						<p>{{ hour }}</p>
-										
-
+					<p style="font-weight:bold;text-align:center;">Time</p>
 				</th>
-			
-				<th class="dataElement" id="  {{ y }}  " style="width:150px" ng-repeat="y in days">
-					<a href="#/dailyView">{{ y }}</a>
-					<div id="{{ y }} {{ hour }}"style="height:50px" ng-repeat="hour in hourList">
-						<hr class="time-hr">
-					</div>
-					
+				<th style="width:100px" ng-repeat="y in days">
+					<p style="font-weight:bold;text-align:center;">{{ y }}</p>
 				</th>
-				
 			</tr>
+			<tr style="height:50px" ng-repeat="hour in hourList">
+				<hr class="time-hr">
+					<td>
+						<p style="font-weight:bold;text-align:center;">{{ hour }}</p>
+						
+					</td>					
+					<td class="dataElement" id="{{ y }} {{ hour }}" ng-repeat="y in days">
+						<hr class="time-hr">
+						
+					</td>
+			</tr>				
+
+		
 		</tbody>
 		</table>
 		
 		
-		<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">
-		<div ng-init="times = ['08.00','09.00','10.00','11.00','12.00','13.00','14.00','15.00','16.00','17.00','18.00','19.00','20.00','21.00']">		
+		<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">	
 
 
 		</div>
 		</div>
-
+	</div>
+	<script>
+		$("#Times 1.00").append("<p>1.00</p>");
+	</script>	
 

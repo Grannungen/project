@@ -9,4 +9,11 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 		i++;
 		}
 	}
+	this.setHourList();
+	this.createCalBlock = function (){
+		$scope.table=$("#weektable");
+		console.log($scope.table);
+		$("#Mo 1.00").append("<p>Hej</p>");
+	}
+	this.createCalBlock();
 })

@@ -13,8 +13,27 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		i++;
 		}
 	}
-	this.setHourList();
+	// this.setHourList();
 
+		this.setHourList2 = function () {
+		var i = 8;
+		
+		while(i<17){
+			var hour = i.toString();
+			var time = hour + ":00"
+			$scope.hourList.push(time);
+			var j = 15;
+			while(j<60){
+				var minutes = j.toString();
+				hour_string = hour.toString();
+				time = hour_string + ":" + minutes;
+				$scope.hourList.push(time);
+				j = j + 15;
+			}
+		i++;
+		}
+	}
+	this.setHourList2();
 
 	
 	// create new metting when the new meeting page is loaded. The meeting (day) is pushed to meetingAgendaModel.days
@@ -33,7 +52,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		// var day = meetingAgendaModel.addDay($scope.startHoursMeeting, $scope.startMinutesMeeting, $scope.nameOfMeeting);
 		var day = meetingAgendaModel.addDay(5,0, "bengt");
 		$scope.dayIndex = $scope.days.indexOf(day);
-		alert("This is meeting number " + $scope.dayIndex);
+		// alert("This is meeting number " + $scope.dayIndex);
 		// console.log("meeting " + $scope.dayIndex + ": ");
 		// console.log($scope.days);
 	}

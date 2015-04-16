@@ -20,11 +20,13 @@
 				</div>
 
 				<!-- test activities -->
+				<div style="height: 4.2%" ng-click="showEditor=true"></div>
+
 				<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
 				<div class="break activity" style="height: 5%">break</div>
 				<div class="group-activity activity" style="height: 40%">dancing on the tables</div>
-				<div class="activity" style="height: 12%"></div>
-				<div class="presentation activity" style="height: 12%">Pres</div>
+				<!-- <div class="activity" style="height: 12%"></div>
+				<div class="presentation activity" style="height: 12%">Pres</div> -->
 
 			</div><!-- meeting-schedule end -->
 		</div><!-- middle-div end -->
@@ -64,10 +66,16 @@
        {{example.value}} -->
 
 		       	<label>Start time</label>
-		       	<div>			
-					<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="startHours">
+		       	<!-- <div>			
+					<input class="col-sm-" type="number" name="hours" min="0" max="23" ng-model="startHours">
 					<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutes">
+				</div> -->
+
+				<div>			
+					<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="startHoursMeeting">
+					<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutesMeeting">
 				</div>
+
 				<div class="form-group">
 					<label>Description:</label>
 					<textarea></textarea>
@@ -136,10 +144,10 @@
 			<label>Description:</label>
 			<textarea rows="8" ng-model="description"></textarea>
 		</div>
-		<div class="form-group">
+<!-- 		<div class="form-group">
 			<label>Color:</label>
 			<input type="color" value="#45c33b">
-		</div>
+		</div> -->
 
 		<button class="btn btn-info" ng-click="addNewActivity(); showEditor=false">Done</button>
 	</div>

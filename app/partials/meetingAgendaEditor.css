@@ -52,9 +52,9 @@
 		margin-top: 100 pt;
 		cursor: pointer;
 		vertical-align: middle;
-		width: 80%;
-		margin-left: 30pt;
-		margin-right: auto;
+		width: 70%;
+		margin-left: 20%;
+		/*margin-right:;*/
 
 	}
 	.meeting-schedule{

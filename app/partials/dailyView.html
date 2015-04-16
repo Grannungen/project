@@ -1,56 +1,162 @@
-<style type="text/css">
-	#dailyView {
-		left:240px;
-		background-color: yellow;
-	
-	}
-	#dailyTable {
-		top: 0px; left: 0px; right: 0px; bottom: 0;
-		background-color: lightblue;
-		border: 1px solid black;
-		overflow: scroll;
-	}
+<!-- <ng-include src="'partials/activityEditor.html'" ng-controler="meetingEditorCtrl"></ng-include> -->
+<!-- <ng-include src="'partials/meetingEditorPopUp.html'" ng-controler="meetingEditorCtrl"></ng-include> -->
+	<div class="meetingAgendaEditor col-sm-9">
 
-	.dataElement {
-		font-weight: bold;
-		text-align: center;
-		border-left:thin solid;
-	}
-
-
-</style>
-
+		<div class="col-sm-12 editor-head">
+			<h1>A Never Existed Day</h1>
+		</div>
 		
-		<table id="weektable">
-			<tbody>
-			<tr>
-				<th style="width:100px">
-				time
-					<div style="height:50px" ng-repeat="hour in hourList">
-						<hr class="time-hr">
-						<p>{{ hour }}</p>
-										
-
-				</th>
+		<div class="col-sm-3">
+		</div>
+		<div class="middle-div col-sm-6">
 			
-				<th class="dataElement" id="  {{ y }}  " style="width:150px" ng-repeat="y in days">
-					<a href="#/FB-like.jpg">{{ y }}</a>
-					<div id="{{ y }} {{ hour }}"style="height:50px" ng-repeat="hour in hourList">
-						<hr class="time-hr">
+			<div class="meeting-schedule">
+				<div class="time">
+					<div ng-repeat="hour in hourList">
+
+						<p class="hour">{{hour}}</p>
+				 		<hr class="time-hr">
 					</div>
-					
-				</th>
+				</div>
+
+				<!-- test activities -->
+<!-- 				<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
+				<div class="break activity" style="height: 5%">break</div> -->
+				<div  style="height: 16%"></div>
+				<div class="group-activity activity" style="height: 40%">A kinda meeting</div>
+
+				<div class="activity" style="height: 12%"></div>
+				<div class="presentation activity" style="height: 12%">Pres</div>
+
+			</div><!-- meeting-schedule end -->
+		</div><!-- middle-div end -->
+		<div class="col-sm-3 right-sidebar">
+<!-- 			<table id="CalendarInDaily">
+				<tbody>
+				<tr> -->
+<!-- 					<th style="width:100px">
+						<div style="height:20px" ng-repeat="week in weekList">
+							<hr class="time-hr">
+							<p>{{ hour }}</p>
+											
+
+					</th> -->
 				
-			</tr>
-		</tbody>
-		</table>
-		
-		
-		<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">
-		<div ng-init="times = ['08.00','09.00','10.00','11.00','12.00','13.00','14.00','15.00','16.00','17.00','18.00','19.00','20.00','21.00']">		
+<!-- 					<th class="dataElement" id="  {{ y }}  " style="width:150px" ng-repeat="y in days">
+						<a href="#/dailyView">{{ y }}</a>
+						<div id="{{ y }} {{ hour }}"style="height:50px" ng-repeat="hour in hourList">
+							<hr class="time-hr">
+						</div>
+						
+					</th>
+					
+				</tr>
+			</tbody>
+			</table> -->
 
+<!-- 			<div class="meeting-propeties well">
+				<div class="form-group">
+					<label>Meeting Name:</label>
+					<input type:"text" style="display:table-cell; width:100%">
+				</div>
+				<div class="form-group">
+					<form action="action_page.php">
+					  <label>Date:</label>
+					  <input type="date" name="activity-date">
+					</form>
+				</div> -->
+<!-- 				<div class="form-group">
+					<label>Start time</label>
+					<input type="time" name="time" ng-model="startTime-Meeting.value">
+					{{startTime-Meetig.value}}
+				</div> -->
+			<!-- 	<input type="time" id="exampleInput" name="input" ng-model="example.value"
+       placeholder="HH:mm:ss" required />
+       {{example.value}} -->
 
+<!-- 		       	<label>Start time</label>
+		       	<div>			
+					<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="startHours">
+					<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutes">
+				</div>
+				<div class="form-group">
+					<label>Description:</label>
+					<textarea></textarea>
+				</div>
+				<a class="btn btn-info" href="#/home">Done</a>
+			</div>
+		</div> -->
+	</div><!-- meetingAgendaEditor end -->
+	<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">	
+	<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">
+
+										<!-- testPrint -->
+<!-- 
+											<div class="testData" ng-hide="true">
+												<h1>Test Data</h1>
+												<ul ng-repeat="activity in days[0]._activities">
+													<h4>{{activity.getName()}}</h4>
+													<li>
+														Length: {{activity.getLength()}} min
+													</li>
+													<li>
+														Type: {{activity.getType()}}
+													</li>
+													<li>
+														Description: 
+														{{activity.getDescription()}}
+													</li>
+												</ul>
+											</div>
+										<!-- testPrint end -->
+ -->
+
+<!-- <div id="edit-activity-window" class="well" ng-show="showEditor">
+	<div class="col-sm-5 edit-activity-window-editor">
+		<div class="form-group">
+			<label>Activity Name:</label>
+			<input type:"text" class"form-control" ng-model="ActivityName" value="fuck yeah!">
 		</div>
+		<div class="form-group">
+			<form action="action_page.php">
+			  <label>Date:</label>
+			  <input type="date" name="activity-date">
+			</form>
 		</div>
+
+		<div class="form-group">
+			<label>Length in minutes:</label>
+			<input type="number" name="number" ng-model="length">
+		</div>
+
+		<div class="form-group">
+			<label>Start time:</label>
+			<input type="time" name="time">
+		</div>
+
+		<div class="form-group">
+			<label>End time:</label>
+			<input type="time" name="time">
+		</div>
+
+		<div class="form-group">
+			<label>Activity Type</label>
+			<select style="width:100%" ng-model="typeId">
+				<option value={{ActivityType.indexOf(type)}} ng-repeat="type in ActivityType">{{type}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Description:</label>
+			<textarea rows="8" ng-model="description"></textarea>
+		</div>
+		<div class="form-group">
+			<label>Color:</label>
+			<input type="color" value="#45c33b">
+		</div>
+
+		<button class="btn btn-info" ng-click="addNewActivity(); showEditor=false">Done</button>
+	</div>
+
+</div> -->
 
 

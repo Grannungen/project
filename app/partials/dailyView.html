@@ -1,10 +1,10 @@
 <style type="text/css">
-	#weekView {
+	#dailyView {
 		left:240px;
 		background-color: yellow;
 	
 	}
-	#weektable {
+	#dailyTable {
 		top: 0px; left: 0px; right: 0px; bottom: 0;
 		background-color: lightblue;
 		border: 1px solid black;
@@ -34,7 +34,7 @@
 				</th>
 			
 				<th class="dataElement" id="  {{ y }}  " style="width:150px" ng-repeat="y in days">
-					<a href="#/dailyView">{{ y }}</a>
+					<a href="#/FB-like.jpg">{{ y }}</a>
 					<div id="{{ y }} {{ hour }}"style="height:50px" ng-repeat="hour in hourList">
 						<hr class="time-hr">
 					</div>

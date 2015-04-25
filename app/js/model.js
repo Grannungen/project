@@ -2,22 +2,26 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
-//GÖR ALLA FUNTIONER LOKALA!!!!!!!!!!!!!!!!!!!!!!!!!
+
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
+
+
 
 	// The possible activity types
-	var ActivityType = ["Presentation","Group Work","Discussion","Break"]
+	var _this = this;
+	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
 
-	function Activity(name,length,typeid,description){
+	this.Activity = function(name,length,typeid,description){
 		var _name = name;
 		var _length = length;
 		var _typeid = typeid;
 		var _description = description;
 		
-		console.log("name: " + _name);
+		// console.log("name: " + _name);
 		
 
 		// sets the name of the activity
@@ -63,15 +67,16 @@
 		// This method returns the string representation of the
 		// activity type.
 		this.getType = function () {
-			return ActivityType[_typeid];
+			return _this.ActivityType[_typeid];
 		};
 	}
 
 	// This is a day consturctor. You can use it to create days, 
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
-	function Day(startH,startM, name) {
+	this.Day = function(startH,startM, name) {
 		this.name = name; //Simon added this line
+		this.weekDay = "";
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
@@ -150,7 +155,7 @@
 
 	// this is our main module that contians days and praked activites
 	// this.Model = function(){
-	meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
+	
 		this.days = [];
 		this.parkedActivities = [];
 		
@@ -164,13 +169,20 @@
 		this.addDay = function (startH,startM, name) {
 			var day;
 			if(startH){
-				day = new Day(startH,startM, name);
+				day = new this.Day(startH,startM, name);
 			} else {
-				day = new Day(8,0);
+				day = new this.Day(8,0);
 			}
 			this.days.push(day);
 			return day;
 		};
+
+		this.removeDay = function (day){
+			var index = this.days.indexOf(day);
+			console.log(this.days);
+			this.days.splice(index, 1);
+			console.log("removed obkect with index " + index);
+		}
 		
 		// add an activity to model
 		this.addActivity = function (activity,day,position) {

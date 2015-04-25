@@ -4,6 +4,22 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.hej = "hej!";
 	$scope.hourList = [];
 	$scope.hej1 = "hej";
+	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+	$scope.meeting = {
+		nameOfMeeting: "",
+		weekDay: "Mo",
+		startHoursMeeting: 8,
+		startMinutesMeeting: 0
+	}
+
+
+
+
+
+
+	var Day = meetingAgendaModel.Day;
+	var Activity = meetingAgendaModel.Activity;
+
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	
@@ -42,19 +58,30 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	
 	$scope.days = meetingAgendaModel.days;
 
-	// Gör lokal!!!!!!!!!!!!!!!!!!!!
+	var ActivityType = meetingAgendaModel.ActivityType;
 	$scope.ActivityType = ActivityType;
 	
 	// Add a new meeting
 	$scope.addNewDay = function () {
-		// Av någon anledning hittas inte $scope.nameOfMeeing...
-		// alert($scope.nameOfMeeting);
-		// var day = meetingAgendaModel.addDay($scope.startHoursMeeting, $scope.startMinutesMeeting, $scope.nameOfMeeting);
-		var day = meetingAgendaModel.addDay(5,0, "bengt");
+		var weekDay = $scope.meeting.weekDay;
+		var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
+		day.weekDay = weekDay;
+		// alert($scope.meeting.nameOfMeeting);
+		// var day = meetingAgendaModel.addDay(5,0, "bengt");
 		$scope.dayIndex = $scope.days.indexOf(day);
 		// alert("This is meeting number " + $scope.dayIndex);
 		// console.log("meeting " + $scope.dayIndex + ": ");
 		// console.log($scope.days);
+	}
+
+	$scope.removeDay = function (day) {
+		meetingAgendaModel.removeDay(day);
+	}
+
+	$scope.removeActivity = function (activity, day){
+		console.log(day);
+		var position = day._activities.indexOf(activity);
+		day._removeActivity(position);
 	}
 
 

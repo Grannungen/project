@@ -1,48 +1,46 @@
 
 <div id="edit-activity-window" class="well" ng-show="showMeetingEditorPopUp">
 	<div class="col-sm-5 edit-activity-window-editor">
-				<div class="form-group">
-					<label>Meeting Name:</label>
-					<input type:"text" class="form-control" style="display:table-cell; width:100%" ng-model="meeting.nameOfMeeting">
-				</div>
-				<div class="form-group">
-					<form action="action_page.php">
-					  <label>Date:</label>
-					  <input type="date" name="activity-date">
-					</form>
-				</div>
-				<div class="form-group">
-					<label>Day</label>
-					<select ng-model="meeting.weekDay" style="width:100%">
-						<option ng-repeat="weekDay in weekDays" value={{weekDay}}>{{weekDay}}</option>
-					</select>
-				</div>
-				
+		<div class="form-group">
+			<label>Meeting Name:</label>
+			<input type:"text" class="form-control" style="display:table-cell; width:100%" ng-model="meeting.nameOfMeeting">
+		</div>
+		<div class="form-group">
+			<form action="action_page.php">
+			  <label>Date:</label>
+			  <input type="date" name="activity-date">
+			</form>
+		</div>
+		<div class="form-group">
+			<label>Day</label>
+			<select ng-model="meeting.weekDay" style="width:100%">
+				<option ng-repeat="weekDay in weekDays" value={{weekDay}}>{{weekDay}}</option>
+			</select>
+		</div>
+		
 <!-- 				<div class="form-group">
-					<label>Start time</label>
-					<input type="time" name="time" ng-model="startTime-Meeting.value">
-					{{startTime-Meetig.value}}
-				</div> -->
-			<!-- 	<input type="time" id="exampleInput" name="input" ng-model="example.value"
-       placeholder="HH:mm:ss" required />
-       {{example.value}} -->
+			<label>Start time</label>
+			<input type="time" name="time" ng-model="startTime-Meeting.value">
+			{{startTime-Meetig.value}}
+		</div> -->
+	<!-- 	<input type="time" id="exampleInput" name="input" ng-model="example.value"
+placeholder="HH:mm:ss" required />
+{{example.value}} -->
 
-		       	<label>Start time:</label>
-		       	<div>			
-					<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="meeting.startHoursMeeting">
-					<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="meeting.startMinutesMeeting">
-				</div>
-				<!-- <div class="form-group">
-					<label>Description:</label>
-					<textarea></textarea>
-				</div> -->
+       	<label>Start time:</label>
+       	<div>			
+			<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="meeting.startHoursMeeting">
+			<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="meeting.startMinutesMeeting">
+		</div>
+		<!-- <div class="form-group">
+			<label>Description:</label>
+			<textarea></textarea>
+		</div> -->
 
-				<div class="form-group">
-					<label>Color:</label>
-					<input type="color" value="#45c33b">
-				</div>
+		<div class="form-group">
+			<label>Color:</label>
+			<input type="color" value="#45c33b">
+		</div>
 
-				<a class="btn btn-info" href="#/meetingAgendaEditor" ng-click="showMeetingEditorPopUp=false; addNewDay()">Done</a>
-
-
+		<a class="btn btn-info" href="#/meetingAgendaEditor" ng-click="showMeetingEditorPopUp=false; addNewDay()">Done</a>
 </div>

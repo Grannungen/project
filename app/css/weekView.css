@@ -1,0 +1,13 @@
+#weektable {
+	background-color: white;
+	border: 1px solid black;
+	overflow: scroll;
+}
+
+.dataElement {
+	font-weight: bold;
+	text-align: center;
+	border-left:thin solid;
+	width:200px;
+}
+

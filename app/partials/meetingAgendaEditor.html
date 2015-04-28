@@ -1,109 +1,88 @@
-<ng-include src="'partials/activityEditor.html'" ng-controler="meetingEditorCtrl"></ng-include>
+<!-- <ng-include src="'partials/activityEditor.html'" ng-controler="meetingEditorCtrl"></ng-include> -->
 <ng-include src="'partials/meetingEditorPopUp.html'" ng-controler="meetingEditorCtrl"></ng-include>
-	<div class="meetingAgendaEditor col-sm-9">
+<div class="meetingAgendaEditor col-sm-9">
+	<div class="col-sm-12 editor-head">
+		<h1>Awsome meeting</h1>
+	</div>
+	
+	<div class="col-sm-3">
+	</div>
+	<div class="middle-div col-sm-6">
 		
-		<div class="col-sm-12 editor-head">
-			<h1>Awsome meeting</h1>
+		<div class="meeting-schedule">
+			<div class="time">
+				<div ng-repeat="hour in hourList">
+
+					<p class="hour">{{hour}}</p>
+			 		<hr class="time-hr">
+				</div>
+			</div>
+
+			<!-- test activities -->
+			<div style="height: 4.2%" ng-click="showEditor=true"></div>
+
+			<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
+			<div class="break activity" style="height: 5%">break</div>
+			<div class="group-activity activity" style="height: 40%">dancing on the tables</div>
+			<!-- <div class="activity" style="height: 12%"></div>
+			<div class="presentation activity" style="height: 12%">Pres</div> -->
+		</div><!-- meeting-schedule end -->
+	</div><!-- middle-div end -->
+	<div class="col-sm-3 right-sidebar">
+		<div class="well presentation activity">
+			Presentation
 		</div>
-		
-		<div class="col-sm-3">
+		<div class="well group-activity activity">
+			Group work
 		</div>
-		<div class="middle-div col-sm-6">
-			
-			<div class="meeting-schedule">
-				<div class="time">
-					<div ng-repeat="hour in hourList">
 
-						<p class="hour">{{hour}}</p>
-				 		<hr class="time-hr">
-					</div>
-				</div>
+		<div class="well new-activity activity">
+			Discussion
+		</div>
+		<div class="well break activity">
+			Break
+		</div>
 
-				<!-- test activities -->
-				<div style="height: 4.2%" ng-click="showEditor=true"></div>
-
-				<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
-				<div class="break activity" style="height: 5%">break</div>
-				<div class="group-activity activity" style="height: 40%">dancing on the tables</div>
-				<!-- <div class="activity" style="height: 12%"></div>
-				<div class="presentation activity" style="height: 12%">Pres</div> -->
-
-			</div><!-- meeting-schedule end -->
-		</div><!-- middle-div end -->
-		<div class="col-sm-3 right-sidebar">
-			<div class="well presentation activity">
-				Presentation
+		<div class="meeting-propeties well">
+			<div class="form-group">
+				<label>Meeting Name:</label>
+				<input type:"text" style="display:table-cell; width:100%">
 			</div>
-			<div class="well group-activity activity">
-				Group work
+			<div class="form-group">
+				<form action="action_page.php">
+				  <label>Date:</label>
+				  <input type="date" name="activity-date">
+				</form>
 			</div>
-
-			<div class="well new-activity activity">
-				Discussion
-			</div>
-			<div class="well break activity">
-				Break
-			</div>
-
-			<div class="meeting-propeties well">
-				<div class="form-group">
-					<label>Meeting Name:</label>
-					<input type:"text" style="display:table-cell; width:100%">
-				</div>
-				<div class="form-group">
-					<form action="action_page.php">
-					  <label>Date:</label>
-					  <input type="date" name="activity-date">
-					</form>
-				</div>
 <!-- 				<div class="form-group">
-					<label>Start time</label>
-					<input type="time" name="time" ng-model="startTime-Meeting.value">
-					{{startTime-Meetig.value}}
-				</div> -->
-			<!-- 	<input type="time" id="exampleInput" name="input" ng-model="example.value"
-       placeholder="HH:mm:ss" required />
-       {{example.value}} -->
+				<label>Start time</label>
+				<input type="time" name="time" ng-model="startTime-Meeting.value">
+				{{startTime-Meetig.value}}
+			</div> -->
+		<!-- 	<input type="time" id="exampleInput" name="input" ng-model="example.value"
+   placeholder="HH:mm:ss" required />
+   {{example.value}} -->
 
-		       	<label>Start time</label>
-		       	<!-- <div>			
-					<input class="col-sm-" type="number" name="hours" min="0" max="23" ng-model="startHours">
-					<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutes">
-				</div> -->
+	       	
+	       	<!-- <div>			
+				<input class="col-sm-" type="number" name="hours" min="0" max="23" ng-model="startHours">
+				<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutes">
+			</div> -->
 
-				<div>			
-					<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="startHoursMeeting">
-					<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutesMeeting">
-				</div>
-
-				<div class="form-group">
-					<label>Description:</label>
-					<textarea></textarea>
-				</div>
-				<a class="btn btn-info" href="#/home">Done</a>
+			<div>
+				<label>Start time</label>		
+				<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="startHoursMeeting">
+				<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="startMinutesMeeting">
 			</div>
+
+			<div class="form-group">
+				<label>Description:</label>
+				<textarea></textarea>
+			</div>
+			<a class="btn btn-info" href="#/home">Done</a>
 		</div>
-	</div><!-- meetingAgendaEditor end -->
-
-										<!-- testPrint -->
-
-											<div class="testData" ng-hide="true">
-												<h1>Test Data</h1>
-												<ul ng-repeat="activity in days[0]._activities">
-													<h4>{{activity.getName()}}</h4>
-													<li>
-														Length: {{activity.getLength()}} min
-													</li>
-													<li>
-														Type: {{activity.getType()}}
-													</li>
-													<li>
-														Description: 
-														{{activity.getDescription()}}
-													</li>
-												</ul>
-											</div>
-										<!-- testPrint end -->
+	</div>
+</div><!-- meetingAgendaEditor end -->
 
 
 <div id="edit-activity-window" class="well" ng-show="showEditor">
@@ -124,7 +103,7 @@
 			<input type="number" name="number" ng-model="length">
 		</div>
 
-<!-- 		<div class="form-group">
+	<!-- 		<div class="form-group">
 			<label>Start time:</label>
 			<input type="time" name="time">
 		</div>
@@ -144,27 +123,13 @@
 			<label>Description:</label>
 			<textarea rows="8" ng-model="description"></textarea>
 		</div>
-<!-- 		<div class="form-group">
+	<!-- 		<div class="form-group">
 			<label>Color:</label>
 			<input type="color" value="#45c33b">
 		</div> -->
 
 		<button class="btn btn-info" ng-click="addNewActivity(); showEditor=false">Done</button>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 

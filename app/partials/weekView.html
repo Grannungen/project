@@ -1,23 +1,6 @@
-<style type="text/css">
-	#weektable {
-		background-color: white;
-		border: 1px solid black;
-		overflow: scroll;
-	}
-
-	.dataElement {
-		font-weight: bold;
-		text-align: center;
-		border-left:thin solid;
-		width:200px;
-	}
-
-
-</style>
-
-	<div style="height:700px; overflow:scroll;">
-		<table id="weektable">
-			<tbody>
+<div style="height:700px; overflow:scroll;">
+	<table id="weektable">
+		<tbody>
 			<tr>
 				<th style="width:100px">
 					<p style="font-weight:bold;text-align:center;">Time</p>
@@ -30,26 +13,13 @@
 				<hr class="time-hr">
 					<td>
 						<p style="font-weight:bold;text-align:center;">{{ hour }}</p>
-						
 					</td>					
 					<td class="dataElement" id="{{ y }} {{ hour }}" ng-repeat="y in days">
 						<hr class="time-hr">
-						
 					</td>
 			</tr>				
-
-		
 		</tbody>
-		</table>
-		
-		
-		<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']">	
-
-
-		</div>
-		</div>
-	</div>
-	<script>
-		$("#Times 1.00").append("<p>1.00</p>");
-	</script>	
+	</table>
+	<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']"></div>
+</div> 
 

@@ -9,9 +9,6 @@ meetingAgendaPlanner.config(['$routeProvider',
         templateUrl: 'partials/start-log-in.html',
         // controller: 'view1Ctrl'
       })
-      .when('/view2', {
-        templateUrl: 'partials/view2.html',
-      })
       .when('/weekView', {
         templateUrl: 'partials/weekView.html',
 

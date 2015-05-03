@@ -77,6 +77,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 	this.Day = function(startH,startM, name) {
 		this.name = name; //Simon added this line
 		this.weekDay = "";
+		this.startH = startH;
 		this._start = startH * 60 + startM;
 		this._activities = [];
 

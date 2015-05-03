@@ -10,7 +10,7 @@
 	}
 </style>
 
-<div style="height:700px; overflow:scroll;">
+<div style="height:700px; overflow:scroll;" ng-controller="meetingEditorCtrl">
 	<table id="weektable">
 		<tbody>
 			<tr>
@@ -21,19 +21,18 @@
 					<p style="font-weight:bold;text-align:center;">{{ y }}</p>
 				</th>
 			</tr>
-			<tr style="height:50px" ng-repeat="hour in hourList">
+			<tr style="height:50px" ng-repeat="hour in wholeHourList">
 				<hr class="time-hr">
 					<td>
-						<p style="font-weight:bold;text-align:center;">{{ hour }}</p>
+						<p style="font-weight:bold;text-align:center;">{{ hour }}:00</p>
 					</td>					
-					<td class="dataElement" id="{{ y }}, {{ hour }}" ng-repeat="y in days" ng-click="addNew()">
-						
-						
+					<td class="dataElement" id="{{ weekDay }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew()">
+						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay} | filter:{startH:hour}:true">{{day.name}}</div>
 					</td>
 					
 			</tr>				
 		</tbody>
 	</table>
-	<div ng-init="days = ['Mo','Tu','We','th','Fr','Sa','Su']"></div>
+	<div ng-init="days = ['Mo','Tu','We','Th','Fr','Sa','Su']"></div>
 </div> 
 

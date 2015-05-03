@@ -1,10 +1,10 @@
 meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaModel){
-	$scope.hourList = [];
+	$scope.wholeHourList = [];
 	//$scope.dataElement = $(".dataElement");
 	$scope.addNew = function () {
 		var target = event.target.id;
 		var chosenDayTime = target.split(",");
-		console.log(chosenDayTime[1]);
+		console.log(chosenDayTime);
 	}
 
 		// body...
@@ -12,9 +12,9 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	
-		var time = i.toString();
-		time = time + ":00"
-		$scope.hourList.push(time);
+		// var time = i.toString();
+		// time = time + ":00"
+		$scope.wholeHourList.push(i);
 		i++;
 		}
 	}

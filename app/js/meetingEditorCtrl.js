@@ -3,7 +3,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		nameOfMeeting: "",
 		weekDay: "Mo",
 		startHoursMeeting: 8,
-		startMinutesMeeting: 0
+		startMinutesMeeting: 0,
+		days: meetingAgendaModel.days
 	}
 	$scope.meeting.showEditor = false;
 	$scope.showMeetingEditorPopUp = true;
@@ -72,7 +73,10 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		$scope.meeting.selectedDay = day;
 		// alert("This is meeting number " + $scope.dayIndex);
 		// console.log("meeting " + $scope.dayIndex + ": ");
-		// console.log($scope.days);
+		console.log("$scope.meeting.days: " + $scope.meeting.days);
+		console.log($scope.meeting.days);
+
+
 	}
 
 	$scope.removeDay = function (day) {

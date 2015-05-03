@@ -1,4 +1,4 @@
-<!-- <ng-include src="'partials/activityEditor.html'" ng-controler="meetingEditorCtrl"></ng-include> -->
+<!-- <ng-include src="'partials/activityEditor.html'" ng-controler="meetingEditorCtrl"></ng-include>  -->
 <ng-include src="'partials/meetingEditorPopUp.html'" ng-controler="meetingEditorCtrl"></ng-include>
 <div class="meetingAgendaEditor col-sm-9">
 	<div class="col-sm-12 editor-head">
@@ -19,9 +19,9 @@
 			</div>
 
 			<!-- test activities -->
-			<div style="height: 4.2%" ng-click="showEditor=true"></div>
+			<div style="height: 4.2%" ng-click="meeting.showEditor=true"></div>
 
-			<div class="presentation activity" style="height: 12%" ng-click="showEditor=true">Press here!</div>
+			<div class="presentation activity" style="height: 12%" ng-click="meeting.showEditor=true">Press here!</div>
 			<div class="break activity" style="height: 5%">break</div>
 			<div class="group-activity activity" style="height: 40%">dancing on the tables</div>
 			<!-- <div class="activity" style="height: 12%"></div>
@@ -84,52 +84,5 @@
 	</div>
 </div><!-- meetingAgendaEditor end -->
 
-
-<div id="edit-activity-window" class="well" ng-show="showEditor">
-	<div class="col-sm-5 edit-activity-window-editor">
-		<div class="form-group">
-			<label>Activity Name:</label>
-			<input type:"text" class"form-control" ng-model="ActivityName" value="fuck yeah!">
-		</div>
-		<div class="form-group">
-			<form action="action_page.php">
-			  <label>Date:</label>
-			  <input type="date" name="activity-date">
-			</form>
-		</div>
-
-		<div class="form-group">
-			<label>Length in minutes:</label>
-			<input type="number" name="number" ng-model="length">
-		</div>
-
-	<!-- 		<div class="form-group">
-			<label>Start time:</label>
-			<input type="time" name="time">
-		</div>
-
-		<div class="form-group">
-			<label>End time:</label>
-			<input type="time" name="time">
-		</div> -->
-
-		<div class="form-group">
-			<label>Activity Type</label>
-			<select style="width:100%" ng-model="typeId">
-				<option value={{ActivityType.indexOf(type)}} ng-repeat="type in ActivityType">{{type}}</option>
-			</select>
-		</div>
-		<div class="form-group">
-			<label>Description:</label>
-			<textarea rows="8" ng-model="description"></textarea>
-		</div>
-	<!-- 		<div class="form-group">
-			<label>Color:</label>
-			<input type="color" value="#45c33b">
-		</div> -->
-
-		<button class="btn btn-info" ng-click="addNewActivity(); showEditor=false">Done</button>
-	</div>
-</div>
-
-
+<!-- Jag har prövat att lägga detta i en egen fil men då lyckas inte programmet hämta namn och längd på aktivitet. Nessla? -->
+<ng-include src="'partials/activityPopUp.html'" ng-controler="meetingEditorCtrl"></ng-include>

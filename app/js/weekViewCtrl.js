@@ -31,6 +31,7 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 		console.log($scope.table);
 		$("#Mo 1.00").append("<p>Hej</p>");
 		console.log($("#Mo 1.00"));
+		console.log($scope.meeting);
 	}
 	this.createCalBlock();
 })

@@ -12,5 +12,9 @@
     "postinstall": "bower install",
     "prestart": "npm install",
     "start": "http-server app/ -a 0.0.0.0 -p 8000"
+  },
+  "dependencies": {
+    "google-auth-library": "^0.9.4",
+    "googleapis": "^2.0.3"
   }
 }

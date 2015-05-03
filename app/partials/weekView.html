@@ -25,10 +25,13 @@
 				<hr class="time-hr">
 					<td>
 						<p style="font-weight:bold;text-align:center;">{{ hour }}:00</p>
-					</td>					
-					<td class="dataElement" id="{{ weekDay }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew()">
-						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay} | filter:{startH:hour}:true">{{day.name}}</div>
 					</td>
+									
+					<td class="dataElement" id="{{ weekDay }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew();">
+						 <!-- go('/meetingAgendaEditor'); -->
+						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.name}}</div>
+					</td>
+					
 					
 			</tr>				
 		</tbody>

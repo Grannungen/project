@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaModel){
+meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaModel, $location){
 	$scope.wholeHourList = [];
 	//$scope.dataElement = $(".dataElement");
 	$scope.addNew = function () {
@@ -7,6 +7,13 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 		console.log(chosenDayTime);
 	}
 
+	$scope.hejhej = function () {
+		alert()
+	}
+
+	$scope.go = function (path) {
+		$location.path(path);
+	}
 		// body...
 	
 	this.setHourList = function () {

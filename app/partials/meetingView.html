@@ -1,0 +1,47 @@
+<style type="text/css">
+.dataElement {
+		border-style: dotted;
+		border-width: 1px;
+
+
+	}
+.activityElement {
+	margin-right: auto;
+	margin-left: auto;
+
+}
+
+.activityTest{
+	border: solid 1px;
+	text-align: center;
+	margin-top: 100 pt;
+	/*cursor: pointer;*/
+	vertical-align: middle;
+	width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+</style>
+
+
+<!-- <table ng-controller="weekViewCtrl">
+	<tbody >
+		<th style="width:100px">
+			<p style="font-weight:bold;text-align:center;">{{meeting.selectedDay.name}}</p>
+		</th>
+		<tr style="height:{{activity.getLength() * 5}}px" class="activityElement" ng-repeat="activity in meeting.selectedDay._activities">
+					<td class="dataElement ">
+						<p style=";text-align:center;">{{activity.getName()}}</p>
+					</td>
+					<td class="dataElement">
+						<p style=";text-align:center;">{{activity.getLength()}}</p>
+					</td>
+		</tr>	
+	</tbody>
+
+</table> -->
+
+<div class="activityTest" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities">
+	{{activity.getName()}}
+</div>

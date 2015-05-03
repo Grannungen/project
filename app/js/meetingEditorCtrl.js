@@ -4,7 +4,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		weekDay: "Mo",
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0,
-		days: meetingAgendaModel.days
+		days: meetingAgendaModel.days,
+		selectedDay:meetingAgendaModel.selectedDay
 	}
 	$scope.meeting.showEditor = false;
 	$scope.showMeetingEditorPopUp = true;
@@ -83,6 +84,13 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		meetingAgendaModel.removeDay(day);
 	}
 
+	$scope.setSelectedDay = function (day) {
+		console.log("day input: " + day);
+		meetingAgendaModel.selectedDay = day;
+		console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
+		console.log(meetingAgendaModel.selectedDay);
+	}
+
 	$scope.removeActivity = function (activity, day){
 		console.log(day);
 		var position = day._activities.indexOf(activity);
@@ -135,7 +143,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		// });
 		console.log(meetingAgendaModel.days)
 	}
-
+// $scope.createTestData();
 
 
 

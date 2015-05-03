@@ -1,3 +1,15 @@
+<style type="text/css">
+	.dataElement {
+		border-style: dotted;
+		border-width: 1px;
+
+
+	}
+	.dataElement:hover {
+		background-color: lightblue;
+	}
+</style>
+
 <div style="height:700px; overflow:scroll;">
 	<table id="weektable">
 		<tbody>
@@ -14,9 +26,11 @@
 					<td>
 						<p style="font-weight:bold;text-align:center;">{{ hour }}</p>
 					</td>					
-					<td class="dataElement" id="{{ y }} {{ hour }}" ng-repeat="y in days">
-						<hr class="time-hr">
+					<td class="dataElement" id="{{ y }}, {{ hour }}" ng-repeat="y in days" ng-click="addNew()">
+						
+						
 					</td>
+					
 			</tr>				
 		</tbody>
 	</table>

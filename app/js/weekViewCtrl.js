@@ -1,5 +1,14 @@
 meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaModel){
 	$scope.hourList = [];
+	//$scope.dataElement = $(".dataElement");
+	$scope.addNew = function () {
+		var target = event.target.id;
+		var chosenDayTime = target.split(",");
+		console.log(chosenDayTime[1]);
+	}
+
+		// body...
+	
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	

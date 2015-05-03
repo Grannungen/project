@@ -1,3 +1,6 @@
+<ng-include src="'partials/activityPopUp.html'" ng-controler="meetingEditorCtrl"></ng-include>
+
+
 <style type="text/css">
 	.testDataDiv{
 		/*background-color: yellow;*/
@@ -22,7 +25,8 @@
 			<button ng-click="removeDay(day)">
 				remove meeting
 			</button>
-			<button ng-click="showEditor=true">
+			<!-- den lyckas ändra showEditor till true men inget popup dyker upp -->
+			<button ng-click="meeting.showEditor=true; meeting.selectedDay=day">
 				add activity
 			</button>
 			<h3>Total length of the meeting: {{day.getTotalLength()}}</h3>
@@ -48,4 +52,12 @@
 			
 		</div>
 	</div>
-<!-- testPrin
+<!-- testPrin -->
+
+
+
+
+
+
+
+

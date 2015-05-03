@@ -1,16 +1,16 @@
 meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel) {
-	$scope.showEditor = false;
-	$scope.showMeetingEditorPopUp = true;
-	$scope.hej = "hej!";
-	$scope.hourList = [];
-	$scope.hej1 = "hej";
-	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
-	$scope.meeting = {
+		$scope.meeting = {
 		nameOfMeeting: "",
 		weekDay: "Mo",
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0
 	}
+	$scope.meeting.showEditor = false;
+	$scope.showMeetingEditorPopUp = true;
+	$scope.hej = "hej!";
+	$scope.hourList = [];
+	$scope.hej1 = "hej";
+	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 
 
 
@@ -69,6 +69,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		// alert($scope.meeting.nameOfMeeting);
 		// var day = meetingAgendaModel.addDay(5,0, "bengt");
 		$scope.dayIndex = $scope.days.indexOf(day);
+		$scope.meeting.selectedDay = day;
 		// alert("This is meeting number " + $scope.dayIndex);
 		// console.log("meeting " + $scope.dayIndex + ": ");
 		// console.log($scope.days);
@@ -87,16 +88,17 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	// Add activities to day by using addAvtivity(activity, day, position)
 	$scope.addNewActivity = function(){
-		console.log("activityName" + $scope.ActivityName)
 		// activity = New Activity(name,length,typeid,description)
-		meetingAgendaModel.addActivity(new Activity($scope.ActivityName,$scope.length,$scope.typeId,$scope.description),$scope.dayIndex);
+		// meetingAgendaModel.addActivity(new Activity($scope.meeting.ActivityName,$scope.meeting.length,$scope.meeting.typeId,$scope.meeting.description),$scope.dayIndex);
+		$scope.meeting.selectedDay._addActivity(new Activity($scope.meeting.ActivityName,$scope.meeting.length,$scope.meeting.typeId,$scope.meeting.description),$scope.dayIndex);
+
 		// meetingAgendaModel.addActivity(new Activity("ethoieonehehrtlonethrkln",$scope.length,$scope.typeId,$scope.description),0);
 			
 			$.each(ActivityType,function(index,type){
 			console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 			 });
 			// meetingAgendaModel.days[0]._activities[0].setName();	
-			$scope.test = meetingAgendaModel.days[0]._activities[0].getName();
+			// $scope.test = meetingAgendaModel.days[0]._activities[0].getName();
 		// console.log($scope.test);
 		console.log($scope.days);
 	}
@@ -106,14 +108,16 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	// you can use this method to create some test data and test your implementation
 	$scope.createTestData = function(){
-		meetingAgendaModel.addDay(8,0,"Test1");
+		var day = meetingAgendaModel.addDay(8,0,"Test1");
+		day.weekDay = "Fr";
 		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,"Here we will have some introduction"),0);
 		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),0);
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),0);
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),0);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),0);
 
-		meetingAgendaModel.addDay(9,0,"Test2");
+		day = meetingAgendaModel.addDay(9,0,"Test2");
+		day.weekDay = "Th";
 		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),1);
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);
@@ -132,12 +136,12 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 
 
-	// $scope.hej = function () {
-	// 	alert()
-	// 	// showMeetingEditorPopUp=true;
-	// 	// $scope.showMeetingEditorPopUp = true;
-	// 	// alert($scope.showMeetingEditorPopUp);
-	// 		}
+	$scope.hej = function () {
+		alert($scope.meeting.showEditor)
+		// showMeetingEditorPopUp=true;
+		// $scope.showMeetingEditorPopUp = true;
+		// alert($scope.showMeetingEditorPopUp);
+			}
 	
 	// var test = meetingmeetingAgendaModel.test;
 	// alert = test;

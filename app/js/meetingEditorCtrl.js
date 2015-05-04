@@ -13,6 +13,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.hourList = [];
 	$scope.hej1 = "hej";
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+	$scope.list = meetingAgendaModel.setSelectedDay._activities;
 
 
 

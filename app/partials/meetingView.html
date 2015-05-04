@@ -51,7 +51,7 @@
 	<h1>
 	{{meeting.selectedDay.name}}
 </h1>
-<div class="activityTest well" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities">
+<div class="activityTest well" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities" draggable>
 	{{activity.getName()}}
 </div>
 </div>

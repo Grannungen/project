@@ -6,6 +6,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		days: meetingAgendaModel.days,
 		nameOfMeeting: "",
 		showEditor: false,
+		showMeetingEditorPopUp:true,
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0,
 		selectedDay:meetingAgendaModel.selectedDay,
@@ -13,7 +14,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	}
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
-	$scope.showMeetingEditorPopUp = true;
+	$scope.showMeetingEditorPopUp = false;
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 	
 
@@ -121,7 +122,9 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 // Test funcitons
 
 	$scope.hej = function () {
-		alert($scope.meeting.showEditor)
+		alert("hej");
+		// alert($scope.meeting.showEditor)
+
 		// showMeetingEditorPopUp=true;
 		// $scope.showMeetingEditorPopUp = true;
 		// alert($scope.showMeetingEditorPopUp);

@@ -18,24 +18,33 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- less.js makes styling easier -->
     <script src="bower_components/less/dist/less.min.js"></script>
 
+    <!-- Firebase -->
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+	
     <!-- Angular JavaScript including routing and resource modules  -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    
-
+  
+	
+   
     <!-- The application JavaScript code -->
     <script src="js/app.js"></script>
-    <script src="js/view1Ctrl.js"></script>
     <script src="js/meetingEditorCtrl.js"></script>
+    <script src="js/weekViewCtrl.js"></script>
+    <script src="js/dailyViewCtrl.js"></script>
+    <script src="js/directives.js"></script>
     <script src="js/model.js"></script>
-    
 
   </head>
-  <link rel="stylesheet" href="partials/style.css">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="partials/meetingAgendaEditor.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/meetingAgendaEditor.css">
+  <link rel="stylesheet" href="css/weekView.css">
+
+  
+
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
   <!-- <link rel="stylesheet" href="main.less"> -->
   <body>
@@ -43,12 +52,12 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
     <ng-include src="'partials/header.html'" ></ng-include>
-    <ng-include src="'partials/sidebar.html'"></ng-include>
+    <ng-include src="'partials/navbar.html'"></ng-include>
+    <!-- <ng-include src="'partials/sidebar.html'"></ng-include> -->
     <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
     where you specify which partial should be loaded when. -->
     <div  ng-view>   
     </div>
-
 
   </body>
 </html>

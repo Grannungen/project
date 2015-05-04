@@ -27,8 +27,7 @@
 			</button>
 
 			<!-- den lyckas ändra showEditor till true men inget popup dyker upp -->
-			<button ng-click="showEditor=true; meeting.selectedDay=day">
-
+			<button ng-click="meeting.showEditor=true; meeting.selectedDay=day; hej()">
 				add activity
 			</button>
 			<h3>Total length of the meeting: {{day.getTotalLength()}}</h3>

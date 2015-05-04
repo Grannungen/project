@@ -1,5 +1,5 @@
 
- newProjectApp.directive('draggable', function($document) {
+meetingAgendaPlanner.directive('draggable', function($document) {
             return function(scope, element, attr) {
             	element.on('dragstart', function (event) {
 
@@ -58,7 +58,7 @@
             }
         }); // newProjectApp.directive draggable
 
- newProjectApp.directive('dropable', function($document) {
+meetingAgendaPlanner.directive('dropable', function($document) {
  	return function(scope, element, attr) {
  		element.on('dragover', 
  			function(event) {

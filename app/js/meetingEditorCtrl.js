@@ -13,7 +13,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.hourList = [];
 	$scope.hej1 = "hej";
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
-	$scope.list = meetingAgendaModel.setSelectedDay._activities;
+	
 
 
 
@@ -33,7 +33,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		}
 	}
 	// this.setHourList();
-
 		this.setHourList2 = function () {
 		var i = 8;
 		
@@ -90,6 +89,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		meetingAgendaModel.selectedDay = day;
 		console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
 		console.log(meetingAgendaModel.selectedDay);
+		$scope.list = meetingAgendaModel.selectedDay._activities;
 	}
 
 	$scope.removeActivity = function (activity, day){

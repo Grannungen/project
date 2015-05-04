@@ -41,8 +41,25 @@
         left: 178px; right: 0; bottom: 0;
         top: 100px;
     }*/
+
+    #Menu{
+    }
     .nav{
-        width: 100%;
+        /*width: 100%;*/
+    }
+
+    .newMeetingBtn{
+        padding: 20px;
+        margin-right: auto;
+        margin-left: auto;
+        float: center;
+
+    }
+    .backgroundImage{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
     }
     .datepicker{
         /*position: absolute;*/

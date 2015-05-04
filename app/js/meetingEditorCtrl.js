@@ -1,28 +1,23 @@
 meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel) {
-		$scope.meeting = {
+	
+	//When the views are linked to each other they can't keep track of the varibles unless you declare
+	//them as $scope.meeting.variables
+	$scope.meeting = {
+		days: meetingAgendaModel.days,
 		nameOfMeeting: "",
-		weekDay: "Mo",
+		showEditor: false,
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0,
-		days: meetingAgendaModel.days,
-		selectedDay:meetingAgendaModel.selectedDay
+		selectedDay:meetingAgendaModel.selectedDay,
+		weekDay: "Mo"
 	}
-	$scope.meeting.showEditor = false;
-	$scope.showMeetingEditorPopUp = true;
-	$scope.hej = "hej!";
+	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
-	$scope.hej1 = "hej";
+	$scope.showMeetingEditorPopUp = true;
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 	
 
-
-
-
-
-
-	var Day = meetingAgendaModel.Day;
-	var Activity = meetingAgendaModel.Activity;
-
+	
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	
@@ -54,15 +49,18 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	this.setHourList2();
 
 	
-	// create new metting when the new meeting page is loaded. The meeting (day) is pushed to meetingAgendaModel.days
-	
+
+
 	//put in start time of the meeting in hours and minutes as a parameter in addDay
 	
-	$scope.days = meetingAgendaModel.days;
 
+	var Day = meetingAgendaModel.Day;
+	var Activity = meetingAgendaModel.Activity;
 	var ActivityType = meetingAgendaModel.ActivityType;
 	$scope.ActivityType = ActivityType;
 	
+
+
 	// Add a new meeting
 	$scope.addNewDay = function () {
 		var weekDay = $scope.meeting.weekDay;
@@ -119,7 +117,17 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 
 
-	// you can use this method to create some test data and test your implementation
+
+// Test funcitons
+
+	$scope.hej = function () {
+		alert($scope.meeting.showEditor)
+		// showMeetingEditorPopUp=true;
+		// $scope.showMeetingEditorPopUp = true;
+		// alert($scope.showMeetingEditorPopUp);
+			}
+
+  	// you can use this method to create some test data and test your implementation
 	$scope.createTestData = function(){
 		var day = meetingAgendaModel.addDay(8,0,"Test1");
 		day.weekDay = "Fr";
@@ -145,32 +153,5 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		console.log(meetingAgendaModel.days)
 	}
 // $scope.createTestData();
-
-
-
-
-	$scope.hej = function () {
-		alert($scope.meeting.showEditor)
-		// showMeetingEditorPopUp=true;
-		// $scope.showMeetingEditorPopUp = true;
-		// alert($scope.showMeetingEditorPopUp);
-			}
-	
-	// var test = meetingmeetingAgendaModel.test;
-	// alert = test;
-
-	// $scope.mainWindowClicked = function (e) {
-	// 	console.log(e);
-	// 	if($(e).hasClass("activity"))
-	// 		{alert()}
-	// 	if($scope.showEditor == true){
-	// 		$scope.showEditor = false
-	// 	}
-	// }
-	// $scope.mainWindowClicked = function (argument) {
-	// 	$scope.show = false;
-	// }
-
-  // }
 
 });

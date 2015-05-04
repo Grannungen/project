@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel) {
+meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
 	
 	//When the views are linked to each other they can't keep track of the varibles unless you declare
 	//them as $scope.meeting.variables
@@ -15,9 +15,14 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = true;
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+		
 	
+	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
+	var syncObject = $firebaseObject(ref);
+	syncObject.$bindTo($scope, "bindedList");
+	$scope.bindedList = "{name: name}";
+	$scope.bindedList = meetingAgendaModel.days;
 
-	
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	

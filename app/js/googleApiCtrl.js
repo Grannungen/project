@@ -1,5 +1,6 @@
-
-     var CLIENT_ID = '907587605785-n1dav3sembqi5fap2h11bdc9oe662g69.apps.googleusercontent.com';
+meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
+      console.log("apictrl skapts");
+      var CLIENT_ID = '907587605785-n1dav3sembqi5fap2h11bdc9oe662g69.apps.googleusercontent.com';
 
       // This quickstart only requires read-only scope, check
       // https://developers.google.com/google-apps/calendar/auth if you want to
@@ -9,7 +10,8 @@
       /**
        * Check if current user has authorized this application.
        */
-      function checkAuth() {
+      this.checkAuth = function () {
+        console.log("1");
         gapi.auth.authorize(
           {
             'client_id': CLIENT_ID,
@@ -23,12 +25,13 @@
        *
        * @param {Object} authResult Authorization result.
        */
-      function handleAuthResult(authResult) {
+      $scope.handleAuthResult = function (authResult) {
+        console.log("2");
         var authorizeDiv = document.getElementById('authorize-div');
         if (authResult && !authResult.error) {
           // Hide auth UI, then load Calendar client library.
           authorizeDiv.style.display = 'none';
-          loadCalendarApi();
+          $scope.loadCalendarApi();
         } else {
           // Show auth UI, allowing the user to initiate authorization by
           // clicking authorize button.
@@ -41,10 +44,11 @@
        *
        * @param {Event} event Button click event.
        */
-      function handleAuthClick(event) {
+      $scope.handleAuthClick = function (event) {
+        console.log("3");
         gapi.auth.authorize(
           {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
-          handleAuthResult);
+          $scope.handleAuthResult);
         return false;
       }
 
@@ -52,8 +56,9 @@
        * Load Google Calendar client library. List upcoming events
        * once client library is loaded.
        */
-      function loadCalendarApi() {
-        gapi.client.load('calendar', 'v3', listUpcomingEvents);
+      $scope.loadCalendarApi = function () {
+        console.log("4");
+        gapi.client.load('calendar', 'v3', $scope.listUpcomingEvents);
       }
 
       /**
@@ -61,7 +66,8 @@
        * the authorized user's calendar. If no events are found an
        * appropriate message is printed.
        */
-      function listUpcomingEvents() {
+      $scope.listUpcomingEvents = function () {
+        console.log("5");
         var request = gapi.client.calendar.events.list({
           'calendarId': 'primary',
           'timeMin': (new Date()).toISOString(),
@@ -74,19 +80,7 @@
         request.execute(function(resp) {
           var events = resp.items;
           console.log(events);
-          if (events.length > 0) {
-            for (i = 0; i < events.length; i++) {
-              var event = events[i];
-              var when = event.start.dateTime;
-              if (!when) {
-                when = event.start.date;
-              }
-              appendPre(event.summary + ' (' + when + ')')
-            }
-          } else {
-            appendPre('No upcoming events found.');
-          }
-
+          
         });
       }
 
@@ -96,10 +90,6 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
-        var pre = document.getElementById('googleStuff');
-        console.log(message);
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-      }
+     
+  });
   

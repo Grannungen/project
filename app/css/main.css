@@ -5,7 +5,13 @@
         height: 100%;
     }
 
+    #containerAbove {
+        border: thick;
+        background-color: lightblue;
+        height: 1000px;
+        position: absolute;
 
+    }
 
 
     #sideBar {

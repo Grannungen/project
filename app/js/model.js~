@@ -175,7 +175,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 				day = new this.Day(8,0);
 			}
 			this.days.push(day);
-
 			return day;
 		};
 

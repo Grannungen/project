@@ -1,5 +1,5 @@
 
-<div id="edit-activity-window" class="well" ng-show="showMeetingEditorPopUp">
+<div id="edit-activity-window" class="well" ng-show="meeting.showMeetingEditorPopUp">
 	<div class="col-sm-5 edit-activity-window-editor">
 		<div class="form-group">
 			<label>Meeting Name:</label>
@@ -37,10 +37,5 @@ placeholder="HH:mm:ss" required />
 			<textarea></textarea>
 		</div> -->
 
-		<div class="form-group">
-			<label>Color:</label>
-			<input type="color" value="#45c33b">
-		</div>
-
-		<a class="btn btn-info" href="#/meetingAgendaEditor" ng-click="showMeetingEditorPopUp=false; addNewDay()">Done</a>
+		<a class="btn btn-info" href="#/meetingAgendaEditor" ng-click="meeting.showMeetingEditorPopUp=false; addNewDay()">Done</a>
 </div>

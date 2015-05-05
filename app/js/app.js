@@ -1,5 +1,5 @@
 
-var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ngResource']);
+var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ngResource', 'firebase']);
 
 
 meetingAgendaPlanner.config(['$routeProvider',
@@ -7,17 +7,18 @@ meetingAgendaPlanner.config(['$routeProvider',
     $routeProvider
       .when('/login', {
         templateUrl: 'partials/start-log-in.html',
-        // controller: 'view1Ctrl'
+        controller: 'meetingEditorCtrl'
       })
       .when('/weekView', {
         templateUrl: 'partials/weekView.html',
-
-	controller: 'weekViewCtrl'
+        controller: 'meetingEditorCtrl',
+	     // controller: 'weekViewCtrl'
       })
       .when('/dailyView', {
         templateUrl: 'partials/dailyView.html',
+        controller: 'meetingEditorCtrl'
       
-  controller: 'dailyViewCtrl'
+  // controller: 'dailyViewCtrl'
       })
       .when('/meetingAgendaEditor', {
         templateUrl: 'partials/meetingAgendaEditor.html',

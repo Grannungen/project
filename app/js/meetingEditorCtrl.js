@@ -5,11 +5,13 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.meeting = {
 		days: meetingAgendaModel.days,
 		nameOfMeeting: "",
+		showActivityInfo:false,
 		showEditor: false,
 		showMeetingEditorPopUp:true,
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0,
 		selectedDay:meetingAgendaModel.selectedDay,
+		selectedActivity:meetingAgendaModel.selectedActivity,
 		weekDay: "Mo"
 	}
 	$scope.days = meetingAgendaModel.days;
@@ -96,6 +98,17 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		$scope.list = meetingAgendaModel.selectedDay._activities;
 	}
 
+		$scope.setSelectedActivity = function (activity) {
+		console.log("activity input: " + activity.getName());
+		console.log(activity);
+
+		meetingAgendaModel.selectedActivity = activity;
+		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
+		// console.log(meetingAgendaModel.selectedDay);
+		// $scope.list = meetingAgendaModel.selectedDay._activities;
+	}
+
+
 	$scope.removeActivity = function (activity, day){
 		console.log(day);
 		var position = day._activities.indexOf(activity);
@@ -128,13 +141,23 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	$scope.hej = function () {
 		alert("hej");
-		// alert($scope.meeting.showEditor)
+		$scope.meeting.showActivityInfo=true;
+		alert($scope.meeting.showActivityInfo)
 
 		// showMeetingEditorPopUp=true;
 		// $scope.showMeetingEditorPopUp = true;
 		// alert($scope.showMeetingEditorPopUp);
 			}
 
+
+		$scope.meeting.hej = function () {
+		alert("hej");
+		// alert($scope.meeting.showEditor)
+
+		// showMeetingEditorPopUp=true;
+		// $scope.showMeetingEditorPopUp = true;
+		// alert($scope.showMeetingEditorPopUp);
+			}
   	// you can use this method to create some test data and test your implementation
 	$scope.createTestData = function(){
 		var day = meetingAgendaModel.addDay(8,0,"Test1");

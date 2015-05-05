@@ -17,7 +17,7 @@
 	margin-top: 100 pt;
 	/*cursor: pointer;*/
 	vertical-align: middle;
-	width: 20%;
+	/*width: 20%;*/
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 0px;
@@ -34,12 +34,17 @@
 	visibility: visible;
 }
 
-.content{
+.meetingContent{
+	margin-top: 70px;
 	text-align: center;
 }
+.Center{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
 </style>
-
-
 <!-- <table ng-controller="weekViewCtrl">
 	<tbody >
 		<th style="width:100px">
@@ -58,31 +63,109 @@
 </table> -->
 
 <ng-include src="'partials/activityPopUp.html'"></ng-include>
+<ng-include src="'partials/activityInfoPopUp.html'"></ng-include>
 
-<div class="content">
 
-	<div style="height:100px"></div>
-		<h1 style="width:100%">
-		{{meeting.selectedDay.name}}
-	</h1>
+<!-- <div class="meetingContent col-sm-3" style="background-color:black">
+	da
+</div> -->
 
-	<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
-		Add Activity
-	</button>
+	<div class="col-sm-3"></div>
+	<div class="meetingContent col-sm-6 Center" style="background-color:">
+		<div class="col-sm-4" style="background-color:"></div>
+		<div class="col-sm-4">
+			<h1 style="width:100%">
+				{{meeting.selectedDay.name}}
+			</h1>
 
-	<div class="activityTest well" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities">
-		<div class="col-sm-1">
-			<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
-		</div>
-		<div class="col-sm-10">
-			<div>
-			{{activity.getName()}}
+			<div class="col-sm-12">
+				<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+					Add Activity
+				</button>
+				<div class="activityTest well col-sm-12" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities" draggable="true">
+					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+					</div>
+					<div class="col-sm-9">
+						<div>
+						{{activity.getName()}}
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-sm-1"></div>
+		<div class="col-sm-4 meetingContent" style="background-color:">
+			<h3>Start Time:</h3>
+			{{meeting.selectedDay.getStart()}}
+			<h3>End Time:</h3>
+			{{meeting.selectedDay.getEnd()}}
+			<h3>Total Length:</h3>
+			{{meeting.selectedDay.getTotalLength()}} min
+
+			<div class="col-sm-12">
+				<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+						Edit
+				</button>
+			</div>
+
+
+		</div>
+
+
+		
 	</div>
+	<div class="col-sm-3"></div>
+<!-- <div class="col-sm-3 meetingContent" style="background-color:green">
+	ergerg
+</div> -->
 
 
 
-	
-</div>
+
+
+
+
+
+<!-- 	<div class="meetingContent col-sm-6 center" style="background-color:pink">
+		<h1 style="width:100%">
+			{{meeting.selectedDay.name}}
+		</h1>
+
+		<div class="col-sm-12">
+			<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+				Add Activity
+			</button>
+		</div>
+		
+		<div class="">
+			
+			<div class="com-sm-5" style="background-color:green">			
+				<p>Start Time:</p>
+				{{meeting.selectedDay.getStart()}}
+				<p>End Time:</p>
+				{{meeting.selectedDay.getEnd()}}
+				<p>Total Length:</p>
+				{{meeting.selectedDay.getTotalLength()}} min
+			</div>
+
+ 			<div class="activityTest well col-sm-2" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities" draggable="true">
+				<div class="col-sm-1">
+					<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+				</div>
+				<div class="col-sm-10">
+					<div>
+					{{activity.getName()}}
+					</div>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="col-sm-5" style="background-color:green">
+				oug
+			</div>	
+		</div>	
+	</div> -->
+
+

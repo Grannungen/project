@@ -103,6 +103,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		console.log(activity);
 
 		meetingAgendaModel.selectedActivity = activity;
+		$scope
 		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
 		// console.log(meetingAgendaModel.selectedDay);
 		// $scope.list = meetingAgendaModel.selectedDay._activities;

@@ -4,7 +4,7 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 	//this.Dish = $resource('http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=insertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true');
 	//console.log(Dish);
 	this.Dish = $resource("https://www.google.com/calendar/render#main_7");
-	console.log(this.Dish);
+	// console.log(this.Dish);
 	//$.ajax({
       //      type: "GET",
         //    dataType: 'json',
@@ -17,7 +17,7 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 	$scope.addNew = function () {
 		var target = event.target.id;
 		var chosenDayTime = target.split(",");
-		console.log(chosenDayTime);
+		// console.log(chosenDayTime);
 	}
 
 	$scope.hejhej = function () {
@@ -41,10 +41,10 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 	this.setHourList();
 	this.createCalBlock = function (){
 		$scope.table=$("#weektable");
-		console.log($scope.table);
+		// console.log($scope.table);
 		$("#Mo 1.00").append("<p>Hej</p>");
-		console.log($("#Mo 1.00"));
-		console.log($scope.meeting);
+		// console.log($("#Mo 1.00"));
+		// console.log($scope.meeting);
 	}
 	this.createCalBlock();
 })

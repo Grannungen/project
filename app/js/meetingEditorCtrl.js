@@ -99,11 +99,14 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	}
 
 		$scope.setSelectedActivity = function (activity) {
+		console.log("hit")
 		console.log("activity input: " + activity.getName());
 		console.log(activity);
 
 		meetingAgendaModel.selectedActivity = activity;
-		$scope
+		$scope.meeting.selectedActivity = meetingAgendaModel.selectedActivity;
+		console.log("$scope.meeting.selectedActivity.getName(): " + $scope.meeting.selectedActivity.getName())
+		// $scope
 		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
 		// console.log(meetingAgendaModel.selectedDay);
 		// $scope.list = meetingAgendaModel.selectedDay._activities;
@@ -142,8 +145,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	$scope.hej = function () {
 		alert("hej");
-		$scope.meeting.showActivityInfo=true;
-		alert($scope.meeting.showActivityInfo)
+		// $scope.meeting.showActivityInfo=true;
+		// alert($scope.meeting.selectedActivity.getName);
 
 		// showMeetingEditorPopUp=true;
 		// $scope.showMeetingEditorPopUp = true;

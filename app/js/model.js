@@ -11,6 +11,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
 	this.selectedDay;
+	this.selectedActivity;
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);

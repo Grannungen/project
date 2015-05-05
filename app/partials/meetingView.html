@@ -64,6 +64,7 @@
 
 <ng-include src="'partials/activityPopUp.html'"></ng-include>
 <ng-include src="'partials/activityInfoPopUp.html'"></ng-include>
+<ng-include src="'partials/activityPopUpEdit.html'"></ng-include>
 
 
 <!-- <div class="meetingContent col-sm-3" style="background-color:black">
@@ -122,50 +123,5 @@
 	ergerg
 </div> -->
 
-
-
-
-
-
-
-
-<!-- 	<div class="meetingContent col-sm-6 center" style="background-color:pink">
-		<h1 style="width:100%">
-			{{meeting.selectedDay.name}}
-		</h1>
-
-		<div class="col-sm-12">
-			<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
-				Add Activity
-			</button>
-		</div>
-		
-		<div class="">
-			
-			<div class="com-sm-5" style="background-color:green">			
-				<p>Start Time:</p>
-				{{meeting.selectedDay.getStart()}}
-				<p>End Time:</p>
-				{{meeting.selectedDay.getEnd()}}
-				<p>Total Length:</p>
-				{{meeting.selectedDay.getTotalLength()}} min
-			</div>
-
- 			<div class="activityTest well col-sm-2" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities" draggable="true">
-				<div class="col-sm-1">
-					<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
-				</div>
-				<div class="col-sm-10">
-					<div>
-					{{activity.getName()}}
-					</div>
-				</div>
-				<div class="col-sm-1"></div>
-			</div>
-			<div class="col-sm-5" style="background-color:green">
-				oug
-			</div>	
-		</div>	
-	</div> -->
 
 

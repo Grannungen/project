@@ -65,6 +65,7 @@
 <ng-include src="'partials/activityPopUp.html'"></ng-include>
 <ng-include src="'partials/activityInfoPopUp.html'"></ng-include>
 <ng-include src="'partials/activityPopUpEdit.html'"></ng-include>
+<ng-include src="'partials/meetingEditorPopUp.html'"></ng-include>
 
 
 <!-- <div class="meetingContent col-sm-3" style="background-color:black">
@@ -105,9 +106,11 @@
 			{{meeting.selectedDay.getEnd()}}
 			<h3>Total Length:</h3>
 			{{meeting.selectedDay.getTotalLength()}} min
+			<h3>Day:</h3>
+			{{meeting.selectedDay.getWeekDay()}}
 
 			<div class="col-sm-12">
-				<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+				<button class="btn activity-btn" ng-click="meeting.showMeetingEditorPopUp=true;">
 						Edit
 				</button>
 			</div>

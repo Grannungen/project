@@ -7,7 +7,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		nameOfMeeting: "",
 		showActivityInfo:false,
 		showEditor: false,
-		showMeetingEditorPopUp:true,
+		showMeetingEditorPopUp:false,
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0,
 		selectedDay:meetingAgendaModel.selectedDay,
@@ -71,17 +71,27 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	// Add a new meeting
 	$scope.addNewDay = function () {
-		var weekDay = $scope.meeting.weekDay;
-		var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
-		day.weekDay = weekDay;
-		// alert($scope.meeting.nameOfMeeting);
-		// var day = meetingAgendaModel.addDay(5,0, "bengt");
-		$scope.dayIndex = $scope.days.indexOf(day);
-		$scope.meeting.selectedDay = day;
-		// alert("This is meeting number " + $scope.dayIndex);
-		// console.log("meeting " + $scope.dayIndex + ": ");
-		console.log("$scope.meeting.days: " + $scope.meeting.days);
-		console.log($scope.meeting.days);
+
+		if(meetingAgendaModel.newDay==true){
+			var weekDay = $scope.meeting.weekDay;
+			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
+			day.weekDay = weekDay;
+			// alert($scope.meeting.nameOfMeeting);
+			// var day = meetingAgendaModel.addDay(5,0, "bengt");
+			$scope.dayIndex = $scope.days.indexOf(day);
+			$scope.meeting.selectedDay = day;
+			// alert("This is meeting number " + $scope.dayIndex);
+			// console.log("meeting " + $scope.dayIndex + ": ");
+			console.log("$scope.meeting.days: " + $scope.meeting.days);
+			console.log($scope.meeting.days);
+		}
+		else{
+			var day = meetingAgendaModel.selectedDay;
+			day.setName($scope.meeting.nameOfMeeting);
+			day.setWeekDay($scope.meeting.weekDay);
+			day.setStart($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting);
+
+		}
 
 
 	}
@@ -136,7 +146,13 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 		// console.log($scope.test);
 		console.log($scope.days);
 	}
-
+	$scope.changeActivity = function () {
+		var activity = meetingAgendaModel.selectedActivity;
+		activity.setName($scope.meeting.ActivityName);
+		activity.setLength($scope.meeting.length);
+		activity.setTypeId($scope.meeting.typeId);
+		activity.setDescription($scope.meeting.description);
+	}
 
 
 

@@ -12,6 +12,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
 	this.selectedDay;
 	this.selectedActivity;
+	this.newDay = false;
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
@@ -82,6 +83,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
+		this.setName = function (name) {
+			this.name = name;
+		}
+		this.getName = function(){
+			return this.name;
+		}
+		this.setWeekDay = function(day){
+			this.weekDay = day;
+		}
+		this.getWeekDay = function(){
+			return this.weekDay;
+		}
 		// sets the start time to new value
 		this.setStart = function(startH,startM) {
 			this._start = startH * 60 + startM;

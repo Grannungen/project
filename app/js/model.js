@@ -2,9 +2,13 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
-
-
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseArray) {
+	
+	this.firebaseArray = function() {
+		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
+		var a = $firebaseArray(ref);
+		return a;		
+	};
 
 	// The possible activity types
 	var _this = this;

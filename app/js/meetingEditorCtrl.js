@@ -32,7 +32,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
-	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 		
 	
 	var syncObject = meetingAgendaModel.firebaseArray();

@@ -30,9 +30,13 @@
 				<th style="width:100px">
 					<p style="font-weight:bold;text-align:center;">Time</p>
 				</th>
-				<th style="width:100px" ng-repeat="y in days">
-					<p style="font-weight:bold;text-align:center;">{{ y }}</p>
+				<th style="width:100px" ng-repeat="weekday in days">
+					<p style="font-weight:bold;text-align:center;">{{ weekday[0] }}</p>
+					
+					<p style="text-align:center;font-weight:none;">{{ weekday[1] }}{{weekday[2]}}</p>
+	
 				</th>
+				
 			</tr>
 			<tr style="height:50px" ng-repeat="hour in wholeHourList">
 				<hr class="time-hr">
@@ -40,7 +44,7 @@
 						<p style="font-weight:bold;text-align:center;">{{ hour }}:00</p>
 					</td>
 									
-					<td class="dataElement" id="{{ weekDay }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew();">
+					<td class="dataElement" id="{{ weekday[0] }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew();">
 						 <!-- go('/meetingAgendaEditor'); -->
 						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.name}}</div>
 					</td>

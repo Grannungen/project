@@ -197,9 +197,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
 		this.removeDay = function (day){
 			var index = this.days.indexOf(day);
-			console.log(this.days);
 			this.days.splice(index, 1);
-			console.log("removed obkect with index " + index);
 		}
 		
 		// add an activity to model

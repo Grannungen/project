@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaModel, $location, $resource){
+meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, meetingAgendaModel, $location, $resource){
 	$scope.wholeHourList = [];
 	//$scope.dataElement = $(".dataElement");
 	//this.Dish = $resource('http://www.google.com/calendar/feeds/developer-calendar@google.com/public/full?alt=json-in-script&callback=insertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true');
@@ -24,7 +24,7 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, meetingAgendaMo
 		alert()
 	}
 
-	$scope.go = function (path) {
+	$rootScope.go = function (path) {
 		$location.path(path);
 	}
 		// body...

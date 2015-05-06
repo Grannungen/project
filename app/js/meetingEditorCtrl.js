@@ -27,20 +27,14 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.showMeetingEditorPopUp = false;
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		
-	
-	var syncObject = meetingAgendaModel.firebaseArray();
-	console.log(syncObject);
-	console.log(syncObject.length);
-	syncObject.$loaded().then(function(syncObject){
-		console.log(syncObject.length);
-		//for (i=0; i< syncObject.length; i++){
-		//	syncObject.$remove(i);
-		//};
+	var obj = meetingAgendaModel.firebaseObject();
+	var child = obj.child('day');
+	child.set({days:{days:meetingAgendaModel.days}
 	});
 	
 	
 	
-
+	
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	
@@ -88,7 +82,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.addNewDay = function () {
 		if($rootScope.variables.selectedDayIsNew==true){
 			var weekDay = $scope.meeting.weekDay;
-			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
+			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting,$scope.meeting.nameOfMeeting);
 			day.weekDay = weekDay;
 			// alert($scope.meeting.nameOfMeeting);
 			// var day = meetingAgendaModel.addDay(5,0, "bengt");

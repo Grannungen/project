@@ -80,7 +80,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	// Add a new meeting
 	$scope.addNewDay = function () {
 		if($rootScope.variables.selectedDayIsNew==true){
-
 			var weekDay = $scope.meeting.weekDay;
 			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
 			day.weekDay = weekDay;

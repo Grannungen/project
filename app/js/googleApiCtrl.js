@@ -11,7 +11,6 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
        * Check if current user has authorized this application.
        */
       this.checkAuth = function () {
-        console.log("1");
         gapi.auth.authorize(
           {
             'client_id': CLIENT_ID,
@@ -26,7 +25,6 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
        * @param {Object} authResult Authorization result.
        */
       $scope.handleAuthResult = function (authResult) {
-        console.log("2");
         var authorizeDiv = document.getElementById('authorize-div');
         if (authResult && !authResult.error) {
           // Hide auth UI, then load Calendar client library.
@@ -45,7 +43,6 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
        * @param {Event} event Button click event.
        */
       $scope.handleAuthClick = function (event) {
-        console.log("3");
         gapi.auth.authorize(
           {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
           $scope.handleAuthResult);
@@ -57,7 +54,6 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
        * once client library is loaded.
        */
       $scope.loadCalendarApi = function () {
-        console.log("4");
         gapi.client.load('calendar', 'v3', $scope.listUpcomingEvents);
       }
 
@@ -67,7 +63,6 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
        * appropriate message is printed.
        */
       $scope.listUpcomingEvents = function () {
-        console.log("5");
         var request = gapi.client.calendar.events.list({
           'calendarId': 'primary',
           'timeMin': (new Date()).toISOString(),

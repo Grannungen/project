@@ -10,18 +10,20 @@
 	.dataElement:hover {
 		background-color: lightblue;
 	}
-</style>
-<!-- HEAD
-	
-<div class="weekContent" ng-controller="meetingEditorCtrl">
-	<div id="containerAbove"> 
-	
-    </div>
 
-======= -->
+	
+
+</style>
+
 
 <div class="weekContent" ng-controller="weekViewCtrl">
-<!-- >>>>>>> 9c898dc951b8179b76a2688b6fbb07c3c4566cb3 -->
+	<table id="navTable" align="center">
+		<tr id="navRow">
+			<td><span class="glyphicon glyphicon-arrow-left btn" id="leftArrow"></span></td>
+			<td><span class="glyphicon glyphicon-arrow-right btn" id="rightArrow"></span></td>
+			<td> {{ month }}</td>
+		</tr>
+	</table>
 	<table id="weektable">
 		<tbody>
 			<tr>
@@ -47,6 +49,5 @@
 			</tr>				
 		</tbody>
 	</table>
-	<div ng-init="days = ['Mo','Tu','We','Th','Fr','Sa','Su']"></div>
 </div> 
 

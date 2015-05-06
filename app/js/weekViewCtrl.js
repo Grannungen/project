@@ -44,16 +44,16 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 			dayList.push(day);
 		}
 
-		$scope.days = ["","","","","","",""];
-		for (var i = 0; i < dayList.length; i++) {
-			console.log(dayList[i]+"    "+dayList[i].getDay());
-				dayString = dayList[i].toString();
-				dayListPres = dayString.split(" ");
-				$scope.days.splice(dayList[i].getDay()-1, 1 ,dayListPres[0]+"  "+dayListPres[2]);
+		// $scope.days = ["","","","","","",""];
+		// for (var i = 0; i < dayList.length; i++) {
+		// 	console.log(dayList[i]+"    "+dayList[i].getDay());
+		// 		dayString = dayList[i].toString();
+		// 		dayListPres = dayString.split(" ");
+		// 		$scope.days.splice(dayList[i].getDay()-1, 1 ,dayListPres[0]+"  "+dayListPres[2]);
 			
-		};
+		// };
 
-		console.log($scope.days);
+		// console.log($scope.days);
 	
 		
 		
@@ -62,6 +62,7 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		//	if ($scope.months[i] == todayList[1]) {
 
 		//	}
+		$scope.days = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		};
 	
 	this.setDayList();

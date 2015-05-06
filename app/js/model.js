@@ -2,17 +2,23 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
-
-
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseArray) {
+	
+	this.firebaseArray = function() {
+		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
+		var a = $firebaseArray(ref);
+		return a;		
+	};
 
 	// The possible activity types
 	var _this = this;
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
+	// //////////////////////flytta till rootScope ////////////////////////
 	this.selectedDay;
 	this.selectedActivity;
-	this.newDay = false;
+
+	
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
@@ -195,9 +201,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
 		this.removeDay = function (day){
 			var index = this.days.indexOf(day);
-			console.log(this.days);
 			this.days.splice(index, 1);
-			console.log("removed obkect with index " + index);
 		}
 		
 		// add an activity to model

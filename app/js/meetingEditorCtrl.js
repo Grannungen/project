@@ -1,7 +1,15 @@
-meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
+meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
 	
 	//When the views are linked to each other they can't keep track of the varibles unless you declare
 	//them as $scope.meeting.variables
+	$rootScope.variables = {
+		showNewMeetingEditor: false,
+		selectedDayIsNew:false
+	}
+	$rootScope.variables.showNewMeetingEditor = false;
+	$rootScope.test=function (h) {
+		alert(h);
+	}
 	$scope.meeting = {
 		days: meetingAgendaModel.days,
 		nameOfMeeting: "",
@@ -20,11 +28,18 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		
 	
-	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
-	var syncObject = $firebaseObject(ref);
-	syncObject.$bindTo($scope, "bindedList");
-	$scope.bindedList = "{name: name}";
-	$scope.bindedList = meetingAgendaModel.days;
+	var syncObject = meetingAgendaModel.firebaseArray();
+	console.log(syncObject);
+	console.log(syncObject.length);
+	syncObject.$loaded().then(function(syncObject){
+		console.log(syncObject.length);
+		//for (i=0; i< syncObject.length; i++){
+		//	syncObject.$remove(i);
+		//};
+	});
+	
+	
+	
 
 	this.setHourList = function () {
 		var i = 1;
@@ -71,8 +86,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	// Add a new meeting
 	$scope.addNewDay = function () {
-
-		if(meetingAgendaModel.newDay==true){
+		if($rootScope.variables.selectedDayIsNew==true){
 			var weekDay = $scope.meeting.weekDay;
 			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
 			day.weekDay = weekDay;
@@ -84,8 +98,12 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 			// console.log("meeting " + $scope.dayIndex + ": ");
 			console.log("$scope.meeting.days: " + $scope.meeting.days);
 			console.log($scope.meeting.days);
+			$rootScope.variables.selectedDayIsNew = false;
+			meetingAgendaModel.selectedDay = day;
+
 		}
 		else{
+
 			var day = meetingAgendaModel.selectedDay;
 			day.setName($scope.meeting.nameOfMeeting);
 			day.setWeekDay($scope.meeting.weekDay);
@@ -97,14 +115,14 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 	}
 
 	$scope.removeDay = function (day) {
-		meetingAgendaModel.removeDay(day);
+			meetingAgendaModel.removeDay(day);
 	}
 
 	$scope.setSelectedDay = function (day) {
-		console.log("day input: " + day);
+		// console.log("day input: " + day);
 		meetingAgendaModel.selectedDay = day;
-		console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
-		console.log(meetingAgendaModel.selectedDay);
+		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
+		// console.log(meetingAgendaModel.selectedDay);
 		$scope.list = meetingAgendaModel.selectedDay._activities;
 	}
 

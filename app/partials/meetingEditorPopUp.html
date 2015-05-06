@@ -1,5 +1,5 @@
-
-<div id="edit-activity-window" class="well" ng-show="meeting.showMeetingEditorPopUp">
+<ng-include ng-controller="meetingEditorCtrl"></ng-include>
+<div id="edit-activity-window" class="well" ng-show="variables.showNewMeetingEditor" ng-controller="meetingEditorCtrl">
 	<div class="col-sm-5 edit-activity-window-editor">
 		<div class="form-group">
 			<label>Meeting Name:</label>
@@ -38,5 +38,6 @@ placeholder="HH:mm:ss" required />
 		</div> -->
 
 <!-- 		<a class="btn btn-info" href="#/meetingAgendaEditor" ng-click="meeting.showMeetingEditorPopUp=false; addNewDay()">Done</a> -->
-<a class="btn btn-info" ng-click="meeting.showMeetingEditorPopUp=false; addNewDay()">Done</a>
+<a class="btn btn-info" ng-click="variables.showNewMeetingEditor=false; addNewDay(); go('/meeting');">Done</a>
+</div>
 </div>

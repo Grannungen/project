@@ -1,7 +1,15 @@
-meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
+meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
 	
 	//When the views are linked to each other they can't keep track of the varibles unless you declare
 	//them as $scope.meeting.variables
+	$rootScope.variables = {
+		showNewMeetingEditor: false,
+		selectedDayIsNew:false
+	}
+	$rootScope.variables.showNewMeetingEditor = false;
+	$rootScope.test=function (h) {
+		alert(h);
+	}
 	$scope.meeting = {
 		days: meetingAgendaModel.days,
 		nameOfMeeting: "",
@@ -71,8 +79,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 
 	// Add a new meeting
 	$scope.addNewDay = function () {
+		if($rootScope.variables.selectedDayIsNew==true){
 
-		if(meetingAgendaModel.newDay==true){
 			var weekDay = $scope.meeting.weekDay;
 			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
 			day.weekDay = weekDay;
@@ -84,8 +92,12 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, meetingAg
 			// console.log("meeting " + $scope.dayIndex + ": ");
 			console.log("$scope.meeting.days: " + $scope.meeting.days);
 			console.log($scope.meeting.days);
+			$rootScope.variables.selectedDayIsNew = false;
+			meetingAgendaModel.selectedDay = day;
+			
 		}
 		else{
+
 			var day = meetingAgendaModel.selectedDay;
 			day.setName($scope.meeting.nameOfMeeting);
 			day.setWeekDay($scope.meeting.weekDay);

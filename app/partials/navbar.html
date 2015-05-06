@@ -1,17 +1,22 @@
-
-<div class="col-sm-12">
+<ng-include src="'partials/meetingEditorPopUp.html'"></ng-include>
+<div class="col-sm-12" ng-controller="meetingEditorCtrl">
 	<div class="col-md-4"></div>
 	<div class="col-md-4" id="Menu">
 	  <ul class="nav nav-pills " style="width:100%">
+	    <li style="float:"><button class="btn btn-danger" ng-click="variables.showNewMeetingEditor=true;">New Meeting</button></li>
+
 	    <li><a href="#/weekView">Weekly view</a></li>
 	    <li><a href="#/dailyView">Daily view</a></li>        
 	<!--                 <li><a href="#">Annual</a></li>
 	    <li><a href="#">Advice</a></li> -->
-	    <li><a href="#/testMeetingDrawer">testMeetingDrawer</a></li>
 	    <li ><a href="#/meetingAgendaEditor" ng-click="meeting.showMeetingEditorPopUp=true; hej()">New meeting</a></li>
+	    <li><a href="#/testMeetingDrawer">testMeetingDrawer</a></li>
 	  </ul>
+	  		
 	</div>
-	<div class="col-md-4"></div>
+	<div class="col-md-4">
+
+	</div>
 	    <!--<ng-include src="'partials/Calender.html'"></ng-include>-->
 	<!-- sideBar end -->
 </div>

@@ -2,7 +2,8 @@
 	<div class="col-sm-5 edit-activity-window-editor">
 		<div class="form-group">
 			<label>Activity Name:</label>
-			<input type:"text" class"form-control" ng-value="fuckyeah" ng-model="meeting.ActivityName" >
+			
+			<input type:"text" class"form-control" ng-model="variables.selectedActivityName" >
 		</div>
 		<div class="form-group">
 			<form action="action_page.php">
@@ -13,7 +14,7 @@
 
 		<div class="form-group">
 			<label>Length in minutes:</label>
-			<input type="number" name="number" ng-model="meeting.length">
+			<input type="number" name="number" ng-model="variables.selectedActivityLength">
 		</div>
 
 	<!-- 		<div class="form-group">
@@ -28,13 +29,13 @@
 
 		<div class="form-group">
 			<label>Activity Type</label>
-			<select style="width:100%" ng-model="meeting.typeId">
+			<select style="width:100%" ng-model="variables.selectedActivityTypeId">
 				<option value={{ActivityType.indexOf(type)}} ng-repeat="type in ActivityType">{{type}}</option>
 			</select>
 		</div>
 		<div class="form-group">
 			<label>Description:</label>
-			<textarea rows="8" ng-model="meeting.description" value="hahaha"></textarea>
+			<textarea rows="8" ng-model="variables.selectedActivityDescription"></textarea>
 		</div>
 	<!-- 		<div class="form-group">
 			<label>Color:</label>

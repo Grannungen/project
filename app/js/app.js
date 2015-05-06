@@ -32,6 +32,10 @@ meetingAgendaPlanner.config(['$routeProvider',
       templateUrl: 'partials/meetingView.html',
       controller: 'meetingEditorCtrl'
       })
+      .when('/dnd', {
+      templateUrl: 'partials/dragndroptest.html',
+      // controller: 'meetingEditorCtrl'
+      })
       .otherwise({
         redirectTo: '/login'
       });

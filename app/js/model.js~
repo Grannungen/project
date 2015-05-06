@@ -2,15 +2,22 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
-
-
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseArray) {
+	
+	this.firebaseArray = function() {
+		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
+		var a = $firebaseArray(ref);
+		//a.$add("hejja")
+		return a;		
+	};
 
 	// The possible activity types
 	var _this = this;
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
 	this.selectedDay;
+	this.selectedActivity;
+	this.newDay = false;
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
@@ -81,6 +88,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
+		this.setName = function (name) {
+			this.name = name;
+		}
+		this.getName = function(){
+			return this.name;
+		}
+		this.setWeekDay = function(day){
+			this.weekDay = day;
+		}
+		this.getWeekDay = function(){
+			return this.weekDay;
+		}
 		// sets the start time to new value
 		this.setStart = function(startH,startM) {
 			this._start = startH * 60 + startM;
@@ -175,6 +194,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 				day = new this.Day(8,0);
 			}
 			this.days.push(day);
+
 			return day;
 		};
 
@@ -232,30 +252,10 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 	// }
 	// this is the instance of our main model
 	// this is what you should use in your application
-	return this;
+
+    	return this;
 
 
-}); // model end
-	// var model = new Model();
 
 
-	// you can use this method to create some test data and test your implementation
-	
-	// addActivity(activity, position?)
-	// function createTestData(){
-	// 	model.addDay();
-	// 	model.addActivity(new Activity("Introduction",10,0,""),0);
-	// 	model.addActivity(new Activity("Idea 1",30,0,""),0);
-	// 	model.addActivity(new Activity("Working in groups",35,1,""),0);
-	// 	model.addActivity(new Activity("Idea 1 discussion",15,2,""),0);
-	// 	model.addActivity(new Activity("Coffee break",20,3,""),0);
-		
-	// 	console.log("Day Start: " + model.days[0].getStart());
-	// 	console.log("Day End: " + model.days[0].getEnd());
-	// 	console.log("Day Length: " + model.days[0].getTotalLength() + " min");
-	// 	$.each(ActivityType,function(index,type){
-	// 		console.log("Day '" + ActivityType[index] + "' Length: " +  model.days[0].getLengthByType(index) + " min");
-	// 	});
-	// 	console.log(model.days)
-	// }
-	// createTestData();
+}); 

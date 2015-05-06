@@ -28,11 +28,18 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		
 	
-	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
-	var syncObject = $firebaseObject(ref);
-	syncObject.$bindTo($scope, "bindedList");
-	$scope.bindedList = "{name: name}";
-	$scope.bindedList = meetingAgendaModel.days;
+	var syncObject = meetingAgendaModel.firebaseArray();
+	console.log(syncObject);
+	console.log(syncObject.length);
+	syncObject.$loaded().then(function(syncObject){
+		console.log(syncObject.length);
+		//for (i=0; i< syncObject.length; i++){
+		//	syncObject.$remove(i);
+		//};
+	});
+	
+	
+	
 
 	this.setHourList = function () {
 		var i = 1;

@@ -2,6 +2,9 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 	$scope.wholeHourList = [];
 	
 	//$scope.dataElement = $(".dataElement");
+	$scope.testObject = {number:1};
+	// console.log("$scope.testObject:" + $scope.testObject)
+	// console.log($scope.testObject)
 
 	$scope.addNew = function () {
 		var target = event.target.id;

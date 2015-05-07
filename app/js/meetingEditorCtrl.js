@@ -27,7 +27,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		startMinutesMeeting: 0,
 		selectedDay:meetingAgendaModel.selectedDay,
 		selectedActivity:meetingAgendaModel.selectedActivity,
-		weekDay: "Mo"
+		weekDay: "Mon"
 	}
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
@@ -218,7 +218,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
   	// you can use this method to create some test data and test your implementation
 	$scope.createTestData = function(){
 		var day = meetingAgendaModel.addDay(8,0,"Test1");
-		day.weekDay = "Fr";
+		day.weekDay = "Fri";
 		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,"Here we will have some introduction"),0);
 		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),0);
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),0);
@@ -226,7 +226,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),0);
 
 		day = meetingAgendaModel.addDay(9,0,"Test2");
-		day.weekDay = "Th";
+		day.weekDay = "Thu";
 		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),1);
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);

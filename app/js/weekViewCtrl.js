@@ -28,7 +28,8 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		}
 	}
 	this.setHourList();
-	this.setDayList = function () {
+	this.setDayList = function (inputData) {
+		console.log(inputData);
 
 		dayList = [];
 		var today = new Date();
@@ -56,8 +57,18 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		console.log($scope.days);
 		//$scope.days = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		};
-	
 	this.setDayList();
+
+	$scope.getNextWeek = function () {
+		this.setDayList(7);
+	}
+
+	$scope.getLastWeek = function () {
+		this.setDayList(-7);
+	}
+
+
+
 	this.createCalBlock = function (){
 		$scope.table=$("#weektable");
 		// console.log($scope.table);

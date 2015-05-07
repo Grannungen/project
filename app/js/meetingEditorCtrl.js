@@ -1,10 +1,17 @@
 meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
 	
-	//When the views are linked to each other they can't keep track of the varibles unless you declare
+	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
+	console.log("hej")
 	$rootScope.variables = {
 		showNewMeetingEditor: false,
-		selectedDayIsNew:false
+		selectedDayIsNew:false,
+		selectedActivity:meetingAgendaModel.selectedActivity,
+		selectedActivityName:"",
+		selectedActivityLength:0,
+		selectedActivityTypeId:"",
+		selectedActivityDescription:"",
+
 	}
 	$rootScope.variables.showNewMeetingEditor = false;
 	$rootScope.test=function (h) {
@@ -25,7 +32,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
-	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 		
 	var obj = meetingAgendaModel.firebaseObject();
 	var child = obj.child('day');
@@ -117,7 +124,13 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.selectedDay = day;
 		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
 		// console.log(meetingAgendaModel.selectedDay);
+		$rootScope.variables.nameOfMeeting = day.getName();
+		console.log("$scope.variables.nameOfMeeting: " + $scope.variables.nameOfMeeting)
+
+
+
 		$scope.list = meetingAgendaModel.selectedDay._activities;
+
 	}
 
 		$scope.setSelectedActivity = function (activity) {
@@ -128,6 +141,12 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.selectedActivity = activity;
 		$scope.meeting.selectedActivity = meetingAgendaModel.selectedActivity;
 		console.log("$scope.meeting.selectedActivity.getName(): " + $scope.meeting.selectedActivity.getName())
+		$rootScope.variables.selectedActivity = activity;
+		$rootScope.variables.selectedActivityName = activity.getName();
+		$rootScope.variables.selectedActivityLength = activity.getLength();
+		$rootScope.variables.selectedActivityTypeId = activity.getTypeId();
+		$rootScope.variables.selectedActivityDescription = activity.getDescription();
+
 		// $scope
 		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
 		// console.log(meetingAgendaModel.selectedDay);
@@ -160,10 +179,10 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	}
 	$scope.changeActivity = function () {
 		var activity = meetingAgendaModel.selectedActivity;
-		activity.setName($scope.meeting.ActivityName);
-		activity.setLength($scope.meeting.length);
+		activity.setName($rootScope.variables.selectedActivityName);
+		activity.setLength($rootScope.variables.selectedActivityLength);
 		activity.setTypeId($scope.meeting.typeId);
-		activity.setDescription($scope.meeting.description);
+		activity.setDescription($rootScope.variables.selectedActivityDescription);
 	}
 
 

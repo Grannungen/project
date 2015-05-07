@@ -27,10 +27,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.showMeetingEditorPopUp = false;
 	$scope.weekDays = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		
-	var obj = meetingAgendaModel.firebaseObject();
-	var child = obj.child('day');
-	child.set({days:{days:meetingAgendaModel.days}
-	});
 	
 	
 	
@@ -207,13 +203,24 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
+		meetingAgendaModel.days[0].setName('Hej');
+		meetingAgendaModel.days[1].setName('Hejdå');		
+		
+		var obj = meetingAgendaModel.firebaseObject();
+		var child = obj.child('day');
+		var dayArray = [];
+		for (i=0; i<meetingAgendaModel.days.length;i++) {
+			var dayObject = new meetingAgendaModel.convertedObject(meetingAgendaModel.days[i]);
+			dayArray.push(dayObject);
+		};
+		child.set({dayArray}, meetingAgendaModel.onComplete());
+	
 		// console.log("Day Start: " + meetingAgendaModel.days[0].getStart());
 		// console.log("Day End: " + meetingAgendaModel.days[0].getEnd());
 		// console.log("Day Length: " + meetingAgendaModel.days[0].getTotalLength() + " min");
 		// $.each(ActivityType,function(index,type){
 		// 	console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 		// });
-		console.log(meetingAgendaModel.days)
 	}
 // $scope.createTestData();
 

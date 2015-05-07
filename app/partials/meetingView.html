@@ -78,7 +78,8 @@
 <!-- <div class="meetingContent col-sm-3" style="background-color:black">
 	da
 </div> -->
-
+<div ng-controller="dragAndDropCtrl">
+<h1>Mötet</h1>
 	<div class="col-sm-3"></div>
 	<div class="meetingContent col-sm-6 Center" style="background-color:">
 		<div class="col-sm-4" style="background-color:"></div>
@@ -86,12 +87,39 @@
 			<h1 style="width:100%">
 				{{meeting.selectedDay.name}}
 			</h1>
+			<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+				Add Activity
+			</button>
+		  <div class="floatleft col-sm-12">
+		    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+		      <li ng-repeat="activity in list" class="item">
+		      	<div class="well activityTest" style="height:{{activity.getLength() * 5}}px">
+		      					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+					</div>
+					<div class="col-sm-9">
+						<div>
+						{{activity.getName()}}
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
+					</div>
+		      	</div>
 
-			<div class="col-sm-12">
+		      </li>
+		    </ul>
+	  </div>
+
+
+
+
+
+<!-- 			<div ui-sortable="sortableOptions" ng-model="list" class="col-sm-12">
 				<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
 					Add Activity
 				</button>
-				<div class="activityTest well col-sm-12" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities" draggable="true">
+				<div class="activityTest well col-sm-12" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities">
 					<div class="col-sm-1">
 						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
 					</div>
@@ -104,7 +132,10 @@
 						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
 					</div>
 				</div>
-			</div>
+			</div> -->
+
+
+
 		</div>
 		<div class="col-sm-4 meetingContent" style="background-color:">
 			<h3>Start Time:</h3>
@@ -124,14 +155,59 @@
 						Edit
 				</button>
 			</div>
-
-
 		</div>
-
-
 		
 	</div>
 	<div class="col-sm-3"></div>
+
+
+
+</div><!-- dragAndDropCtrl end -->
+
+
+
+
+
+
+<style type="text/css">
+	.list {
+	list-style: none outside none;
+	margin: 10px 0 30px;
+	}
+	.item {
+		cursor: move;
+	}
+	.floatleft {
+	  float: left;
+	}
+</style>
+
+
+<div ng-controller="dragAndDropCtrl">
+<!--   <div class="floatleft">
+    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+      <li ng-repeat="activity in list" class="item">
+      	<div class="well activityTest" style="height:{{activity.getLength() * 5}}px">
+      					<div class="col-sm-1">
+				<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+			</div>
+			<div class="col-sm-9">
+				<div>
+				{{activity.getName()}}
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
+			</div>
+      	</div>
+
+      </li>
+    </ul>
+  </div> -->
+</div>
+
+
+
 <!-- <div class="col-sm-3 meetingContent" style="background-color:green">
 	ergerg
 </div> -->

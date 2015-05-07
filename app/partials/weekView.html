@@ -11,7 +11,7 @@
 		background-color: lightblue;
 	}
 
-	
+
 
 </style>
 
@@ -19,11 +19,13 @@
 <div class="weekContent" ng-controller="weekViewCtrl">
 	<table id="navTable" align="center">
 		<tr id="navRow">
-			<td><span class="glyphicon glyphicon-arrow-left btn" id="leftArrow"></span></td>
-			<td><span class="glyphicon glyphicon-arrow-right btn" id="rightArrow"></span></td>
+			<td ng-click="setdayList(-7)"><span class="glyphicon glyphicon-arrow-left btn" id="leftArrow"></span></td>
+			<td ng-click="setdayList(7);"><span class="glyphicon glyphicon-arrow-right btn" id="rightArrow" ></span></td>
 			<td> {{ month }}</td>
 		</tr>
 	</table>
+
+
 	<table id="weektable">
 		<tbody>
 			<tr>
@@ -38,15 +40,27 @@
 				</th>
 				
 			</tr>
+				
 			<tr style="height:50px" ng-repeat="hour in wholeHourList">
+
 				<hr class="time-hr">
+
 					<td>
 						<p style="font-weight:bold;text-align:center;">{{ hour }}:00</p>
+
+
+
 					</td>
-									
-					<td class="dataElement" id="{{ weekday[0] }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew();">
+					<td style="position:relative" class="dataElement" id="{{ weekDay[0] }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew();">
+						<!-- <div style="background-color:red; heihgt:200px; top:0; margin-top:300px" > 
+					        öklhjbölihölkjölkj
+	                    </div>	 -->
 						 <!-- go('/meetingAgendaEditor'); -->
-						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.name}}</div>
+						 <div style="z-index:1; 	background-color:yellow; position:relativte; margin-top:50%" ng-if="hour===1" ng-click="setSelectedDay(day); go('/meeting');">
+
+						 	fkfk</div>
+						
+						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay[0]} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.name}}</div>
 					</td>
 					
 					

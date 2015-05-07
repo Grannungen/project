@@ -2,14 +2,34 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseArray) {
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseObject) {
 	
-	this.firebaseArray = function() {
+	this.firebaseObject = function() {
 		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
-		var a = $firebaseArray(ref);
-		return a;		
+	 	return ref;	
 	};
-
+	this.onComplete = function(error) {
+  		if (error) {
+    			console.log('Synchronization failed');
+  		} else {
+    			console.log('Synchronization succeeded');
+  		}
+	};
+	this.convertedDay = function(dayObject, activityArray){
+		this.name = dayObject.getName();
+		this.weekDay = dayObject.getWeekDay();
+		this.start = dayObject.getStart();
+		this.end = dayObject.getEnd();
+		this.totalLength = dayObject.getTotalLength();
+		this.activities = activityArray;
+	};
+	this.convertedActivity = function(activityObject) {
+		this.name = activityObject.getName();
+		this.totalLength = activityObject.getLength();
+		this.typeId = activityObject.getTypeId();
+		this.description = activityObject.getDescription();
+	};
+	
 	// The possible activity types
 	var _this = this;
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
@@ -23,7 +43,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
 
-	this.Activity = function(name,length,typeid,description){
+	this.Activity = function(name,length,typeid,description, index){
 		var _name = name;
 		var _length = length;
 		var _typeid = typeid;
@@ -83,7 +103,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
 	this.Day = function(startH,startM, name) {
-		this.name = name; //Simon added this line
+	//	this.name = name; //Simon added this line
 		this.weekDay = "";
 		this.startH = startH;
 		this._start = startH * 60 + startM;
@@ -171,12 +191,16 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			var activity = this._removeActivity(oldposition);
 			this._addActivity(activity, newposition);
 		};
+		this.getActivity = function() {
+			return this._activities;
+		};
 	}
 
 
 	// this is our main module that contians days and praked activites
 	// this.Model = function(){
-	
+		
+		
 		this.days = [];
 		this.parkedActivities = [];
 		
@@ -195,7 +219,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 				day = new this.Day(8,0);
 			}
 			this.days.push(day);
-
 			return day;
 		};
 

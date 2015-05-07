@@ -2,6 +2,9 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 	$scope.wholeHourList = [];
 	
 	//$scope.dataElement = $(".dataElement");
+	$scope.testObject = {number:1};
+	// console.log("$scope.testObject:" + $scope.testObject)
+	// console.log($scope.testObject)
 
 	$scope.addNew = function () {
 		var target = event.target.id;
@@ -28,36 +31,49 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		}
 	}
 	this.setHourList();
-	this.setDayList = function () {
+	$scope.today = new Date()
+	console.log($scope.today);
+	
+	$scope.days = ["","","","","","",""];
+	
+	$scope.setdayList = function (inputData) {
+		console.log($scope.today);
+		if (inputData == undefined) {
+		$scope.dayList = [];
+		$scope.dayList.push($scope.today);
 
-		dayList = [];
-		var today = new Date();
-		dayList.push(today);
-		for (var i = 1; i < today.getDay(); i++) {
+		for (var i = 1; i < $scope.today.getDay(); i++) {
 			var day = new Date();
-			day.setDate(today.getDate()-i)
-			dayList.push(day);
+			day.setDate($scope.today.getDate()+i);
+			$scope.dayList.push(day);
 		};
-		for (var i = 1; i < (8-today.getDay()); i++) {
-			var day = new Date();
-			day.setDate(today.getDate()+i)
-			dayList.push(day);
+		for (var j = 1; j < (8-$scope.today.getDay()); j++) {
+			var dayAfter = new Date();
+			dayAfter.setDate($scope.today.getDate()-j);
+			$scope.dayList.push(dayAfter);
 		}
 
-		 $scope.days = ["","","","","","",""];
-		 for (var i = 0; i < dayList.length; i++) {
-		 		dayString = dayList[i].toString();
-		 		dayListPres = dayString.split(" ");
-		 		console.log(dayListPres);
-		 		$scope.days.splice(dayList[i].getDay()-1, 1 ,[dayListPres[0],dayListPres[1],dayListPres[2]]);
-			
-		 };
+		
+		 	for (var k = 0; k < $scope.dayList.length; k++) {
+		 		dayString = $scope.dayList[k].toString();
+		 		$scope.dayListPres = dayString.split(" ");
+		 		$scope.days.splice($scope.dayList[k].getDay()-1, 1 ,[$scope.dayListPres[0],$scope.dayListPres[1],$scope.dayListPres[2]]);
+			}
+		}	else {
+			for (var k = 0; k < $scope.dayList.length; k++) {
+		 		console.log($scope.dayList[k].getDate());
+		 		$scope.dayList[k].setDate($scope.dayList[k].getDate()+inputData);
+		 		dayString = $scope.dayList[k].toString();
+		 		$scope.dayListPres = dayString.split(" ");
+		 		$scope.days.splice($scope.dayList[k].getDay()-1, 1 ,[$scope.dayListPres[0],$scope.dayListPres[1],$scope.dayListPres[2]]);
+
+			};
+		};
 
 		console.log($scope.days);
-		//$scope.days = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		};
-	
-	this.setDayList();
+	$scope.setdayList();
+
 	this.createCalBlock = function (){
 		$scope.table=$("#weektable");
 		// console.log($scope.table);

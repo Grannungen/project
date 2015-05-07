@@ -2,7 +2,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	
 	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
-	// console.log("hej")
+
+
 	$rootScope.variables = {
 		showNewMeetingEditor: false,
 		selectedDayIsNew:false,
@@ -27,26 +28,29 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		startMinutesMeeting: 0,
 		selectedDay:meetingAgendaModel.selectedDay,
 		selectedActivity:meetingAgendaModel.selectedActivity,
-		weekDay: "Mo"
+		weekDay: "Mon"
 	}
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
+
 	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 		
 	
-	var syncObject = meetingAgendaModel.firebaseArray();
+	// var syncObject = meetingAgendaModel.firebaseArray();
+
 	// console.log(syncObject);
 	// console.log(syncObject.length);
-	syncObject.$loaded().then(function(syncObject){
-		// console.log(syncObject.length);
-		//for (i=0; i< syncObject.length; i++){
-		//	syncObject.$remove(i);
-		//};
-	});
+	// syncObject.$loaded().then(function(syncObject){
+	// 	// console.log(syncObject.length);
+	// 	//for (i=0; i< syncObject.length; i++){
+	// 	//	syncObject.$remove(i);
+	// 	//};
+	// });
 	
 	
 	
+
 
 	this.setHourList = function () {
 		var i = 1;
@@ -95,7 +99,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.addNewDay = function () {
 		if($rootScope.variables.selectedDayIsNew==true){
 			var weekDay = $scope.meeting.weekDay;
-			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
+			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting,$scope.meeting.nameOfMeeting);
 			day.weekDay = weekDay;
 			// alert($scope.meeting.nameOfMeeting);
 			// var day = meetingAgendaModel.addDay(5,0, "bengt");
@@ -136,6 +140,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 
 
 		$scope.list = meetingAgendaModel.selectedDay._activities;
+		$rootScope.variables.selectedDay = day;
 
 	}
 
@@ -170,6 +175,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.addNewActivity = function(){
 		// activity = New Activity(name,length,typeid,description)
 		// meetingAgendaModel.addActivity(new Activity($scope.meeting.ActivityName,$scope.meeting.length,$scope.meeting.typeId,$scope.meeting.description),$scope.dayIndex);
+
 		$scope.meeting.selectedDay._addActivity(new Activity($scope.meeting.ActivityName,$scope.meeting.length,$scope.meeting.typeId,$scope.meeting.description),$scope.dayIndex);
 
 		// meetingAgendaModel.addActivity(new Activity("ethoieonehehrtlonethrkln",$scope.length,$scope.typeId,$scope.description),0);
@@ -180,7 +186,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 			// meetingAgendaModel.days[0]._activities[0].setName();	
 			// $scope.test = meetingAgendaModel.days[0]._activities[0].getName();
 		// console.log($scope.test);
-		// console.log($scope.days);
 	}
 	$scope.changeActivity = function () {
 		var activity = meetingAgendaModel.selectedActivity;
@@ -217,7 +222,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
   	// you can use this method to create some test data and test your implementation
 	$scope.createTestData = function(){
 		var day = meetingAgendaModel.addDay(8,0,"Test1");
-		day.weekDay = "Fr";
+		day.weekDay = "Fri";
 		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,"Here we will have some introduction"),0);
 		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),0);
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),0);
@@ -225,20 +230,40 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),0);
 
 		day = meetingAgendaModel.addDay(9,0,"Test2");
-		day.weekDay = "Th";
+		day.weekDay = "Thu";
 		meetingAgendaModel.addActivity(new Activity("Introduction",10,0,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1",30,0,""),1);
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
+
+		meetingAgendaModel.days[0].setName('dag1');
+		meetingAgendaModel.days[1].setName('dag2');		
+		
+		console.log(meetingAgendaModel.days);
+		console.log(meetingAgendaModel.days[0].getActivity());
+		var obj = meetingAgendaModel.firebaseObject();
+		var child = obj.child('day');
+		var dayArray = [];
+		for (i=0; i<meetingAgendaModel.days.length;i++) {
+			var activityArray = []
+			for (j=0;j<meetingAgendaModel.days[i].getActivity().length; j++){
+				var activityObject = new meetingAgendaModel.convertedActivity(meetingAgendaModel.days[i].getActivity()[j]);
+				activityArray.push(activityObject);
+			}
+			var dayObject = new meetingAgendaModel.convertedDay(meetingAgendaModel.days[i], activityArray);
+			dayArray.push(dayObject);
+		};
+		child.set({dayArray}, meetingAgendaModel.onComplete());
+	
 		// console.log("Day Start: " + meetingAgendaModel.days[0].getStart());
 		// console.log("Day End: " + meetingAgendaModel.days[0].getEnd());
 		// console.log("Day Length: " + meetingAgendaModel.days[0].getTotalLength() + " min");
 		// $.each(ActivityType,function(index,type){
 		// 	console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 		// });
-		// console.log(meetingAgendaModel.days)
 	}
+	
 // $scope.createTestData();
 
 });

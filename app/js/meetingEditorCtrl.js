@@ -2,7 +2,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	
 	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
-	console.log("hej")
+	// console.log("hej")
 	$rootScope.variables = {
 		showNewMeetingEditor: false,
 		selectedDayIsNew:false,
@@ -36,10 +36,10 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		
 	
 	var syncObject = meetingAgendaModel.firebaseArray();
-	console.log(syncObject);
-	console.log(syncObject.length);
+	// console.log(syncObject);
+	// console.log(syncObject.length);
 	syncObject.$loaded().then(function(syncObject){
-		console.log(syncObject.length);
+		// console.log(syncObject.length);
 		//for (i=0; i< syncObject.length; i++){
 		//	syncObject.$remove(i);
 		//};
@@ -103,8 +103,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 			$scope.meeting.selectedDay = day;
 			// alert("This is meeting number " + $scope.dayIndex);
 			// console.log("meeting " + $scope.dayIndex + ": ");
-			console.log("$scope.meeting.days: " + $scope.meeting.days);
-			console.log($scope.meeting.days);
+			// console.log("$scope.meeting.days: " + $scope.meeting.days);
+			// console.log($scope.meeting.days);
 			$rootScope.variables.selectedDayIsNew = false;
 			meetingAgendaModel.selectedDay = day;
 
@@ -140,13 +140,12 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	}
 
 		$scope.setSelectedActivity = function (activity) {
-		console.log("hit")
-		console.log("activity input: " + activity.getName());
-		console.log(activity);
+		// console.log("activity input: " + activity.getName());
+		// console.log(activity);
 
 		meetingAgendaModel.selectedActivity = activity;
 		$scope.meeting.selectedActivity = meetingAgendaModel.selectedActivity;
-		console.log("$scope.meeting.selectedActivity.getName(): " + $scope.meeting.selectedActivity.getName())
+		// console.log("$scope.meeting.selectedActivity.getName(): " + $scope.meeting.selectedActivity.getName())
 		$rootScope.variables.selectedActivity = activity;
 		$rootScope.variables.selectedActivityName = activity.getName();
 		$rootScope.variables.selectedActivityLength = activity.getLength();
@@ -161,7 +160,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 
 
 	$scope.removeActivity = function (activity, day){
-		console.log(day);
+		// console.log(day);
 		var position = day._activities.indexOf(activity);
 		day._removeActivity(position);
 	}
@@ -176,12 +175,12 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		// meetingAgendaModel.addActivity(new Activity("ethoieonehehrtlonethrkln",$scope.length,$scope.typeId,$scope.description),0);
 			
 			$.each(ActivityType,function(index,type){
-			console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
+			// console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 			 });
 			// meetingAgendaModel.days[0]._activities[0].setName();	
 			// $scope.test = meetingAgendaModel.days[0]._activities[0].getName();
 		// console.log($scope.test);
-		console.log($scope.days);
+		// console.log($scope.days);
 	}
 	$scope.changeActivity = function () {
 		var activity = meetingAgendaModel.selectedActivity;
@@ -238,7 +237,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		// $.each(ActivityType,function(index,type){
 		// 	console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 		// });
-		console.log(meetingAgendaModel.days)
+		// console.log(meetingAgendaModel.days)
 	}
 // $scope.createTestData();
 

@@ -1,5 +1,5 @@
 
-var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ngResource', 'firebase']);
+var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ngResource', 'firebase','ngDragDrop', 'ui.sortable']);
 
 
 meetingAgendaPlanner.config(['$routeProvider',
@@ -34,7 +34,11 @@ meetingAgendaPlanner.config(['$routeProvider',
       })
       .when('/dnd', {
       templateUrl: 'partials/dragndroptest.html',
-      // controller: 'meetingEditorCtrl'
+      controller: 'OverviewCtrl'
+      })
+      .when('/dnd2', {
+      templateUrl: 'partials/dnd2.html',
+      controller: 'MainCtrl'
       })
       .otherwise({
         redirectTo: '/login'

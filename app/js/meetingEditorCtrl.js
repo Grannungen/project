@@ -31,21 +31,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
-	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-		
-	
-	var syncObject = meetingAgendaModel.firebaseArray();
+	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];	
 
-
-	syncObject.$loaded().then(function(syncObject){
-
-		//for (i=0; i< syncObject.length; i++){
-		//	syncObject.$remove(i);
-		//};
-	});
-	
-	
-	
 
 	this.setHourList = function () {
 		var i = 1;
@@ -94,7 +81,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.addNewDay = function () {
 		if($rootScope.variables.selectedDayIsNew==true){
 			var weekDay = $scope.meeting.weekDay;
-			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting, $scope.meeting.nameOfMeeting);
+			var day = meetingAgendaModel.addDay($scope.meeting.startHoursMeeting, $scope.meeting.startMinutesMeeting,$scope.meeting.nameOfMeeting);
 			day.weekDay = weekDay;
 			// alert($scope.meeting.nameOfMeeting);
 			// var day = meetingAgendaModel.addDay(5,0, "bengt");
@@ -230,14 +217,35 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
+
+		meetingAgendaModel.days[0].setName('dag1');
+		meetingAgendaModel.days[1].setName('dag2');		
+		
+		console.log(meetingAgendaModel.days);
+		console.log(meetingAgendaModel.days[0].getActivity());
+		var obj = meetingAgendaModel.firebaseObject();
+		var child = obj.child('day');
+		var dayArray = [];
+		for (i=0; i<meetingAgendaModel.days.length;i++) {
+			var activityArray = []
+			for (j=0;j<meetingAgendaModel.days[i].getActivity().length; j++){
+				var activityObject = new meetingAgendaModel.convertedActivity(meetingAgendaModel.days[i].getActivity()[j]);
+				activityArray.push(activityObject);
+			}
+			var dayObject = new meetingAgendaModel.convertedDay(meetingAgendaModel.days[i], activityArray);
+			dayArray.push(dayObject);
+		};
+		child.set({dayArray}, meetingAgendaModel.onComplete());
+	
 		// console.log("Day Start: " + meetingAgendaModel.days[0].getStart());
 		// console.log("Day End: " + meetingAgendaModel.days[0].getEnd());
 		// console.log("Day Length: " + meetingAgendaModel.days[0].getTotalLength() + " min");
 		// $.each(ActivityType,function(index,type){
 		// 	console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 		// });
-		console.log(meetingAgendaModel.days)
+
 	}
+	
 // $scope.createTestData();
 
 });

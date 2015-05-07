@@ -11,18 +11,17 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	this.onComplete = function(error) {
   		if (error) {
     			console.log('Synchronization failed');
-  		} 
-		else {
+  		} else {
     			console.log('Synchronization succeeded');
   		}
-	}
-	this.convertedObject = function(dayObject) {
+	};
+	this.convertedObject = function(dayObject){
 		this.name = dayObject.getName();
-		this.weekday = dayObject.getWeekDay();
+		this.weekDay = dayObject.getWeekDay();
 		this.start = dayObject.getStart();
 		this.end = dayObject.getEnd();
 		this.totalLength = dayObject.getTotalLength();
-		
+
 	}
 	
 	// The possible activity types

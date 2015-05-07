@@ -2,6 +2,9 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 	$scope.wholeHourList = [];
 	
 	//$scope.dataElement = $(".dataElement");
+	$scope.testObject = {number:1};
+	// console.log("$scope.testObject:" + $scope.testObject)
+	// console.log($scope.testObject)
 
 	$scope.addNew = function () {
 		var target = event.target.id;
@@ -28,14 +31,25 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		}
 	}
 	this.setHourList();
-	this.setDayList = function () {
+	$scope.setDayList = function (inputData) {
 
 		dayList = [];
 		var today = new Date();
-		dayList.push(today);
+		if (inputData != undefined) {
+			var nextWeekDay = new Date();
+			nextWeekDay.setDate(today.getDate()+inputData);
+			today = nextWeekDay;
+			dayList.push(nextWeekDay);
+		}	else {
+			
+			dayList.push(today);
+		};
+
+		console.log(today.getDate());
+		console.log(today.getDay());
 		for (var i = 1; i < today.getDay(); i++) {
 			var day = new Date();
-			day.setDate(today.getDate()-i)
+			day.setDate(today.getDate()-i);
 			dayList.push(day);
 		};
 		for (var i = 1; i < (8-today.getDay()); i++) {
@@ -48,7 +62,6 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		 for (var i = 0; i < dayList.length; i++) {
 		 		dayString = dayList[i].toString();
 		 		dayListPres = dayString.split(" ");
-		 		console.log(dayListPres);
 		 		$scope.days.splice(dayList[i].getDay()-1, 1 ,[dayListPres[0],dayListPres[1],dayListPres[2]]);
 			
 		 };
@@ -56,8 +69,8 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 		console.log($scope.days);
 		//$scope.days = ["Mo","Tu","We","Th","Fr","Sa","Su"];
 		};
-	
-	this.setDayList();
+	$scope.setDayList();
+
 	this.createCalBlock = function (){
 		$scope.table=$("#weektable");
 		// console.log($scope.table);

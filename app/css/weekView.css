@@ -1,11 +1,12 @@
 
 .weekContent {
-	/*overflow: scroll;*/
-	/*height:700px;*/
+	position: absolute; 
+	top: 200px; bottom: 0; right: 0; left: 0;
 }
-#weektable {
+#weekTable {
 	background-color: white;
 	border: 1px solid black;
+	position: auto;
 	
 }
 

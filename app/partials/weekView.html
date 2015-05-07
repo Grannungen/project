@@ -11,9 +11,7 @@
 		background-color: lightblue;
 	}
 
-#weektable{
-	position: relative;
-}
+
 
 </style>
 
@@ -21,8 +19,8 @@
 <div class="weekContent" ng-controller="weekViewCtrl">
 	<table id="navTable" align="center">
 		<tr id="navRow">
-			<td><span class="glyphicon glyphicon-arrow-left btn" id="leftArrow"></span></td>
-			<td><span class="glyphicon glyphicon-arrow-right btn" id="rightArrow"></span></td>
+			<td ng-click="setDayList(-7)"><span class="glyphicon glyphicon-arrow-left btn" id="leftArrow"></span></td>
+			<td ng-click="setDayList(7);"><span class="glyphicon glyphicon-arrow-right btn" id="rightArrow" ></span></td>
 			<td> {{ month }}</td>
 		</tr>
 	</table>

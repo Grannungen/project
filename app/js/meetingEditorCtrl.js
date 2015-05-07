@@ -218,14 +218,21 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
 
-		meetingAgendaModel.days[0].setName('Hej');
-		meetingAgendaModel.days[1].setName('Hejdå');		
+		meetingAgendaModel.days[0].setName('dag1');
+		meetingAgendaModel.days[1].setName('dag2');		
 		
+		console.log(meetingAgendaModel.days);
+		console.log(meetingAgendaModel.days[0].getActivity());
 		var obj = meetingAgendaModel.firebaseObject();
 		var child = obj.child('day');
 		var dayArray = [];
 		for (i=0; i<meetingAgendaModel.days.length;i++) {
-			var dayObject = new meetingAgendaModel.convertedObject(meetingAgendaModel.days[i]);
+			var activityArray = []
+			for (j=0;j<meetingAgendaModel.days[i].getActivity().length; j++){
+				var activityObject = new meetingAgendaModel.convertedActivity(meetingAgendaModel.days[i].getActivity()[j]);
+				activityArray.push(activityObject);
+			}
+			var dayObject = new meetingAgendaModel.convertedDay(meetingAgendaModel.days[i], activityArray);
 			dayArray.push(dayObject);
 		};
 		child.set({dayArray}, meetingAgendaModel.onComplete());

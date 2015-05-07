@@ -31,25 +31,8 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
-<<<<<<< HEAD
 	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];	
-=======
-	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-		
-	
-	var syncObject = meetingAgendaModel.firebaseArray();
 
-
-	syncObject.$loaded().then(function(syncObject){
-
-		//for (i=0; i< syncObject.length; i++){
-		//	syncObject.$remove(i);
-		//};
-	});
-	
-	
-	
->>>>>>> c96ce6df1bd6f3e086982c05b4d61065e9030d2c
 
 	this.setHourList = function () {
 		var i = 1;
@@ -235,17 +218,25 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
 
-		meetingAgendaModel.days[0].setName('Hej');
-		meetingAgendaModel.days[1].setName('Hejdå');		
+		meetingAgendaModel.days[0].setName('dag1');
+		meetingAgendaModel.days[1].setName('dag2');		
 		
+		console.log(meetingAgendaModel.days);
+		console.log(meetingAgendaModel.days[0].getActivity());
 		var obj = meetingAgendaModel.firebaseObject();
 		var child = obj.child('day');
 		var dayArray = [];
 		for (i=0; i<meetingAgendaModel.days.length;i++) {
-			var dayObject = new meetingAgendaModel.convertedObject(meetingAgendaModel.days[i]);
+			var activityArray = []
+			for (j=0;j<meetingAgendaModel.days[i].getActivity().length; j++){
+				var activityObject = new meetingAgendaModel.convertedActivity(meetingAgendaModel.days[i].getActivity()[j]);
+				activityArray.push(activityObject);
+			}
+			var dayObject = new meetingAgendaModel.convertedDay(meetingAgendaModel.days[i], activityArray);
 			dayArray.push(dayObject);
 		};
-		child.set({dayArray}, meetingAgendaModel.onComplete());
+		console.log(dayArray, activityArray);
+		child.set({dayArray: {activityArray}}, meetingAgendaModel.onComplete());
 	
 		// console.log("Day Start: " + meetingAgendaModel.days[0].getStart());
 		// console.log("Day End: " + meetingAgendaModel.days[0].getEnd());

@@ -15,14 +15,20 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
     			console.log('Synchronization succeeded');
   		}
 	};
-	this.convertedObject = function(dayObject){
+	this.convertedDay = function(dayObject, activityArray){
 		this.name = dayObject.getName();
 		this.weekDay = dayObject.getWeekDay();
 		this.start = dayObject.getStart();
 		this.end = dayObject.getEnd();
 		this.totalLength = dayObject.getTotalLength();
-
-	}
+		this.activities = activityArray;
+	};
+	this.convertedActivity = function(activityObject) {
+		this.name = activityObject.getName();
+		this.totalLength = activityObject.getLength();
+		this.typeId = activityObject.getTypeId();
+		this.description = activityObject.getDescription();
+	};
 	
 	// The possible activity types
 	var _this = this;
@@ -184,6 +190,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			}
 			var activity = this._removeActivity(oldposition);
 			this._addActivity(activity, newposition);
+		};
+		this.getActivity = function() {
+			return this._activities;
 		};
 	}
 

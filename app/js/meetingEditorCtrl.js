@@ -2,7 +2,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	
 	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
-	console.log("hej")
 	$rootScope.variables = {
 		showNewMeetingEditor: false,
 		selectedDayIsNew:false,
@@ -32,16 +31,10 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.days = meetingAgendaModel.days;
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
-	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-		
-	var obj = meetingAgendaModel.firebaseObject();
-	var child = obj.child('day');
-	child.set({days:{days:meetingAgendaModel.days}
-	});
-	
-	
-	
-	
+	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];	
+
+
+
 	this.setHourList = function () {
 		var i = 1;
 		while(i<24){	
@@ -226,14 +219,28 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		meetingAgendaModel.addActivity(new Activity("Working in groups",35,1,""),1);
 		meetingAgendaModel.addActivity(new Activity("Idea 1 discussion",15,2,""),1);
 		meetingAgendaModel.addActivity(new Activity("Coffee break",20,3,""),1);
+		meetingAgendaModel.days[0].setName('Hej');
+		meetingAgendaModel.days[1].setName('Hejdå');
+		
+		var obj = meetingAgendaModel.firebaseObject();
+		var child = obj.child('day');
+		dayArray= []
+		for (i=0; i<meetingAgendaModel.days.length; i++) {
+			var dayTest = new meetingAgendaModel.convertedObject(meetingAgendaModel.days[i])
+			dayArray.push(dayTest);
+		}
+		child.set({dayArray}, meetingAgendaModel.onComplete);
+		
+	
 		// console.log("Day Start: " + meetingAgendaModel.days[0].getStart());
 		// console.log("Day End: " + meetingAgendaModel.days[0].getEnd());
 		// console.log("Day Length: " + meetingAgendaModel.days[0].getTotalLength() + " min");
 		// $.each(ActivityType,function(index,type){
 		// 	console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 		// });
-		console.log(meetingAgendaModel.days)
+		
 	}
+	
 // $scope.createTestData();
 
 });

@@ -8,7 +8,22 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
 	 	return ref;	
 	};
-	
+	this.onComplete = function(error) {
+  		if (error) {
+    			console.log('Synchronization failed');
+  		} 
+		else {
+    			console.log('Synchronization succeeded');
+  		}
+	}
+	this.convertedObject = function(dayObject) {
+		this.name = dayObject.getName();
+		this.weekday = dayObject.getWeekDay();
+		this.start = dayObject.getStart();
+		this.end = dayObject.getEnd();
+		this.totalLength = dayObject.getTotalLength();
+		
+	}
 	
 	// The possible activity types
 	var _this = this;

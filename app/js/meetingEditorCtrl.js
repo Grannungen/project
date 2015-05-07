@@ -2,7 +2,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	
 	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
-	console.log("hej")
 	$rootScope.variables = {
 		showNewMeetingEditor: false,
 		selectedDayIsNew:false,
@@ -36,10 +35,10 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 		
 	
 	var syncObject = meetingAgendaModel.firebaseArray();
-	console.log(syncObject);
-	console.log(syncObject.length);
+
+
 	syncObject.$loaded().then(function(syncObject){
-		console.log(syncObject.length);
+
 		//for (i=0; i< syncObject.length; i++){
 		//	syncObject.$remove(i);
 		//};
@@ -181,7 +180,6 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 			// meetingAgendaModel.days[0]._activities[0].setName();	
 			// $scope.test = meetingAgendaModel.days[0]._activities[0].getName();
 		// console.log($scope.test);
-		console.log($scope.days);
 	}
 	$scope.changeActivity = function () {
 		var activity = meetingAgendaModel.selectedActivity;

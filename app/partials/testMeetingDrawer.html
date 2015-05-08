@@ -1,4 +1,4 @@
-<ng-include src="'partials/activityPopUp.html'"></ng-include>
+<!-- <ng-include src="'partials/activityPopUp.html'"></ng-include> -->
 
 
 <style type="text/css">
@@ -15,13 +15,13 @@
 
 
 
-	<div class="">
+	<div class="" ng-controller="meetingCtrl">
 		<button ng-click="createTestData()">Create test data</button>
 		<h1>Test Data</h1>
 		
 
-		<div ng-repeat="day in days" class="col-sm-4 testDataDiv">
-			<h3>Name of the meeting: {{day.name}}</h3>
+		<div ng-repeat="day in meetingCtrlGlobal.days" class="col-sm-4 testDataDiv">
+			<h3>Name of the meeting: {{day.getName()}}</h3>
 			<button ng-click="removeDay(day)">
 				remove meeting
 			</button>

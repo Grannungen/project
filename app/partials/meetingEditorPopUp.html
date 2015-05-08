@@ -1,9 +1,9 @@
 <ng-include ng-controller="meetingEditorCtrl"></ng-include>
-<div id="edit-activity-window" class="well" ng-show="variables.showNewMeetingEditor" ng-controller="meetingEditorCtrl">
+<div id="edit-activity-window" class="well" ng-show="meetingCtrlGlobal.showMeetingEditorPopUp" ng-controller="meetingEditorCtrl">
 	<div class="col-sm-5 edit-activity-window-editor">
 		<div class="form-group">
 			<label>Meeting Name:</label>
-			<input type:"text" class="form-control" style="display:table-cell; width:100%" ng-model="meeting.nameOfMeeting">
+			<input type:"text" class="form-control" style="display:table-cell; width:100%" ng-model="meetingCtrl.nameOfMeeting">
 		</div>
 		<div class="form-group">
 			<form action="action_page.php">
@@ -13,8 +13,8 @@
 		</div>
 		<div class="form-group">
 			<label>Day</label>
-			<select ng-model="meeting.weekDay" style="width:100%">
-				<option ng-repeat="weekDay in weekDays" value={{weekDay}}>{{weekDay}}</option>
+			<select ng-model="meetingCtrl.weekDay" style="width:100%">
+				<option ng-repeat="weekDay in meetingCtrl.weekDays" value={{weekDay}}>{{weekDay}}</option>
 			</select>
 		</div>
 		
@@ -29,8 +29,8 @@ placeholder="HH:mm:ss" required />
 
        	<label>Start time:</label>
        	<div>			
-			<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="meeting.startHoursMeeting">
-			<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="meeting.startMinutesMeeting">
+			<input class="col-sm-6" type="number" name="hours" min="0" max="23" ng-model="meetingCtrl.startHoursMeeting">
+			<input class="col-sm-6" type="number" name="minutes" min="0" max="59" ng-model="meetingCtrl.startMinutesMeeting">
 		</div>
 		<!-- <div class="form-group">
 			<label>Description:</label>
@@ -38,6 +38,6 @@ placeholder="HH:mm:ss" required />
 		</div> -->
 
 <!-- 		<a class="btn btn-info" href="#/meetingAgendaEditor" ng-click="meeting.showMeetingEditorPopUp=false; addNewDay()">Done</a> -->
-<a class="btn btn-info" ng-click="variables.showNewMeetingEditor=false; addNewDay(); go('/meeting');">Done</a>
+<a class="btn btn-info" ng-click="meetingCtrlGlobal.showMeetingEditorPopUp=false; addNewDay(); go('/meeting');">Done</a>
 </div>
 </div>

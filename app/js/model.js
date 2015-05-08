@@ -103,17 +103,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
 	this.Day = function(startH,startM, name) {
-	//	this.name = name; //Simon added this line
+		this._name = name; 
 		this.weekDay = "";
 		this.startH = startH;
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
 		this.setName = function (name) {
-			this.name = name;
+
+			this._name = name;
 		}
 		this.getName = function(){
-			return this.name;
+			return this._name;
 		}
 		this.setWeekDay = function(day){
 			this.weekDay = day;

@@ -17,6 +17,7 @@
 
 
 <div class="weekContent" ng-controller="weekViewCtrl">
+<div ng-controller="meetingCtrl">
 	<table id="navTable" align="center">
 		<tr id="navRow">
 			<td ng-click="setdayList(-7)"><span class="glyphicon glyphicon-arrow-left btn" id="leftArrow"></span></td>
@@ -60,12 +61,13 @@
 
 						 	fkfk</div>
 						
-						<div ng-repeat="day in meeting.days | filter:{weekDay:weekDay[0]} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.name}}</div>
+						<div ng-repeat="day in meetingCtrlGlobal.days | filter:{weekDay:weekDay[0]} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.getName()}}</div>
 					</td>
 					
 					
 			</tr>				
 		</tbody>
 	</table>
+</div><!-- meetingCtrl end -->
 </div> 
 

@@ -62,32 +62,35 @@
 
 </table> -->
 
-<ng-include src="'partials/activityPopUp.html'"></ng-include>
-<ng-include src="'partials/activityInfoPopUp.html'"></ng-include>
+<ng-include src="'partials/activityPopUpNew.html'" ng-controller="activityCtrl"></ng-include>
+<ng-include src="'partials/activityPopUpInfo.html'" ng-controller="activityCtrl"></ng-include>
 
 
 
-<ng-include src="'partials/activityPopUpEdit.html'"></ng-include>
+<ng-include src="'partials/activityPopUpEdit.html'" ng-controller="activityCtrl"></ng-include>
 
 
 
 
-<ng-include src="'partials/meetingEditorPopUp.html'"></ng-include>
+<ng-include src="'partials/meetingEditorPopUp.html'" ng-controller="meetingCtrl"></ng-include>
 
 
 <!-- <div class="meetingContent col-sm-3" style="background-color:black">
 	da
 </div> -->
+<div ng-controller="meetingCtrl">
+<div ng-controller="activityCtrl" >
+
 <div ng-controller="dragAndDropCtrl">
-<h1>Mötet</h1>
+
 	<div class="col-sm-3"></div>
 	<div class="meetingContent col-sm-6 Center" style="background-color:">
 		<div class="col-sm-4" style="background-color:"></div>
 		<div class="col-sm-4">
 			<h1 style="width:100%">
-				{{meeting.selectedDay.name}}
+				{{meetingCtrlGlobal.selectedDay.getName()}}
 			</h1>
-			<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+			<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
 				Add Activity
 			</button>
 		  <div class="floatleft col-sm-12">
@@ -95,7 +98,7 @@
 		      <li ng-repeat="activity in list" class="item">
 		      	<div class="well activityTest" style="height:{{activity.getLength() * 5}}px">
 		      					<div class="col-sm-1">
-						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>
 					</div>
 					<div class="col-sm-9">
 						<div>
@@ -103,13 +106,14 @@
 						</div>
 					</div>
 					<div class="col-sm-1">
-						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); activityCtrlGlobal.showActivityInfo=true"></span>
 					</div>
 		      	</div>
 
 		      </li>
 		    </ul>
 	  </div>
+
 
 
 
@@ -139,19 +143,19 @@
 		</div>
 		<div class="col-sm-4 meetingContent" style="background-color:">
 			<h3>Start Time:</h3>
-			{{meeting.selectedDay.getStart()}}
+			{{meetingCtrlGlobal.selectedDay.getStart()}}
 			<h3>End Time:</h3>
-			{{meeting.selectedDay.getEnd()}}
+			{{meetingCtrlGlobal.selectedDay.getEnd()}}
 			<h3>Total Length:</h3>
-			{{meeting.selectedDay.getTotalLength()}} min
+			{{meetingCtrlGlobal.selectedDay.getTotalLength()}} min
 			<h3>Day:</h3>
-			{{meeting.selectedDay.getWeekDay()}}
+			{{meetingCtrlGlobal.selectedDay.getWeekDay()}}
 
 			<div class="col-sm-12">
-				<button class="btn activity-btn" ng-click="removeDay(meeting.selectedDay); go('/weekView')">
+				<button class="btn activity-btn" ng-click="removeDay(meetingCtrl.selectedDay); go('/weekView')">
 						Remove
 				</button>
-				<button class="btn activity-btn" ng-click="variables.showNewMeetingEditor=true;">
+				<button class="btn activity-btn" ng-click="meetingCtrlGlobal.showMeetingEditorPopUp=true;">
 						Edit
 				</button>
 			</div>
@@ -163,7 +167,8 @@
 
 
 </div><!-- dragAndDropCtrl end -->
-
+</div><!-- activityCtrl end -->
+</div><!-- meetingCtrl end -->
 
 
 

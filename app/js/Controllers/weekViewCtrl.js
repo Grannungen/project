@@ -44,14 +44,15 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 
 		for (var i = 1; i < $scope.today.getDay(); i++) {
 			var day = new Date();
-			day.setDate($scope.today.getDate()+i);
+			day.setDate($scope.today.getDate()-i);
 			$scope.dayList.push(day);
 		};
 		for (var j = 1; j < (8-$scope.today.getDay()); j++) {
 			var dayAfter = new Date();
-			dayAfter.setDate($scope.today.getDate()-j);
+			dayAfter.setDate($scope.today.getDate()+j);
 			$scope.dayList.push(dayAfter);
 		}
+		console.log($scope.dayList);
 
 		
 		 	for (var k = 0; k < $scope.dayList.length; k++) {

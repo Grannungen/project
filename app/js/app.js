@@ -40,6 +40,10 @@ meetingAgendaPlanner.config(['$routeProvider',
       templateUrl: 'partials/dnd2.html',
       controller: 'MainCtrl'
       })
+      .when('/firebase', {
+      templateUrl: 'partials/firebaseTest.html',
+      controller: 'firebaseTestCtrl'
+      })
       .otherwise({
         redirectTo: '/login'
       });

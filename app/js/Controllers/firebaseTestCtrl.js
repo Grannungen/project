@@ -1,13 +1,23 @@
-meetingAgendaPlanner.controller('firebaseTestCtrl', function ($scope, $firebaseObject) {
-
+meetingAgendaPlanner.controller('firebaseTestCtrl', function ($scope, $firebaseObject, meetingAgendaModel) {
 
     var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
     var syncObject = $firebaseObject(ref);
-    syncObject.$bindTo($scope, "syncObject");
+    console.log(syncObject);
+    syncObject.$bindTo($scope, "syncObject").then(function () {
+      // console.log($scope.syncObject);
+      meetingAgendaModel.daysInFirebase = $scope.syncObject;
+    });
+
+    // $scope.syncObject.tttttttttttttt=1;
+    // console.log($scope.syncObject)
+    // console.log("meetingAgendaModel.daysInFirebase: " +  meetingAgendaModel.daysInFirebase)
 
   $scope.createObj = function(){
-    $scope.syncObject={name:'Pelle'}
-    console.log($scope.syncObject);
+    meetingAgendaModel.daysInFirebase = $scope.syncObject.day4.name="123";
+    // $scope.syncObject={name:'Pelle'}
+    // $scope.syncObject={name:'Pelle'}
+    // console.log($scope.syncObject);
+
   }
 
   $scope.addAttr = function(){
@@ -26,6 +36,9 @@ meetingAgendaPlanner.controller('firebaseTestCtrl', function ($scope, $firebaseO
     console.log($scope.syncObject);
 
   }
+
+
+
 
 
 });

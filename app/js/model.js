@@ -117,11 +117,11 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		console.log("FB")
 		console.log(FB)
 
-		this.FB.day4.name = name
+		//this.FB.day4.name = name
 		console.log(FB)
+		this._name = name;
 
-
-		this._name = this.FB.day4.name;
+		//this._name = this.FB.day4.name;
 		// this.FB.name = this._name
 		this.weekDay = "";
 		this.startH = startH;
@@ -134,19 +134,19 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.setName = function (name) {
 			// alert(this.FB.name)
 			// alert(name)
-			// this._name = name;
-			console.log("self.FB")
+			this._name = name;
+			//console.log("self.FB")
 
-			console.log(self.FB)
+			//console.log(self.FB)
 			self.FB.name = name;
 			// alert(this._name)
 
 
 		}
 		this.getName = function(){
-			// return this._name;
+			 return this._name;
 			// alert(this.FB.day4.name)
-			return this.FB.day4.name;
+			//return this.FB.day4.name;
 		}
 		this.setWeekDay = function(day){
 			this.weekDay = day;
@@ -245,7 +245,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 
 		this.addDay = function (startH,startM, name) {
-			_this.daysInFirebase.day4={name:'mötet', tid:14}
+			//_this.daysInFirebase.day4={name:'mötet', tid:14}
 			console.log("this.daysInFirebase" + this.daysInFirebase)
 			console.log(this.daysInFirebase)
 			var day;
@@ -255,6 +255,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 				day = new this.Day(8,0);
 			}
 			this.days.push(day);
+			console.log(this.days);
 			return day;
 		};
 

@@ -71,7 +71,7 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 			};
 		};
 
-		console.log($scope.days);
+		console.log($scope.days[0][1]+$scope.days[0][2]);
 		};
 	$scope.setdayList();
 

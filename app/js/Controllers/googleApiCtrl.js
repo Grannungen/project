@@ -76,11 +76,18 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
           var pelle = events[0].start.dateTime.split("T");
           var startTime = pelle[1].split(":");
           var startTime = [startTime[0],startTime[1]];
-          console.log(startTime);
-          console.log(events[0]);
-          //var startDate = pelle[0].split("-");
+
+          var startDate = pelle[0].split("-");
+          var henning = parseInt(startDate[1]);
+          var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+          ];
+          var monthName = monthNames[henning-1];
+          var date = monthName+startDate[2];
+          console.log(date);
+
           //console.log(startDate[1]+startDate[2]);
-          var day = meetingAgendaModel.addDay(startTime[0],0,events[0].summary);
+          var day = meetingAgendaModel.addDay(startTime[0],0,events[0].summary,date);
           day.weekDay = "Fri";
           
 

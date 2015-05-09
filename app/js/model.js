@@ -105,7 +105,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// This is a day consturctor. You can use it to create days, 
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
-	this.Day = function(startH,startM, name, FB) {
+	this.Day = function(startH,startM, name, FB, date) {
 
 
 		// firebaseObject.name = name
@@ -119,6 +119,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 		//this.FB.day4.name = name
 		console.log(FB)
+		this._date = date;
 		this._name = name;
 
 		//this._name = this.FB.day4.name;
@@ -244,13 +245,13 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		}
 
 
-		this.addDay = function (startH,startM, name) {
+		this.addDay = function (startH,startM, name, date) {
 			//_this.daysInFirebase.day4={name:'mötet', tid:14}
 			console.log("this.daysInFirebase" + this.daysInFirebase)
 			console.log(this.daysInFirebase)
 			var day;
 			if(startH){
-				day = new this.Day(startH,startM, name, _this.daysInFirebase);
+				day = new this.Day(startH,startM, name, _this.daysInFirebase,date);
 			} else {
 				day = new this.Day(8,0);
 			}

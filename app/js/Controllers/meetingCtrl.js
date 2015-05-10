@@ -36,7 +36,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 		else{
 			if($rootScope.meetingCtrlGlobal.selectedDayIsNew==true){
 				var weekDay = $scope.meetingCtrl.weekDay;
-				var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
+				
 				var pelle = $scope.meetingCtrl.date.toString().split(" ");
 				var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 				var monthNumber = monthArray.indexOf(pelle[1])+1;
@@ -46,8 +46,9 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				time = timearray[4];
 				var startJson = dateJson+"T"+time;
 				console.log(startJson);
-				//var dayJson = meetingAgendaModel.addJson($scope.meetingCtrl.date+$scope.meetingCtrl.startTime);
-				day.weekDay = weekDay;
+				var eventName = $scope.meetingCtrl.nameOfMeeting;
+				//var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
+				var dayJson = meetingAgendaModel.addJson(startJson,undefined,eventName);
 
 				// alert($scope.meetingCtrl.nameOfMeeting);
 				// var day = meetingAgendaModel.addDay(5,0, "bengt");

@@ -252,6 +252,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		
 		
 		this.days = [];
+		this.jsonDays = [];
 		this.parkedActivities = [];
 		 
 		
@@ -261,13 +262,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			alert("hej");
 		}
 
-		this.addJson = function (start,end,name) {
+		this.addJson = function (start,end,name,acitivities) {
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
 			this.jsonObject.end = end;
-			this.days.push(this.jsonObject);
-			console.log(this.days);
+			this.jsonObject.acitivities = acitivities;
+			this.jsonDays.push(this.jsonObject);
+			console.log(this.jsonDays);
 		}
 		this.addDay = function (startH,startM, name, date) {
 			//_this.daysInFirebase.day4={name:'mötet', tid:14}

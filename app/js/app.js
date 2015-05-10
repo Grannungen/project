@@ -18,6 +18,11 @@ meetingAgendaPlanner.config(['$routeProvider',
         templateUrl: 'partials/weekView222.html',
         controller: 'meetingEditorCtrl',
        // controller: 'weekViewCtrl'
+      })      
+      .when('/calendarView', {
+        templateUrl: 'partials/calendarView.html',
+        // controller: 'meetingEditorCtrl',
+       // controller: 'weekViewCtrl'
       })
       .when('/dailyView', {
         templateUrl: 'partials/dailyView.html',

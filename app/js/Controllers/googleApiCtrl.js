@@ -80,20 +80,12 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
             var name = events[i].summary;
             console.log(name);
           
-            var day = meetingAgendaModel.addJson(start,end,name);
+            var day = meetingAgendaModel.addJson(start,end,name,undefined);
           };
           
 
           
         });
       }
-
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
-     
   });
   

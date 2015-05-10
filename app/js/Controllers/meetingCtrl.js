@@ -45,11 +45,11 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				var timearray = time.toString().split(" ");
 				time = timearray[4];
 				var startJson = dateJson+"T"+time;
-				console.log(startJson);
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
 				//var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
-				var dayJson = meetingAgendaModel.addJson(startJson,undefined,eventName);
-
+				var dayJson = meetingAgendaModel.addJson(startJson,eventName);
+				console.log(dayJson);
+				$rootScope.Events.events.push(dayJson);
 				// alert($scope.meetingCtrl.nameOfMeeting);
 				// var day = meetingAgendaModel.addDay(5,0, "bengt");
 				$scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);

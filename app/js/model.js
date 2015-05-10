@@ -262,14 +262,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			alert("hej");
 		}
 
-		this.addJson = function (start,end,name,acitivities) {
+		this.addJson = function (start,name) {
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
-			this.jsonObject.end = end;
-			this.jsonObject.acitivities = acitivities;
+			this.jsonObject.start = "2015-02-10T16:00:00";
 			this.jsonDays.push(this.jsonObject);
 			console.log(this.jsonDays);
+			return this.jsonObject;
 		}
 		this.addDay = function (startH,startM, name, date) {
 			//_this.daysInFirebase.day4={name:'mötet', tid:14}

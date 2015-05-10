@@ -26,6 +26,22 @@
 		</tr>
 	</table>
 
+<<<<<<< HEAD
+	<div class="weekTableDiv">
+		<table id="weektable">
+			<tbody>
+				<div id="weekTableHead">
+					<tr>
+						<td style="width:100px">
+							<p style="font-weight:bold;text-align:center;">Time</p>
+						</td>
+						<td style="width:100px" ng-repeat="weekday in days">
+							<p style="font-weight:bold;text-align:center;">{{ weekday[0] }}</p>
+							
+							<p style="text-align:center;font-weight:none;">{{ weekday[1] }}{{weekday[2]}}</p>
+			
+						</td>
+=======
 
 	<table id="weektable">
 		<tbody>
@@ -60,14 +76,39 @@
 						 <div style="z-index:1; 	background-color:yellow; position:relativte; margin-top:50%" ng-if="hour===1" ng-click="setSelectedDay(day); go('/meeting');">
 
 						 	fkfk</div>
+>>>>>>> 20b126e123d2c55955b6877e1e69fc9dcb7c61a5
 						
-						<div ng-repeat="day in meetingCtrlGlobal.days | filter:{weekDay:weekDay[0]} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.getName()}}</div>
-					</td>
-					
-					
-			</tr>				
-		</tbody>
-	</table>
+					</tr>
+				</div>
+				<div ="weekTableBar">
+					<tr style="height:50px" ng-repeat="hour in wholeHourList">
+
+						<hr class="time-hr">
+
+							<td>
+								<p style="font-weight:bold;text-align:center;">{{ hour }}:00</p>
+
+
+
+							</td>
+							<td style="position:relative" class="dataElement" id="{{ weekDay[0] }}, {{ hour }}" ng-repeat="weekDay in days" ng-click="addNew();">
+								<!-- <div style="background-color:red; heihgt:200px; top:0; margin-top:300px" > 
+							        öklhjbölihölkjölkj
+			                    </div>	 -->
+								 <!-- go('/meetingAgendaEditor'); -->
+								 <div style="z-index:1; 	background-color:yellow; position:relativte;" ng-if="hour===1" ng-click="setSelectedDay(day); go('/meeting');">
+
+								 	fkfk</div>
+								
+								<div ng-repeat="day in meetingCtrlGlobal.days | filter:{weekDay:weekDay[0]} | filter:{startH:hour}:true" ng-click="setSelectedDay(day); go('/meeting');">{{day.getName()}}</div>
+							</td>
+							
+							
+					</tr>	
+				</div>			
+			</tbody>
+		</table>
+    </div>
 </div><!-- meetingCtrl end -->
 </div> 
 

@@ -2,11 +2,23 @@
 .weekContent {
 	position: absolute; 
 	top: 200px; bottom: 0; right: 0; left: 0;
+
 }
+.weekTableDiv{
+	position: absolute;
+	overflow: auto;
+	height: 60%;
+	width: 100%;
+    bottom: 0; right: 100; left: 0;
+    border: thick;
+    background-color: gray;
+}
+
 #weekTable {
 	background-color: white;
 	border: 1px solid black;
 	position: auto;
+
 	
 }
 
@@ -17,3 +29,17 @@
 	width:200px;
 }
 
+#frameDiv {
+	background-color: orange;
+	border: 1px solid red;
+	position: auto;	
+
+}
+.head01 {
+	position: absolute; 
+	top: 200px; bottom: 0; right: 0; left: 0;
+	width:100px;
+}
+#Krishna{
+	opacity:0.5;
+}

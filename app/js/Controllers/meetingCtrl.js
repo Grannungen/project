@@ -40,6 +40,10 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				var pelle = $scope.meetingCtrl.date.toString().split(" ");
 				var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 				var monthNumber = monthArray.indexOf(pelle[1])+1;
+				console.log(monthNumber);
+				if (monthNumber.length == 1) {
+					monthNumber = "0"+monthNumber.toString();
+				}
 				var dateJson = pelle[3]+"-"+monthNumber+"-"+pelle[2];
 				var time = $scope.meetingCtrl.startTime;
 				var timearray = time.toString().split(" ");

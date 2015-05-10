@@ -266,7 +266,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
-			this.jsonObject.start = "2015-02-10T16:00:00";
+			//this.jsonObject.start = "2015-02-10T16:00:00";
 			this.jsonDays.push(this.jsonObject);
 			console.log(this.jsonDays);
 			return this.jsonObject;

@@ -270,6 +270,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			this.jsonObject.acitivities = acitivities;
 			this.jsonDays.push(this.jsonObject);
 			console.log(this.jsonDays);
+			
 		}
 		this.addDay = function (startH,startM, name, date) {
 			//_this.daysInFirebase.day4={name:'mötet', tid:14}

@@ -95,15 +95,69 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 
 
 
-	$(document).ready(function() {
-		alert()
+	// $(document).ready(function() {
+	// 	alert()
 		
-		$('#calendar').fullCalendar($scope.Events);
+	// 	$('#calendar').fullCalendar($scope.Events);
 		
-	});
+	// });
 
 	$scope.print = function () {
-		console.log($scope.Events)
+		$scope.myEvents.push({
+        title: 'Test',
+        start: new Date(y, m, d + 1, 19, 0),
+        end: new Date(y, m, d + 1, 22, 30),
+        allDay: false
+   		 })
+		console.log("$scope.eventSources")
+		console.log($scope.eventSources)
+
 	}
+
+
+
+
+
+var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+$scope.myEvents = [
+    {
+        title: 'All Day Test Event',
+        start: new Date(y, m, 1)
+    },
+    {
+        title: 'Long Test Event',
+        start: new Date(y, m, d - 5),
+        end: new Date(y, m, d - 2)
+    },
+    {
+        title: 'Test Birthday Party',
+        start: new Date(y, m, d + 1, 19, 0),
+        end: new Date(y, m, d + 1, 22, 30),
+        allDay: false
+    }];
+
+
+$scope.eventSources = [$scope.myEvents];
+    console.log($scope.eventSources)
+
+// $scope.eventSources = [
+//       {title: 'All Day Event',start: new Date(y, m, 1)},
+//       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+//       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+//       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+//       {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+//       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+//     ];
+
+
+
+
+
+
+
 
 });

@@ -1,9 +1,9 @@
-meetingAgendaPlanner.controller('firebaseTestCtrl', function ($scope, $firebaseObject, meetingAgendaModel) {
+meetingAgendaPlanner.controller('firebaseTestCtrl', function ($scope, $rootScope, $firebaseObject, meetingAgendaModel) {
 
     var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
     var syncObject = $firebaseObject(ref);
     console.log(syncObject);
-    syncObject.$bindTo($scope, "syncObject").then(function () {
+    syncObject.$bindTo($rootScope, "syncObject").then(function () {
       // console.log($scope.syncObject);
       meetingAgendaModel.daysInFirebase = $scope.syncObject;
     });

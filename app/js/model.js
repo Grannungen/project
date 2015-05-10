@@ -105,25 +105,39 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// This is a day consturctor. You can use it to create days, 
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
-	this.Day = function(startH,startM, name, FB, date) {
-
+	this.Day = function(startH,startM, name, firebaseObject, date) {
+		var self = this;
+		//Använd $firebaseObject för att redigera data, $firebaseArray för att lägga till
 
 		// firebaseObject.name = name
 
 
 		// alert(FB.name + name)
-		var self = this;
-		this.FB = FB
-		console.log("FB")
-		console.log(FB)
 
-		//this.FB.day4.name = name
-		console.log(FB)
-		this._date = date;
-		this._name = name;
+		// this.firebaseObject = firebaseObject.day2;
+		// this.firebaseObject._name = name;
+		// // this.firebaseObject.date = date;
+		// this.firebaseObject._weekDay = "";
+		// this.firebaseObject._startH = startH;
+		// this.firebaseObject._startH = startM;
+		// this.firebaseObject._start = startH * 60 + startM;
+		// this.firebaseObject._activities = ["kkk"];
+		// this.firebaseObject.push("hej")
+
+
+		
+		// this.FB = FB
+		// console.log("FB")
+		// console.log(FB)
+
+		// this.FB.day4.name = name
+		// console.log(FB)
+		
+		// this._name = name;
 
 		//this._name = this.FB.day4.name;
 		// this.FB.name = this._name
+		this._date = date;
 		this.weekDay = "";
 		this.startH = startH;
 		this._start = startH * 60 + startM;
@@ -139,7 +153,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			//console.log("self.FB")
 
 			//console.log(self.FB)
-			self.FB.name = name;
+			// self.FB.day4.name = name;
+
+			// self.firebaseObject._name = name;
 			// alert(this._name)
 
 
@@ -147,7 +163,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.getName = function(){
 			 return this._name;
 			// alert(this.FB.day4.name)
-			//return this.FB.day4.name;
+			// return this.firebaseObject._name;
 		}
 		this.setWeekDay = function(day){
 			this.weekDay = day;

@@ -37,21 +37,46 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 			if($rootScope.meetingCtrlGlobal.selectedDayIsNew==true){
 				var weekDay = $scope.meetingCtrl.weekDay;
 				
-				var pelle = $scope.meetingCtrl.date.toString().split(" ");
-				var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-				var monthNumber = monthArray.indexOf(pelle[1])+1;
-				var dateJson = pelle[3]+"-"+monthNumber+"-"+pelle[2];
+				// alert($scope.meetingCtrl.date);
+				var dateList = $scope.meetingCtrl.date.toString().split(" ");
+				// alert(dateList)
+				// alert($scope.meetingCtrl.startTime)
 				var time = $scope.meetingCtrl.startTime;
 				var timearray = time.toString().split(" ");
 				time = timearray[4];
-				var startJson = dateJson+"T"+time;
-				console.log(startJson);
+				dateList[4] = time;
+				var start = dateList.join(" ")
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
-				//var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
-				var dayJson = meetingAgendaModel.addJson(startJson,undefined,eventName);
+				var dayJson = meetingAgendaModel.addJson(start,eventName);
+				$rootScope.myEvents.push(dayJson);
+				// console.log(dayJson);
 
+
+
+				var eventName = $scope.meetingCtrl.nameOfMeeting;
+				// alert($scope.meetingCtrl.date)
+				
+
+				// var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+				// var monthNumber = monthArray.indexOf(pelle[1])+1;
+				// console.log(monthNumber);
+				// if (monthNumber.length == 1) {
+				// 	monthNumber = "0"+monthNumber.toString();
+				// }
+				// var dateJson = pelle[3]+"-"+monthNumber+"-"+pelle[2];
+				// var time = $scope.meetingCtrl.startTime;
+				// var timearray = time.toString().split(" ");
+				// time = timearray[4];
+				// alert(monthNumber)
+				// var startJson = dateJson+"T"+time;
+				
+				// var dayJson = meetingAgendaModel.addJson($scope.meetingCtrl.date,eventName);
+
+				// $rootScope.Events.events.push(dayJson);
 				// alert($scope.meetingCtrl.nameOfMeeting);
 				// var day = meetingAgendaModel.addDay(5,0, "bengt");
+				var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
+				
 				$scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);
 				$scope.meetingCtrlGlobal.selectedDay = day;
 				// alert("This is meeting number " + $scope.dayIndex);

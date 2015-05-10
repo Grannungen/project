@@ -123,7 +123,7 @@ var date = new Date();
     var m = date.getMonth();
     var y = date.getFullYear();
 
-$scope.myEvents = [
+$rootScope.myEvents = [
     {
         title: 'All Day Test Event',
         start: new Date(y, m, 1)
@@ -140,7 +140,7 @@ $scope.myEvents = [
         allDay: false
     }];
 
-
+// $rootScope.myEvents = meetingAgendaModel.jsonDays;
 $scope.eventSources = [$scope.myEvents];
     console.log($scope.eventSources)
 
@@ -154,7 +154,21 @@ $scope.eventSources = [$scope.myEvents];
 //     ];
 
 
-
+$scope.uiConfig = {
+      calendar:{
+        height: 450,
+        editable: true,
+        showWeeks:true,
+        header:{
+          left: 'month basicWeek basicDay agendaWeek agendaDay',
+          center: 'title',
+          right: 'today prev,next'
+        },
+        dayClick: $scope.alertEventOnClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize
+      }
+    };
 
 
 

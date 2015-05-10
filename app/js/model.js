@@ -133,7 +133,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// this.FB.day4.name = name
 		// console.log(FB)
 		
-		// this._name = name;
+		this._name = name;
 
 		//this._name = this.FB.day4.name;
 		// this.FB.name = this._name
@@ -253,6 +253,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		
 		this.days = [];
 		this.parkedActivities = [];
+		 
 		
 		// adds a new day. if startH and startM (start hours and minutes)
 		// are not provided it will set the default start of the day to 08:00
@@ -260,7 +261,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			alert("hej");
 		}
 
-
+		this.addJson = function (start,end,name) {
+			this.jsonObject = {};
+			this.jsonObject.title = name;
+			this.jsonObject.start = start;
+			this.jsonObject.end = end;
+			this.days.push(this.jsonObject);
+			console.log(this.days);
+		}
 		this.addDay = function (startH,startM, name, date) {
 			//_this.daysInFirebase.day4={name:'mötet', tid:14}
 			console.log("this.daysInFirebase" + this.daysInFirebase)

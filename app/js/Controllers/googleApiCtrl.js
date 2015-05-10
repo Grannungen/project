@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
+meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, $rootScope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
       var CLIENT_ID = '907587605785-n1dav3sembqi5fap2h11bdc9oe662g69.apps.googleusercontent.com';
 
       // This quickstart only requires read-only scope, check
@@ -80,7 +80,10 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
             var name = events[i].summary;
             console.log(name);
           
-            var day = meetingAgendaModel.addJson(start,end,name,undefined);
+            var day = meetingAgendaModel.addJson(start,name);
+            console.log(day);
+            $rootScope.myEvents.push(day);
+            
           };
           
 

@@ -57,7 +57,6 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 			}
 		}	else {
 			for (var k = 0; k < $scope.dayList.length; k++) {
-		 		console.log($scope.dayList[k].getDate());
 		 		$scope.dayList[k].setDate($scope.dayList[k].getDate()+inputData);
 		 		dayString = $scope.dayList[k].toString();
 		 		$scope.dayListPres = dayString.split(" ");

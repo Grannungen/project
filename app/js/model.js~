@@ -38,7 +38,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	var _this = this;
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
-	////////////////////////flytta till rootScope ////////////////////////
+	// //////////////////////flytta till rootScope ////////////////////////
 	this.selectedDay;
 	this.selectedActivity;
 

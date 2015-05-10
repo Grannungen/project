@@ -1,0 +1,64 @@
+<!-- <ng-include src="'partials/activityPopUp.html'"></ng-include> -->
+
+
+<style type="text/css">
+	.testDataDiv{
+		/*background-color: yellow;*/
+		border: solid 1px;
+	}
+
+	.testActivity{
+		background-color: green;
+	}
+</style>
+<!-- testa att rita upp aktiviteterna -->
+
+
+
+	<div class="" ng-controller="meetingCtrl">
+		<button ng-click="createTestData()">Create test data</button>
+		<h1>Test Data</h1>
+		
+
+		<div ng-repeat="day in meetingCtrlGlobal.days" class="col-sm-4 testDataDiv">
+			<h3>Name of the meeting:</h3>
+			<button ng-click="removeDay(day)">
+				remove meeting
+			</button>
+
+			<!-- den lyckas ändra showEditor till true men inget popup dyker upp -->
+			<button ng-click="meeting.showEditor=true; meeting.selectedDay=day;">
+				add activity
+			</button>
+			<h3>Total length of the meeting: {{day.getTotalLength()}}</h3>
+			<h3>Start time: {{day.getStart()}}</h3>
+			<h3>End time: {{day.getEnd()}}</h3>
+			<h3>Day: {{day.weekDay}}</h3>
+			<ul ng-repeat="activity in day._activities" class="testActivity">
+				<h4>Activity name: {{activity.getName()}}</h4>
+				<button ng-click="removeActivity(activity, day)">
+					remove activity
+				</button>
+				<li>
+					Length: {{activity.getLength()}} min
+				</li>
+				<li>
+					Type: {{activity.getType()}}
+				</li>
+				<li>
+					Description: 
+					{{activity.getDescription()}}
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+<!-- testPrin -->
+
+
+
+
+
+
+
+

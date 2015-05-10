@@ -56,7 +56,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				// alert($scope.meetingCtrl.nameOfMeeting);
 				// var day = meetingAgendaModel.addDay(5,0, "bengt");
 				$scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);
-				$scope.meetingCtrlGlobal.selectedDay = day;
+				//$scope.meetingCtrlGlobal.selectedDay = day;
 				// alert("This is meeting number " + $scope.dayIndex);
 				// console.log("meeting " + $scope.dayIndex + ": ");
 				// console.log("$scope.meetingCtrl.days: " + $scope.meetingCtrl.days);

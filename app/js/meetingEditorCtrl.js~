@@ -3,6 +3,7 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
 	
+	alert('hej');
 	$rootScope.variables = {
 		showNewMeetingEditor: false,
 		selectedDayIsNew:false,
@@ -33,6 +34,19 @@ meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScop
 	$scope.hourList = [];
 	$scope.showMeetingEditorPopUp = false;
 	$scope.weekDays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+		
+	
+	var syncObject = meetingAgendaModel.firebaseArray();
+	console.log(syncObject);
+	console.log(syncObject.length);
+	syncObject.$loaded().then(function(syncObject){
+		console.log(syncObject.length);
+		//for (i=0; i< syncObject.length; i++){
+		//	syncObject.$remove(i);
+		//};
+	});
+	
+	
 	
 
 	this.setHourList = function () {

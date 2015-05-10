@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel) {
+meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
 	$rootScope.activityPopUpCtrlGlobal = {
 		
 	}
@@ -103,14 +103,15 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 	// });
 
 	$scope.print = function () {
-		$scope.myEvents.push({
-        title: 'Test',
-        start: new Date(y, m, d + 1, 19, 0),
-        end: new Date(y, m, d + 1, 22, 30),
-        allDay: false
-   		 })
-		console.log("$scope.eventSources")
-		console.log($scope.eventSources)
+		// $scope.myEvents.push({
+  //       title: 'Test',
+  //       start: new Date(y, m, d + 1, 19, 0),
+  //       end: new Date(y, m, d + 1, 22, 30),
+  //       allDay: false
+  //  		 })
+		// console.log("$scope.eventSources")
+		// console.log($scope.eventSources)
+		console.log(meetingAgendaModel.jsonDays)
 
 	}
 
@@ -123,26 +124,26 @@ var date = new Date();
     var m = date.getMonth();
     var y = date.getFullYear();
 
-$rootScope.myEvents = [
-    {
-        title: 'All Day Test Event',
-        start: new Date(y, m, 1)
-    },
-    {
-        title: 'Long Test Event',
-        start: new Date(y, m, d - 5),
-        end: new Date(y, m, d - 2)
-    },
-    {
-        title: 'Test Birthday Party',
-        start: new Date(y, m, d + 1, 19, 0),
-        end: new Date(y, m, d + 1, 22, 30),
-        allDay: false
-    }];
+// $rootScope.myEvents = [
+//     {
+//         title: 'All Day Test Event',
+//         start: new Date(y, m, 1)
+//     },
+//     {
+//         title: 'Long Test Event',
+//         start: new Date(y, m, d - 5),
+//         end: new Date(y, m, d - 2)
+//     },
+//     {
+//         title: 'Test Birthday Party',
+//         start: new Date(y, m, d + 1, 19, 0),
+//         end: new Date(y, m, d + 1, 22, 30),
+//         allDay: false
+//     }];
 
-// $rootScope.myEvents = meetingAgendaModel.jsonDays;
-$scope.eventSources = [$scope.myEvents];
-    console.log($scope.eventSources)
+// meetingAgendaModel.jsonDays = $rootScope.myEvents;
+$scope.eventSources = [meetingAgendaModel.jsonDays];
+    // console.log($scope.eventSources)
 
 // $scope.eventSources = [
 //       {title: 'All Day Event',start: new Date(y, m, 1)},
@@ -153,18 +154,32 @@ $scope.eventSources = [$scope.myEvents];
 //       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
 //     ];
 
+$scope.alertEventOnClick=function () {
+	
+}
 
+$scope.eventClickHandler = function (event) {
+	meetingAgendaModel.selectedDayIndex = event.index;
+	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
+	alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
+
+	console.log(meetingAgendaModel.jsonDays[event.index]);
+	console.log(event);
+	$location.path('/meeting');
+	console.log($scope.uiConfig.uiConfig)
+}
 $scope.uiConfig = {
       calendar:{
-        height: 450,
+        // height: 450,
         editable: true,
-        showWeeks:true,
+        // showWeeks:true,
         header:{
-          left: 'month basicWeek basicDay agendaWeek agendaDay',
+          left: 'month agendaWeek agendaDay',
           center: 'title',
           right: 'today prev,next'
         },
         dayClick: $scope.alertEventOnClick,
+        eventClick: $scope.eventClickHandler,
         eventDrop: $scope.alertOnDrop,
         eventResize: $scope.alertOnResize
       }

@@ -4,7 +4,8 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 	$rootScope.meetingCtrlGlobal = {
 		days: meetingAgendaModel.days,
 		selectedDay:meetingAgendaModel.selectedDay,
-		selectedDayIsNew:false
+		selectedDayIsNew:false,
+		selectedJsonDay: meetingAgendaModel.jsonDays[meetingAgendaModel.selectedDayIndex]
 	}
 
 
@@ -48,7 +49,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				var start = dateList.join(" ")
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
 				var dayJson = meetingAgendaModel.addJson(start,eventName);
-				$rootScope.myEvents.push(dayJson);
+				// $rootScope.myEvents.push(dayJson);
 				// console.log(dayJson);
 
 
@@ -89,6 +90,8 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				// $location.path('/meeting');
 			}
 			else{
+				//Edit
+				meetingAgendaModel.jsonDays[0].title = $scope.meetingCtrl.nameOfMeeting;
 				var day = meetingAgendaModel.selectedDay;
 				day.setName($scope.meetingCtrl.nameOfMeeting);
 				day.setWeekDay($scope.meetingCtrl.weekDay);

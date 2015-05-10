@@ -88,7 +88,9 @@
 		<div class="col-sm-4" style="background-color:"></div>
 		<div class="col-sm-4">
 			<h1 style="width:100%">
-				{{meetingCtrlGlobal.selectedDay.getName()}}
+				<!-- {{meetingCtrlGlobal.selectedDay.getName()}} -->
+
+				{{meetingCtrlGlobal.selectedJsonDay.title}}
 			</h1>
 			<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
 				Add Activity

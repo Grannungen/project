@@ -39,6 +39,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 	// //////////////////////flytta till rootScope ////////////////////////
 	this.selectedDay;
+	this.selectedDayIndex;
 	this.selectedActivity;
 
 	
@@ -200,16 +201,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			return Math.floor(this._start/60) + ":" + this._start % 60;
 		};
 		
-		// returns the length (in minutes) of activities of certain type
-		this.getLengthByType = function (typeid) {
-			var length = 0;
-			$.each(this._activities,function(index,activity){
-				if(activity.getTypeId() == typeid){
-					length += activity.getLength();
-				}
-			});
-			return length;
-		};
 		
 		// adds an activity to specific position
 		// if the position is not provided then it will add it to the 
@@ -229,18 +220,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			return this._activities.splice(position,1)[0];
 		};
 		
-		// moves activity inside one day
-		// this method will be called when needed from the model
-		// don't call it directly
-		this._moveActivity = function(oldposition,newposition) {
-			// In case new position is greater than the old position and we are not moving
-			// to the last position of the array
-			if(newposition > oldposition && newposition < this._activities.length - 1) {
-				newposition--;
-			}
-			var activity = this._removeActivity(oldposition);
-			this._addActivity(activity, newposition);
-		};
 		this.getActivity = function() {
 			return this._activities;
 		};
@@ -263,9 +242,12 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		}
 
 		this.addJson = function (start,name) {
+
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
+			this.jsonObject.index = this.jsonDays.length;
+			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';
 			// this.jsonObject.start = "2015-02-10T16:00:00";
 			this.jsonDays.push(this.jsonObject);
@@ -305,38 +287,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			}
 		}
 		
-		// add an activity to parked activities
-		this.addParkedActivity = function(activity,position){
-			this.addActivity(activity,null,position);
-		};
-		
-		// remove an activity on provided position from parked activites 
-		this.removeParkedActivity = function(position) {
-			act = this.parkedActivities.splice(position,1)[0];
-			return act;
-		};
-		
-		// moves activity between the days, or day and parked activities.
-		// to park activity you need to set the new day to null
-		// to move a parked activity to let's say day 0 you set oldday to null
-		// and new day to 0
-		this.moveActivity = function(oldday, oldposition, newday, newposition) {
-			if(oldday !== null && oldday == newday) {
-				this.days[oldday]._moveActivity(oldposition,newposition);
-			}else if(oldday == null && newday == null) {
-				var activity = this.removeParkedActivity(oldposition);
-				this.addParkedActivity(activity,newposition);
-			}else if(oldday == null) {
-				var activity = this.removeParkedActivity(oldposition);
-				this.days[newday]._addActivity(activity,newposition);
-			}else if(newday == null) {
-				var activity = this.days[oldday]._removeActivity(oldposition);
-				this.addParkedActivity(activity,newposition);
-			} else {
-				var activity = this.days[oldday]._removeActivity(oldposition);
-				this.days[newday]._addActivity(activity,newposition);
-			}
-		};
 	// }
 	// this is the instance of our main model
 	// this is what you should use in your application

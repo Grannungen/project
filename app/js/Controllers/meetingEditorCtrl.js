@@ -1,8 +1,6 @@
 meetingAgendaPlanner.controller('meetingEditorCtrl', function ($scope, $rootScope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
-	
 	//When the views are linked to each other they can't keep track of the variables unless you declare
 	//them as $scope.meeting.variables
-
 
 	$rootScope.variables = {
 		// showNewMeetingEditor: false,

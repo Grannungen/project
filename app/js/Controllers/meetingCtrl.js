@@ -51,7 +51,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				meetingAgendaModel.selectedDay = day;
 				console.log(meetingAgendaModel.days)
 				$rootScope.meetingCtrlGlobal.showMeetingEditorPopUp = false;
-				$location.path('/meeting');
+				// $location.path('/meeting');
 			}
 			else{
 				var day = meetingAgendaModel.selectedDay;

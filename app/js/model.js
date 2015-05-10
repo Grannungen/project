@@ -4,6 +4,9 @@
 
 meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseObject) {
 	
+	var _this = this;
+	this.daysInFirebase;
+
 	this.firebaseObject = function() {
 		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
 	 	return ref;	
@@ -102,19 +105,65 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// This is a day consturctor. You can use it to create days, 
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
-	this.Day = function(startH,startM, name) {
-		this._name = name; 
+	this.Day = function(startH,startM, name, firebaseObject, date) {
+		var self = this;
+		//Använd $firebaseObject för att redigera data, $firebaseArray för att lägga till
+
+		// firebaseObject.name = name
+
+
+		// alert(FB.name + name)
+
+		// this.firebaseObject = firebaseObject.day2;
+		// this.firebaseObject._name = name;
+		// // this.firebaseObject.date = date;
+		// this.firebaseObject._weekDay = "";
+		// this.firebaseObject._startH = startH;
+		// this.firebaseObject._startH = startM;
+		// this.firebaseObject._start = startH * 60 + startM;
+		// this.firebaseObject._activities = ["kkk"];
+		// this.firebaseObject.push("hej")
+
+
+		
+		// this.FB = FB
+		// console.log("FB")
+		// console.log(FB)
+
+		// this.FB.day4.name = name
+		// console.log(FB)
+		
+		// this._name = name;
+
+		//this._name = this.FB.day4.name;
+		// this.FB.name = this._name
+		this._date = date;
 		this.weekDay = "";
 		this.startH = startH;
 		this._start = startH * 60 + startM;
 		this._activities = [];
 
-		this.setName = function (name) {
+		// this.FB.name = "hejhej"
 
+
+		this.setName = function (name) {
+			// alert(this.FB.name)
+			// alert(name)
 			this._name = name;
+			//console.log("self.FB")
+
+			//console.log(self.FB)
+			// self.FB.day4.name = name;
+
+			// self.firebaseObject._name = name;
+			// alert(this._name)
+
+
 		}
 		this.getName = function(){
-			return this._name;
+			 return this._name;
+			// alert(this.FB.day4.name)
+			// return this.firebaseObject._name;
 		}
 		this.setWeekDay = function(day){
 			this.weekDay = day;
@@ -212,14 +261,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		}
 
 
-		this.addDay = function (startH,startM, name) {
+		this.addDay = function (startH,startM, name, date) {
+			//_this.daysInFirebase.day4={name:'mötet', tid:14}
+			console.log("this.daysInFirebase" + this.daysInFirebase)
+			console.log(this.daysInFirebase)
 			var day;
 			if(startH){
-				day = new this.Day(startH,startM, name);
+				day = new this.Day(startH,startM, name, _this.daysInFirebase,date);
 			} else {
 				day = new this.Day(8,0);
 			}
 			this.days.push(day);
+			console.log(this.days);
 			return day;
 		};
 

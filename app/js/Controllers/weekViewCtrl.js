@@ -32,12 +32,10 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 	}
 	this.setHourList();
 	$scope.today = new Date()
-	console.log($scope.today);
 	
 	$scope.days = ["","","","","","",""];
 	
 	$scope.setdayList = function (inputData) {
-		console.log($scope.today);
 		if (inputData == undefined) {
 		$scope.dayList = [];
 		$scope.dayList.push($scope.today);
@@ -52,9 +50,6 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 			dayAfter.setDate($scope.today.getDate()+j);
 			$scope.dayList.push(dayAfter);
 		}
-		console.log($scope.dayList);
-
-		
 		 	for (var k = 0; k < $scope.dayList.length; k++) {
 		 		dayString = $scope.dayList[k].toString();
 		 		$scope.dayListPres = dayString.split(" ");
@@ -70,8 +65,6 @@ meetingAgendaPlanner.controller('weekViewCtrl', function($scope, $rootScope, mee
 
 			};
 		};
-
-		console.log($scope.days);
 		};
 	$scope.setdayList();
 

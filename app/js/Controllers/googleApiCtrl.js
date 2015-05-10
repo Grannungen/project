@@ -1,5 +1,4 @@
 meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
-      console.log("apictrl skapts");
       var CLIENT_ID = '907587605785-n1dav3sembqi5fap2h11bdc9oe662g69.apps.googleusercontent.com';
 
       // This quickstart only requires read-only scope, check
@@ -74,7 +73,25 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, meetingAgenda
 
         request.execute(function(resp) {
           var events = resp.items;
-          console.log(events);
+          var pelle = events[0].start.dateTime.split("T");
+          var startTime = pelle[1].split(":");
+          var startTime = [startTime[0],startTime[1]];
+
+          var startDate = pelle[0].split("-");
+          var henning = parseInt(startDate[1]);
+          var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+          ];
+          var monthName = monthNames[henning-1];
+          var date = monthName+startDate[2];
+          console.log(date);
+
+          //console.log(startDate[1]+startDate[2]);
+          var day = meetingAgendaModel.addDay(startTime[0],0,events[0].summary,date);
+          day.weekDay = "Fri";
+          
+
+
           
         });
       }

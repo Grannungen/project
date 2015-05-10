@@ -20,8 +20,8 @@
 		<h1>Test Data</h1>
 		
 
-		<div ng-repeat="day in meetingCtrlGlobal.days" class="col-sm-4 testDataDiv">
-			<h3>Name of the meeting: {{day.getName()}}</h3>
+		<div ng-repeat="day in meetingCtrlGlobal.jsonDays" class="col-sm-4 testDataDiv">
+			<h3>Name of the meeting: {{day.name}}</h3>
 			<button ng-click="removeDay(day)">
 				remove meeting
 			</button>
@@ -30,10 +30,8 @@
 			<button ng-click="meeting.showEditor=true; meeting.selectedDay=day;">
 				add activity
 			</button>
-			<h3>Total length of the meeting: {{day.getTotalLength()}}</h3>
-			<h3>Start time: {{day.getStart()}}</h3>
-			<h3>End time: {{day.getEnd()}}</h3>
-			<h3>Day: {{day.weekDay}}</h3>
+			
+			<h3>Start time: {{day.start}}</h3>
 			<ul ng-repeat="activity in day._activities" class="testActivity">
 				<h4>Activity name: {{activity.getName()}}</h4>
 				<button ng-click="removeActivity(activity, day)">

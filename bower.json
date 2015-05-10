@@ -15,6 +15,7 @@
     "firebase": "2.2.1" ,
     "angularfire": "1.0.0",
     "moment": "2.10.2",
-    "fullcalendar": "2.3.1"
+    "fullcalendar": "2.3.1",
+    "angular-ui-calendar": "latest"
   }
 }

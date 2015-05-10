@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel) {
+meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
 	$rootScope.activityPopUpCtrlGlobal = {
 		
 	}
@@ -95,15 +95,98 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 
 
 
-	$(document).ready(function() {
-		alert()
+	// $(document).ready(function() {
+	// 	alert()
 		
-		$('#calendar').fullCalendar($scope.Events);
+	// 	$('#calendar').fullCalendar($scope.Events);
 		
-	});
+	// });
 
 	$scope.print = function () {
-		console.log($scope.Events)
+		// $scope.myEvents.push({
+  //       title: 'Test',
+  //       start: new Date(y, m, d + 1, 19, 0),
+  //       end: new Date(y, m, d + 1, 22, 30),
+  //       allDay: false
+  //  		 })
+		// console.log("$scope.eventSources")
+		// console.log($scope.eventSources)
+		console.log(meetingAgendaModel.jsonDays)
+
 	}
+
+
+
+
+
+var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+// $rootScope.myEvents = [
+//     {
+//         title: 'All Day Test Event',
+//         start: new Date(y, m, 1)
+//     },
+//     {
+//         title: 'Long Test Event',
+//         start: new Date(y, m, d - 5),
+//         end: new Date(y, m, d - 2)
+//     },
+//     {
+//         title: 'Test Birthday Party',
+//         start: new Date(y, m, d + 1, 19, 0),
+//         end: new Date(y, m, d + 1, 22, 30),
+//         allDay: false
+//     }];
+
+// meetingAgendaModel.jsonDays = $rootScope.myEvents;
+$scope.eventSources = [meetingAgendaModel.jsonDays];
+    // console.log($scope.eventSources)
+
+// $scope.eventSources = [
+//       {title: 'All Day Event',start: new Date(y, m, 1)},
+//       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+//       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+//       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+//       {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+//       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+//     ];
+
+$scope.alertEventOnClick=function () {
+	
+}
+
+$scope.eventClickHandler = function (event) {
+	meetingAgendaModel.selectedDayIndex = event.index;
+	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
+	alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
+
+	console.log(meetingAgendaModel.jsonDays[event.index]);
+	console.log(event);
+	$location.path('/meeting');
+	console.log($scope.uiConfig.uiConfig)
+}
+$scope.uiConfig = {
+      calendar:{
+        // height: 450,
+        editable: true,
+        // showWeeks:true,
+        header:{
+          left: 'month agendaWeek agendaDay',
+          center: 'title',
+          right: 'today prev,next'
+        },
+        dayClick: $scope.alertEventOnClick,
+        eventClick: $scope.eventClickHandler,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize
+      }
+    };
+
+
+
+
 
 });

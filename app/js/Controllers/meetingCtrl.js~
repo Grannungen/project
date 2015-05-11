@@ -48,17 +48,14 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				dateList[4] = time;
 				var start = dateList.join(" ")
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
-<<<<<<< HEAD
-				i = meetingAgendaModel.days.length;
-				var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
-				var dayJson = meetingAgendaModel.addJson(startJson,'undefined',eventName);
-				var i = meetingAgendaModel.jsonDays.length;
-				$rootScope.syncObject['Day'+i] = dayJson;
-=======
+				// var momentO = moment(start)
+				// console.log("moment")
+				// console.log(momentO.format("YYYY-MM-DD"))
 				var dayJson = meetingAgendaModel.addJson(start,eventName);
+				// console.log(dayJson)
 				// $rootScope.myEvents.push(dayJson);
 				// console.log(dayJson);
->>>>>>> b939dfb720bdb810770af5f9d5aaeed7dcb0564f
+
 
 
 
@@ -84,8 +81,8 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				// $rootScope.Events.events.push(dayJson);
 				// alert($scope.meetingCtrl.nameOfMeeting);
 				// var day = meetingAgendaModel.addDay(5,0, "bengt");
-				var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
-				
+				// var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
+				var day = meetingAgendaModel.addDay(dayJson);
 				$scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);
 				$scope.meetingCtrlGlobal.selectedDay = day;
 				// alert("This is meeting number " + $scope.dayIndex);
@@ -124,6 +121,10 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 
 	$scope.removeDay = function (day) {
 			meetingAgendaModel.removeDay(day);
+	}
+
+	$rootScope.go = function (path) {
+		$location.path(path);
 	}
 
 	$scope.setSelectedDay = function (day) {

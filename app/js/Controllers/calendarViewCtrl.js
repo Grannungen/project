@@ -124,25 +124,33 @@ var date = new Date();
     var m = date.getMonth();
     var y = date.getFullYear();
 
-// $rootScope.myEvents = [
-//     {
-//         title: 'All Day Test Event',
-//         start: new Date(y, m, 1)
-//     },
-//     {
-//         title: 'Long Test Event',
-//         start: new Date(y, m, d - 5),
-//         end: new Date(y, m, d - 2)
-//     },
-//     {
-//         title: 'Test Birthday Party',
-//         start: new Date(y, m, d + 1, 19, 0),
-//         end: new Date(y, m, d + 1, 22, 30),
-//         allDay: false
-//     }];
+$rootScope.myEvents = [
+    {
+        title: 'All Day Test Event',
+        start: new Date(y, m, 1)
+    },
+    {
+    	title: "Gröna Lund ", 
+    	start: "2015-05-16T10:00:00+02:00"
+    },
+    {
+        title: 'Long Test Event',
+        start: new Date(y, m, d - 5),
+        end: new Date(y, m, d - 2)
+    },
+    {
+        title: 'Test Birthday Party',
+        start: new Date(y, m, d + 1, 19, 0),
+        end: new Date(y, m, d + 1, 22, 30),
+        allDay: false
+    }];
 
 // meetingAgendaModel.jsonDays = $rootScope.myEvents;
-$scope.eventSources = [meetingAgendaModel.jsonDays];
+
+
+
+
+$scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalAPIEvents];
     // console.log($scope.eventSources)
 
 // $scope.eventSources = [

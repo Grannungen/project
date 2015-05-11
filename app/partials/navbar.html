@@ -1,17 +1,20 @@
+<style type="text/css">
+	#navBar {
+		background-color: lightgrey
+	}
+</style>
+
 <ng-include src="'partials/meetingEditorPopUp.html'" ng-controller="meetingCtrl"></ng-include>
-<div class="col-sm-12" ng-controller="meetingEditorCtrl">
+<div class="col-sm-12" id="navBar" ng-controller="meetingEditorCtrl">
 	<div class="col-md-4"></div>
 	<div class="col-md-4" id="Menu">
 	  <ul class="nav nav-pills " style="width:100%">
-	    <li style="float:"><button class="btn btn-danger" ng-click="meetingCtrlGlobal.selectedDayIsNew=true; meetingCtrlGlobal.showMeetingEditorPopUp=true;">New Meeting</button></li>
+	    <li style="float:right"><button class="btn btn-danger" ng-click="meetingCtrlGlobal.selectedDayIsNew=true; meetingCtrlGlobal.showMeetingEditorPopUp=true;">New Meeting</button></li>
 
-	    <li><a href="#/weekView">Weekly view</a></li>
-	    <li><a href="#/dailyView">Daily view</a></li>        
-	    <li><a href="#/weekView222">Weekly view 222</a></li>
-	    <li><a href="#">Monthly view</a></li>
+	  
 
 <!-- 	    <li ><a href="#/meetingAgendaEditor" ng-click="meeting.showMeetingEditorPopUp=true; hej()">New meeting</a></li> -->
-	    <li><a href="#/testMeetingDrawer">testMeetingDrawer</a></li>
+	    <li><a href="#/calendarView" class="btn btn-info">Calendar</a></li>
  		<ng-include src="'partials/quickstart.html'" ></ng-include>
 
 	  </ul>

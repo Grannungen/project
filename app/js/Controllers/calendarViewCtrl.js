@@ -111,7 +111,7 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
   //  		 })
 		// console.log("$scope.eventSources")
 		// console.log($scope.eventSources)
-		console.log(meetingAgendaModel.jsonDays)
+		console.log("pelle");
 
 	}
 
@@ -150,7 +150,7 @@ $rootScope.myEvents = [
 
 
 
-$scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalAPIEvents, $rootScope.myEvents];
+$scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalAPIEvents];
     // console.log($scope.eventSources)
 
 // $scope.eventSources = [

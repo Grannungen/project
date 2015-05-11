@@ -1,16 +1,11 @@
 meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
-	// Add a new meeting
+
 
 	$rootScope.meetingCtrlGlobal = {
 		days: meetingAgendaModel.days,
 		selectedDay:meetingAgendaModel.selectedDay,
 		selectedDayIsNew:false,
 		selectedJsonDay: meetingAgendaModel.jsonDays[meetingAgendaModel.selectedDayIndex]
-	}
-
-
-	$scope.meeting = function (argument) {
-		alert()
 	}
 
 	$scope.meetingCtrl = {
@@ -24,7 +19,6 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 
 
 	$scope.addNewDay = function () {
-		console.log("PELE");
 		//if($scope.meetingCtrl.nameOfMeeting==undefined || $scope.meetingCtrl.nameOfMeeting==""){
 		//		alert("Please enter a name for the meeting");
 		//	}

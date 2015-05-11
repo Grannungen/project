@@ -8,7 +8,8 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
+				right: 'month,agendaWeek,agendaDay',
+				
 			},
 			defaultDate: '2015-02-12',
 			editable: true,
@@ -132,7 +133,8 @@ $rootScope.myEvents = [
 $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalAPIEvents];
 
 $scope.alertEventOnClick=function (event) {
-	console.log(event._d);
+
+
 	this.chosenDate = event._d;
 	//$scope.showNewMeetingEditor = true;
 	//$scope.showMeetingEditorPopUp = false;
@@ -142,18 +144,38 @@ $scope.alertEventOnClick=function (event) {
 }
 
 $scope.eventClickHandler = function (event) {
-	meetingAgendaModel.selectedDayIndex = event.index;
-	meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
-	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
-	// alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
 
-	console.log(meetingAgendaModel.jsonDays[event.index]);
-	console.log(event);
-	$location.path('/meeting');
-	console.log($scope.uiConfig.uiConfig)
+
+	if (event.listSource != "externalAPI") {
+
+		meetingAgendaModel.selectedDayIndex = event.index;
+		meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
+		$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
+		$location.path('/meeting');
+	}
+	else{
+		$location.path('/calendarView');
+	}
 }
 
-
+$scope.alertOnDrop = function(event) {
+	
+	if (event.listSource == "externalAPI") {
+		for (var i = 0; i < meetingAgendaModel.externalAPIEvents.length; i++) {
+			if (meetingAgendaModel.externalAPIEvents[i]._id == event._id) {
+				meetingAgendaModel.externalAPIEvents[i].start = event.start._d;
+				meetingAgendaModel.externalAPIEvents[i].end = event.end._d;
+				console.log(meetingAgendaModel.externalAPIEvents);
+			}
+		};
+	} else {
+		for (var i = 0; i < meetingAgendaModel.jsonDays.length; i++) {
+			if (meetingAgendaModel.jsonDays[i]._id == event._id) {
+				meetingAgendaModel.jsonDays[i].start = event.start._d;
+			}
+		};
+	}
+}
 
 
 $scope.uiConfig = {

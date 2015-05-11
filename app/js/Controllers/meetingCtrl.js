@@ -120,6 +120,10 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 			meetingAgendaModel.removeDay(day);
 	}
 
+	$rootScope.go = function (path) {
+		$location.path(path);
+	}
+
 	$scope.setSelectedDay = function (day) {
 		// console.log("day input: " + day);
 		meetingAgendaModel.selectedDay = day;

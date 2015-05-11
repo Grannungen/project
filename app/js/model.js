@@ -151,7 +151,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			// alert(this.FB.name)
 			// alert(name)
 			this.dayJson.title = name;
-			this._name = name;
+			// this._name = name;
 			//console.log("self.FB")
 
 			//console.log(self.FB)
@@ -235,6 +235,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		
 		this.days = [];
 		this.jsonDays = [];
+		this.externalAPIEvents = [];
 		this.parkedActivities = [];
 		var _this = this;
 		
@@ -244,7 +245,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			alert("hej");
 		}
 
-		this.addJson = function (start,name) {
+		this.addJson = function (start,name, listSource) {
 
 			this.jsonObject = {};
 			this.jsonObject.title = name;
@@ -254,7 +255,12 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';
 			// this.jsonObject.start = "2015-02-10T16:00:00";
-			this.jsonDays.push(this.jsonObject);
+			if(listSource == "externalAPI"){
+				this.externalAPIEvents.push(this.jsonObject);
+			}
+			else{
+				this.jsonDays.push(this.jsonObject);
+			}
 			console.log(this.jsonDays);
 			return this.jsonObject;
 

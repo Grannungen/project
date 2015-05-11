@@ -107,8 +107,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// This is a day consturctor. You can use it to create days, 
 	// but there is also a specific function in the Model that adds
 	// days to the model, so you don't need call this yourself.
-	this.Day = function(startH,startM, name, firebaseObject, date) {
+	this.Day = function(dayJson ,startH,startM, name, firebaseObject, date) {
 		var self = this;
+
 		//Använd $firebaseObject för att redigera data, $firebaseArray för att lägga till
 		// alert(FB.name + name)
 
@@ -127,14 +128,21 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 		// this.FB.day4.name = name
 		// console.log(FB)
-		
-		this._name = name;
+		this.dayJson = dayJson;
+		this._name = dayJson.title;
+		this._date = dayJson.date;
+		this._activities = dayJson.activities;
+
+
+
+
+		// this._name = name;
 		//this._name = this.FB.day4.name;
-		this._date = date;
-		this.weekDay = "";
-		this.startH = startH;
-		this._start = startH * 60 + startM;
-		this._activities = [];
+		// this._date = date;
+		// this.weekDay = "";
+		// this.startH = startH;
+		// this._start = startH * 60 + startM;
+		// this._activities = [];
 
 		// this.FB.name = "hejhej"
 
@@ -142,6 +150,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.setName = function (name) {
 			// alert(this.FB.name)
 			// alert(name)
+			this.dayJson.title = name;
 			this._name = name;
 			//console.log("self.FB")
 
@@ -203,6 +212,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			} else {
 				this._activities.push(activity);
 			}
+			console.log("this.jsonDays")
+			console.log(_this.jsonDays)
 		};
 		
 		// removes an activity from specific position
@@ -218,14 +229,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	}
 
 
-	// this is our main module that contians days and praked activites
+	// this is our main module that contians days and praked activities
 	// this.Model = function(){
 		
 		
 		this.days = [];
 		this.jsonDays = [];
 		this.parkedActivities = [];
-		 
+		var _this = this;
 		
 		// adds a new day. if startH and startM (start hours and minutes)
 		// are not provided it will set the default start of the day to 08:00
@@ -239,6 +250,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
 			this.jsonObject.index = this.jsonDays.length;
+			this.jsonObject.activities = [];
 			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';
 			// this.jsonObject.start = "2015-02-10T16:00:00";
@@ -247,12 +259,17 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			return this.jsonObject;
 
 		}
-		this.addDay = function (startH,startM, name, date) {
+		this.addDay = function (dayJson, startH,startM, name, date) {
 			var day;
 			if(startH){
-				day = new this.Day(startH,startM, name, this.daysInFirebase,date);
+				// day = new this.Day(startH,startM, name, this.daysInFirebase,date);
+				console.log(dayJson)
+				day = new this.Day(dayJson);
 			} else {
-				day = new this.Day(8,0);
+				// alert("hit")
+				// day = new this.Day(8,0);
+				day = new this.Day(dayJson);
+
 			}
 			this.days.push(day);
 			console.log(this.days);

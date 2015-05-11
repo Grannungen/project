@@ -120,6 +120,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 	}
 
 	$scope.removeDay = function (day) {
+		// alert("hit")
 			meetingAgendaModel.removeDay(day);
 	}
 

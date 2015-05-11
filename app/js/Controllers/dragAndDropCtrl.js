@@ -10,7 +10,8 @@ meetingAgendaPlanner.controller('dragAndDropCtrl', function ($scope, $rootScope,
   // $scope.list = tmpList;
   // $scope.list = $rootScope.variables.selectedDay._activities;
   $scope.list = meetingAgendaModel.selectedDay._activities;
-
+  // alert($scope.list)
+  // $scope.list = []
   
   $scope.sortingLog = [];
   

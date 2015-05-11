@@ -1,135 +1,57 @@
-meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
+meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $firebaseObject, $firebaseArray) {
 	$rootScope.activityPopUpCtrlGlobal = {
 		
 	}
 
+		    var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
+    var syncObject = $firebaseObject(ref);
+   var firebaseArray = $firebaseArray(ref);
 
-	$scope.Events={
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			defaultDate: '2015-02-12',
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2015-02-05',
-					activities: ["f", "u", "f"]
-				},
-				{
-					title: 'Long Event',
-					start: '2015-02-07',
-					end: '2015-02-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2015-02-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2015-02-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2015-02-11',
-					end: '2015-02-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2015-02-12T10:30:00',
-					end: '2015-02-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2015-02-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2015-02-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2015-02-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2015-02-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2015-02-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2015-02-28'
-				}
-			],
-			eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+   $scope.fire = function () {
+   		syncObject.$bindTo($rootScope, "syncObject").then(function () {
 
-        alert(
-            event.title + " was moved " +
-            dayDelta + " days and " +
-            minuteDelta + " minutes."
-        );
+	//console.log($scope.syncObject);
+	
+	// meetingAgendaModel.jsonDays = $rootScope.syncObject
 
-        if (allDay) {
-            alert("Event is now all-day");
-        }else{
-            alert("Event has a time-of-day");
-        }
-
-        if (!confirm("Are you sure about this change?")) {
-            revertFunc();
-        }
-
-    }
+	// meetingAgendaModel.days = [];
+	if(meetingAgendaModel.days.length == 0){
+		alert()
+		for (var i = 0; i < firebaseArray.length; i++) {
+  			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
+  			meetingAgendaModel.addDay(firebaseArray[i])
 		}
+		console.log("$scope.syncObject");
+		console.log($scope.syncObject);
+		$rootScope.syncObject = meetingAgendaModel.jsonDays;
+
+	}
+   		
+		
+
+      
+      
+
+      // $rootScope.syncObject = [{name:'af'}, {name:'ad'}]
+
+// $scope.eventSources = [firebaseArray, meetingAgendaModel.externalAPIEvents];
+
+    });
+   }
 
 
-
-
-
-
-
-
-
-var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
-$rootScope.myEvents = [
-    {
-        title: 'All Day Test Event',
-        start: new Date(y, m, 1)
-    },
-    {
-    	title: "Gröna Lund ", 
-    	start: "2015-05-16T10:00:00+02:00"
-    },
-    {
-        title: 'Long Test Event',
-        start: new Date(y, m, d - 5),
-        end: new Date(y, m, d - 2)
-    },
-    {
-        title: 'Test Birthday Party',
-        start: new Date(y, m, d + 1, 19, 0),
-        end: new Date(y, m, d + 1, 22, 30),
-        allDay: false
-    }];
-
+   meetingAgendaModel.firebaseArray = firebaseArray;
+   // var list = [1,2,3]
+   // firebaseArray.$add(list)
+   // firebaseArray['Jp2wGkTS40v4EeOJgdA'] = "hej"
+   // firebaseArray.$save('Jp2wGkTS40v4EeOJgdA')
+    
 
 
 
 
 $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalAPIEvents];
+
 
 $scope.alertEventOnClick=function (event) {
 	console.log(event._d);
@@ -144,6 +66,7 @@ $scope.alertEventOnClick=function (event) {
 $scope.eventClickHandler = function (event) {
 	meetingAgendaModel.selectedDayIndex = event.index;
 	meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
+	// alert(meetingAgendaModel.selectedDay)
 	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
 	// alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
 

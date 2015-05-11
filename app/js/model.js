@@ -50,7 +50,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	this.selectedDay;
 	this.selectedDayIndex;
 	this.selectedActivity;
-
+	this.firebaseArray;
 	
 	// This is an activity constructor
 	// When you want to create a new activity you just call
@@ -138,8 +138,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// console.log(FB)
 		this.dayJson = dayJson;
 		this._name = dayJson.title;
-		this._date = dayJson.date;
-		this._activities = dayJson.activities;
+		this._date = dayJson.start;
+		this._activities = [];	//hämta från funktion
 
 
 
@@ -289,6 +289,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			
 		};
 
+
+
 		this.addDay = function (dayJson, startH,startM, name, date) {
 			var day;
 			if(startH){
@@ -307,8 +309,19 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		};
 
 		this.removeDay = function (day){
+
+			
+			
+			// alert(1)
 			var index = this.days.indexOf(day);
+			// alert(index)
+			// alert(2)
+			// this.jsonDays[index].remove()
+			// this.firebaseArray.$remove(index);
+			// delete this.jsonDays[2];
 			this.jsonDays.splice(index, 1);
+			this.days.splice(index, 1);
+
 		}
 		
 		// add an activity to model

@@ -262,6 +262,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
+			this.jsonObject.listSource = listSource;
+			this.jsonObject.durationEditable = false;
 			if (end) {
 				this.jsonObject.end = end;
 			}
@@ -270,13 +272,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';
 			// this.jsonObject.start = "2015-02-10T16:00:00";
-			if(listSource == "externalAPI"){
+			if(this.jsonObject.listSource == "externalAPI"){
+				this.jsonObject.color = "green";
+				this.jsonObject.editable = false;
 				this.externalAPIEvents.push(this.jsonObject);
 			}
 			else{
 				this.jsonDays.push(this.jsonObject);
 			}
-			console.log(this.jsonObject);
 			
 			_this.addJsonActivity();
 			return this.jsonObject;

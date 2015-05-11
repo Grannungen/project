@@ -7,8 +7,10 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
     var syncObject = $firebaseObject(ref);
    var firebaseArray = $firebaseArray(ref);
 
+
    $scope.fire = function () {
    		syncObject.$bindTo($rootScope, "syncObject").then(function () {
+
 
 	//console.log($scope.syncObject);
 	
@@ -54,29 +56,55 @@ $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalA
 
 
 $scope.alertEventOnClick=function (event) {
-	console.log(event._d);
-	this.chosenDate = event._d;
-	//$scope.showNewMeetingEditor = true;
-	//$scope.showMeetingEditorPopUp = false;
+
+	console.log(event);
+	$rootScope.meetingCtrlGlobal.startTime = event._d;
 	$rootScope.meetingCtrlGlobal.date = event._d;
 	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
 	$scope.meetingCtrlGlobal.showMeetingEditorPopUp=true;
 }
 
 $scope.eventClickHandler = function (event) {
+<<<<<<< HEAD
 	meetingAgendaModel.selectedDayIndex = event.index;
 	meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
 	// alert(meetingAgendaModel.selectedDay)
 	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
 	// alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
+=======
+>>>>>>> 0c725ff616a572b6e3f35d4b7429a375ab799c67
 
-	console.log(meetingAgendaModel.jsonDays[event.index]);
-	console.log(event);
-	$location.path('/meeting');
-	console.log($scope.uiConfig.uiConfig)
+
+	if (event.listSource != "externalAPI") {
+
+		meetingAgendaModel.selectedDayIndex = event.index;
+		meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
+		$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
+		$location.path('/meeting');
+	}
+	else{
+		$location.path('/calendarView');
+	}
 }
 
-
+$scope.alertOnDrop = function(event) {
+	
+	if (event.listSource == "externalAPI") {
+		for (var i = 0; i < meetingAgendaModel.externalAPIEvents.length; i++) {
+			if (meetingAgendaModel.externalAPIEvents[i]._id == event._id) {
+				meetingAgendaModel.externalAPIEvents[i].start = event.start._d;
+				meetingAgendaModel.externalAPIEvents[i].end = event.end._d;
+				console.log(meetingAgendaModel.externalAPIEvents);
+			}
+		};
+	} else {
+		for (var i = 0; i < meetingAgendaModel.jsonDays.length; i++) {
+			if (meetingAgendaModel.jsonDays[i]._id == event._id) {
+				meetingAgendaModel.jsonDays[i].start = event.start._d;
+			}
+		};
+	}
+}
 
 
 $scope.uiConfig = {

@@ -29,7 +29,7 @@ meetingAgendaPlanner.controller('dragAndDropCtrl', function ($scope, $rootScope,
       // }).join(', ');
       // $scope.sortingLog.push('Stop: ' + logEntry);
       console.log($scope.list)
-      meetingAgendaModel.updateActivityIndex($scope.list)
+      meetingAgendaModel.updateActivityIndex($scope.list);
       
     }
 

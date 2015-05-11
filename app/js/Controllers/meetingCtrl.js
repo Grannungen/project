@@ -24,6 +24,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 
 
 	$scope.addNewDay = function () {
+		console.log("PELE");
 		//if($scope.meetingCtrl.nameOfMeeting==undefined || $scope.meetingCtrl.nameOfMeeting==""){
 		//		alert("Please enter a name for the meeting");
 		//	}
@@ -39,7 +40,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				var weekDay = $scope.meetingCtrl.weekDay;
 				
 				// alert($scope.meetingCtrl.date);
-				var dateList = $scope.meetingCtrl.date.toString().split(" ");
+				var dateList = $rootScope.meetingCtrlGlobal.date.toString().split(" ");
 				// alert(dateList)
 				// alert($scope.meetingCtrl.startTime)
 				var time = $scope.meetingCtrl.startTime;

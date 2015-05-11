@@ -136,7 +136,9 @@ $scope.alertEventOnClick=function (event) {
 	this.chosenDate = event._d;
 	//$scope.showNewMeetingEditor = true;
 	//$scope.showMeetingEditorPopUp = false;
-	$scope.meetingCtrlGlobal.showMeetingEditorPopUp=true
+	$rootScope.meetingCtrlGlobal.date = event._d;
+	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
+	$scope.meetingCtrlGlobal.showMeetingEditorPopUp=true;
 }
 
 $scope.eventClickHandler = function (event) {

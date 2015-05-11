@@ -33,6 +33,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.typeId = activityObject.getTypeId();
 		this.description = activityObject.getDescription();
 	};
+
+	this.updateActivityIndex = function(listToFix) {
+			for (var i = 0; i < listToFix.length; i++) {
+				listToFix[i].index = i;
+			};
+			console.log(listToFix);
+
+		}
 	
 	// The possible activity types
 	var _this = this;
@@ -53,7 +61,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		var _length = length;
 		var _typeid = typeid;
 		var _description = description;
-		
+		this.index = index;
 		// console.log("name: " + _name);
 		
 
@@ -145,6 +153,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// this._activities = [];
 
 		// this.FB.name = "hejhej"
+
+		
 
 
 		this.setName = function (name) {

@@ -111,7 +111,7 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
   //  		 })
 		// console.log("$scope.eventSources")
 		// console.log($scope.eventSources)
-		console.log(meetingAgendaModel.jsonDays)
+		console.log("pelle");
 
 	}
 

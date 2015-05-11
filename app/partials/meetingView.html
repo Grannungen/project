@@ -14,7 +14,7 @@
 .activityTest{
 	/*border: solid 1px;*/
 	text-align: center;
-	margin-top: 100 pt;
+	margin-top: 50 pt;
 	/*cursor: pointer;*/
 	vertical-align: middle;
 	/*width: 20%;*/
@@ -83,10 +83,10 @@
 
 <div ng-controller="dragAndDropCtrl">
 
-	<div class="col-sm-3"></div>
-	<div class="meetingContent col-sm-6 Center" style="background-color:">
-		<div class="col-sm-4" style="background-color:"></div>
-		<div class="col-sm-4">
+	<div class="col-sm-6"></div>
+	<div class="meetingContent col-sm-12 Center" style="background-color:">
+		
+		<div class="col-sm-4" style="float:center;">
 			<h1 style="width:100%">
 				<!-- {{meetingCtrlGlobal.selectedDay.getName()}} -->
 
@@ -95,10 +95,10 @@
 			<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
 				Add Activity
 			</button>
-		  <div class="floatleft col-sm-12">
+		  <div class="floatleft col-sm-9">
 		    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
-		      <li ng-repeat="activity in list" class="item">
-		      	<div class="well activityTest" style="height:{{activity.getLength() * 5}}px">
+		      <li ng-repeat="activity in list" class="item" id="blocks">
+		      	<div class="well activityTest" style="height:{{activity.getLength() * 3}}px;">
 		      					<div class="col-sm-1">
 						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>
 					</div>
@@ -143,7 +143,7 @@
 
 
 		</div>
-		<div class="col-sm-4 meetingContent" style="background-color:">
+		<div class="col-sm-4 meetingContent" style="background-color: ;float:right;">
 			<h3>Start Time:</h3>
 			{{meetingCtrlGlobal.selectedDay.getStart()}}
 			<h3>End Time:</h3>

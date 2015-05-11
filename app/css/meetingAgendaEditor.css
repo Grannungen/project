@@ -41,7 +41,9 @@
 	    margin-left: auto;
 	}
 
-
+	#blocks {
+		width: 700px;
+	}
 
 	.side{
 		height: 100%;

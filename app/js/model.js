@@ -266,10 +266,19 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			else{
 				this.jsonDays.push(this.jsonObject);
 			}
-			console.log(this.jsonDays);
+			console.log(this.jsonObject);
+			
+			_this.addJsonActivity();
 			return this.jsonObject;
 
 		}
+
+		this.addJsonActivity = function(name,length,typeid,description, index) {
+			this.JsonActivity = {};
+			//gör liknande addJson-Day sättet
+			
+		};
+
 		this.addDay = function (dayJson, startH,startM, name, date) {
 			var day;
 			if(startH){

@@ -37,7 +37,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				var dateList = $rootScope.meetingCtrlGlobal.date.toString().split(" ");
 				// alert(dateList)
 				// alert($scope.meetingCtrl.startTime)
-				var time = $scope.meetingCtrl.startTime;
+				var time = $rootScope.meetingCtrlGlobal.startTime;
 				var timearray = time.toString().split(" ");
 				time = timearray[4];
 				dateList[4] = time;

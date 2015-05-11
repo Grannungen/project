@@ -134,10 +134,8 @@ $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalA
 
 $scope.alertEventOnClick=function (event) {
 
-
-	this.chosenDate = event._d;
-	//$scope.showNewMeetingEditor = true;
-	//$scope.showMeetingEditorPopUp = false;
+	console.log(event);
+	$rootScope.meetingCtrlGlobal.startTime = event._d;
 	$rootScope.meetingCtrlGlobal.date = event._d;
 	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
 	$scope.meetingCtrlGlobal.showMeetingEditorPopUp=true;

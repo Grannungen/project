@@ -73,6 +73,7 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, $rootScope, m
 
         request.execute(function(resp) {
           var events = resp.items;
+          console.log(events[0]);
           for (var i = 0; i < events.length; i++) {
             var start = events[i].start.dateTime;
             var end = events[i].end.dateTime;

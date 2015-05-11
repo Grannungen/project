@@ -49,6 +49,7 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				var start = dateList.join(" ")
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
 				var dayJson = meetingAgendaModel.addJson(start,eventName);
+				console.log(dayJson)
 				// $rootScope.myEvents.push(dayJson);
 				// console.log(dayJson);
 
@@ -77,8 +78,8 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				// $rootScope.Events.events.push(dayJson);
 				// alert($scope.meetingCtrl.nameOfMeeting);
 				// var day = meetingAgendaModel.addDay(5,0, "bengt");
-				var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
-				
+				// var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
+				var day = meetingAgendaModel.addDay(dayJson);
 				$scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);
 				$scope.meetingCtrlGlobal.selectedDay = day;
 				// alert("This is meeting number " + $scope.dayIndex);

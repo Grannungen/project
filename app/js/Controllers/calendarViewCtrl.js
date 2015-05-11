@@ -160,14 +160,19 @@ $scope.alertEventOnClick=function () {
 
 $scope.eventClickHandler = function (event) {
 	meetingAgendaModel.selectedDayIndex = event.index;
+	meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
 	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
-	alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
+	// alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
 
 	console.log(meetingAgendaModel.jsonDays[event.index]);
 	console.log(event);
 	$location.path('/meeting');
 	console.log($scope.uiConfig.uiConfig)
 }
+
+
+
+
 $scope.uiConfig = {
       calendar:{
         // height: 450,

@@ -244,11 +244,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			alert("hej");
 		}
 
-		this.addJson = function (start,name) {
+		this.addJson = function (start,name,end) {
 
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
+			if (end) {
+				this.jsonObject.end = end;
+			}
 			this.jsonObject.index = this.jsonDays.length;
 			this.jsonObject.activities = [];
 			// this.jsonObject.end = moments+activity...

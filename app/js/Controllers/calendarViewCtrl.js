@@ -194,7 +194,7 @@ $scope.uiConfig = {
         dayClick: $scope.alertEventOnClick,
         eventClick: $scope.eventClickHandler,
         eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
+        eventResize: $scope.alertOnResize,
       }
     };
 

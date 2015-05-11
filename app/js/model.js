@@ -246,7 +246,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		}
 
 
-		this.addJson = function (start,name, listSource) {
+		this.addJson = function (start,name, listSource, end) {
 
 
 			this.jsonObject = {};

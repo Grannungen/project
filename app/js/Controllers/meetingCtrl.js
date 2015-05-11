@@ -48,8 +48,11 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 				dateList[4] = time;
 				var start = dateList.join(" ")
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
+				// var momentO = moment(start)
+				// console.log("moment")
+				// console.log(momentO.format("YYYY-MM-DD"))
 				var dayJson = meetingAgendaModel.addJson(start,eventName);
-				console.log(dayJson)
+				// console.log(dayJson)
 				// $rootScope.myEvents.push(dayJson);
 				// console.log(dayJson);
 

@@ -161,8 +161,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 		this.setName = function (name) {
 			// alert(this.FB.name)
-			// alert(name)
+		
 			this._dayJson.title = name;
+			this._name = name;
 			// this._name = name;
 			//console.log("self.FB")
 
@@ -179,15 +180,11 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			// alert(this.FB.day4.name)
 			// return this.firebaseObject._name;
 		}
-		this.setWeekDay = function(day){
-			this.weekDay = day;
-		}
-		this.getWeekDay = function(){
-			return this.weekDay;
-		}
+
 		// sets the start time to new value
-		this.setStart = function(startH,startM) {
-			this._start = startH * 60 + startM;
+		this.setDate = function(start) {
+			this._dayJson.start = start;
+			this._date = start;
 		}
 
 		// returns the total length of the acitivities in 
@@ -203,15 +200,28 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// returns the string representation Hours:Minutes of 
 		// the end time of the day
 		this.getEnd = function() {
-			var end = this._start + this.getTotalLength();
-			return Math.floor(end/60) + ":" + end % 60;
+			// var end = this._start + this.getTotalLength();
+			var date = moment(this._date)
+			var totalLength = this.getTotalLength();
+			var end = date.add(totalLength, 'minutes')
+			return end.format('HH:mm a')
+			// return end
 	
 		};
+		this.getDate = function() {
+			// var end = this._start + this.getTotalLength();
+			var date = moment(this._date)
+			return date.format('YYYY-MM-DD')
+			// return end
+	
+		};
+		
 		
 		// returns the string representation Hours:Minutes of 
 		// the start time of the day
 		this.getStart = function() {
-			return Math.floor(this._start/60) + ":" + this._start % 60;
+			var date = moment(this._date)
+			return date.format('HH:mm a');
 		};
 		
 		
@@ -343,6 +353,12 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
         			
         		}
     		}
+    		console.log("this.jsonDays")
+    		console.log(this.jsonDays)
+    		console.log("this.days")
+    		console.log(this.days)
+
+
     		// alert("json" + j.title)
     		// alert("days" + d._name)
 

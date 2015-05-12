@@ -19,18 +19,14 @@
 
 	<div div ng-controller="activityCtrl">
 	<div class="col-sm-6">
-		<h1 style="text-align:right">
-			{{meetingCtrlGlobal.selectedDay.getName()}}
-		</h1>
+		
 
-		<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
-			Add Activity
-		</button>
+		
 
 			<div class="col-sm-9">
 		    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
 		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities" class="item" id="blocks">
-		      	<div class="well activityTest" style="height:{{activity.getLength() * 3}}px;">
+		      	<div class="well activityTest" style="height: 60px;">
 		      	<div class="col-sm-1">
 						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>
 					</div>
@@ -50,14 +46,20 @@
 	</div>
 	<div class="col-sm-6">
 		<div class="col-sm-4 meetingContent" style="background-color: ;float:right;">
+				<h1 style="text-align:left">
+					{{meetingCtrlGlobal.selectedDay.getName()}}
+				</h1>
+				<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
+					Add Activity
+				</button>
+				<h3>Date:</h3>
+				{{meetingCtrlGlobal.selectedDay.getDate()}}
 				<h3>Start Time:</h3>
 				{{meetingCtrlGlobal.selectedDay.getStart()}}
 				<h3>End Time:</h3>
 				{{meetingCtrlGlobal.selectedDay.getEnd()}}
 				<h3>Total Length:</h3>
 				{{meetingCtrlGlobal.selectedDay.getTotalLength()}} min
-				<h3>Day:</h3>
-				{{meetingCtrlGlobal.selectedDay.getWeekDay()}}
 
 				<div class="col-sm-12">
 					<button class="btn activity-btn" ng-click="removeDay(meetingCtrlGlobal.selectedDay); go('/calendarView')">

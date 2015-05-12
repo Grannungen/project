@@ -17,16 +17,20 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 	// meetingAgendaModel.jsonDays = $rootScope.syncObject
 
 	// meetingAgendaModel.days = [];
-	if(meetingAgendaModel.days.length == 0){
-		alert()
+	if(meetingAgendaModel.firebaseUpdated != true){
+
 		for (var i = 0; i < firebaseArray.length; i++) {
   			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
   			meetingAgendaModel.addDay(firebaseArray[i])
 		}
 		console.log("$scope.syncObject");
 		console.log($scope.syncObject);
+		// meetingAgendaModel.jsonDays = [{name:'bertil'}]
 		$rootScope.syncObject = meetingAgendaModel.jsonDays;
-
+		meetingAgendaModel.firebaseUpdated = true;
+		// alert()
+		// meetingAgendaModel.jsonDays = [{name:'berta'}]
+		// $rootScope.syncObject = [{name:'bertil'}]
 	}
    		
 		
@@ -40,6 +44,7 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 
     });
    }
+   // $scope.fire()
 
 
    meetingAgendaModel.firebaseArray = firebaseArray;
@@ -57,7 +62,7 @@ $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalA
 
 $scope.alertEventOnClick=function (event) {
 
-	console.log(event);
+	// console.log(event);
 	$rootScope.meetingCtrlGlobal.startTime = event._d;
 	$rootScope.meetingCtrlGlobal.date = event._d;
 	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
@@ -65,26 +70,27 @@ $scope.alertEventOnClick=function (event) {
 }
 
 $scope.eventClickHandler = function (event) {
-<<<<<<< HEAD
-	meetingAgendaModel.selectedDayIndex = event.index;
-	meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
+
+	for(var i = 0; i < meetingAgendaModel.days.length; i += 1) {
+		// alert(this.jsonDays[i].id)
+		if(meetingAgendaModel.days[i]._id == event.id) {
+			// alert(meetingAgendaModel.days[i]._name + "hit")
+			$rootScope.meetingCtrlGlobal.setSelectedDay(meetingAgendaModel.days[i])
+			// alert("sel")
+		}
+	}
+	// meetingAgendaModel.selectedDayIndex = event.index;
+	// meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
 	// alert(meetingAgendaModel.selectedDay)
-	$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
+	// $rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
 	// alert($rootScope.meetingCtrlGlobal.selectedJsonDay.title)
-=======
->>>>>>> 0c725ff616a572b6e3f35d4b7429a375ab799c67
 
 
-	if (event.listSource != "externalAPI") {
+		// meetingAgendaModel.selectedDayIndex = event.index;
+		// meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
+		// $rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
+		// alert(meetingAgendaModel.selectedDay.getName())
 
-		meetingAgendaModel.selectedDayIndex = event.index;
-		meetingAgendaModel.selectedDay = meetingAgendaModel.days[event.index]
-		$rootScope.meetingCtrlGlobal.selectedJsonDay = meetingAgendaModel.jsonDays[event.index]
-		$location.path('/meeting');
-	}
-	else{
-		$location.path('/calendarView');
-	}
 }
 
 $scope.alertOnDrop = function(event) {

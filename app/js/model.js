@@ -7,40 +7,40 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	var _this = this;
 	this.daysInFirebase;
 
-	this.firebaseObject = function(name) {
-		var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
-		var objectRef = ref.child(name);
-	 	return $firebaseObject(objectRef);
-	};
-	this.onComplete = function(error) {
-  		if (error) {
-    			console.log('Synchronization failed');
-  		} else {
-    			console.log('Synchronization succeeded');
-  		}
-	};
-	this.convertedDay = function(dayObject, activityArray){
-		this.name = dayObject.getName();
-		this.weekDay = dayObject.getWeekDay();
-		this.start = dayObject.getStart();
-		this.end = dayObject.getEnd();
-		this.totalLength = dayObject.getTotalLength();
-		this.activities = activityArray;
-	};
-	this.convertedActivity = function(activityObject) {
-		this.name = activityObject.getName();
-		this.totalLength = activityObject.getLength();
-		this.typeId = activityObject.getTypeId();
-		this.description = activityObject.getDescription();
-	};
+	// this.firebaseObject = function(name) {
+	// 	var ref = new Firebase("http://brilliant-torch-7105.firebaseio.com");
+	// 	var objectRef = ref.child(name);
+	//  	return $firebaseObject(objectRef);
+	// };
+	// this.onComplete = function(error) {
+ //  		if (error) {
+ //    			console.log('Synchronization failed');
+ //  		} else {
+ //    			console.log('Synchronization succeeded');
+ //  		}
+	// };
+	// this.convertedDay = function(dayObject, activityArray){
+	// 	this.name = dayObject.getName();
+	// 	this.weekDay = dayObject.getWeekDay();
+	// 	this.start = dayObject.getStart();
+	// 	this.end = dayObject.getEnd();
+	// 	this.totalLength = dayObject.getTotalLength();
+	// 	this.activities = activityArray;
+	// };
+	// this.convertedActivity = function(activityObject) {
+	// 	this.name = activityObject.getName();
+	// 	this.totalLength = activityObject.getLength();
+	// 	this.typeId = activityObject.getTypeId();
+	// 	this.description = activityObject.getDescription();
+	// };
 
-	this.updateActivityIndex = function(listToFix) {
-			for (var i = 0; i < listToFix.length; i++) {
-				listToFix[i].index = i;
-			};
-			console.log(listToFix);
+	// this.updateActivityIndex = function(listToFix) {
+	// 		for (var i = 0; i < listToFix.length; i++) {
+	// 			listToFix[i].index = i;
+	// 		};
+	// 		console.log(listToFix);
 
-		}
+	// 	}
 	
 	// The possible activity types
 	var _this = this;
@@ -48,7 +48,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 	////////////////////////flytta till rootScope ////////////////////////
 	this.selectedDay;
-	this.selectedDayIndex;
+	this.firebaseUpdated;
+	// this.selectedDayIndex;
 	this.selectedActivity;
 	this.firebaseArray;
 	
@@ -136,11 +137,12 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 
 		// this.FB.day4.name = name
 		// console.log(FB)
-		this.dayJson = dayJson;
+		this._dayJson = dayJson;
 		this._name = dayJson.title;
 		this._date = dayJson.start;
 		this._activities = [];	//hämta från funktion
-
+		this._id = dayJson.id;
+		// alert(dayJson.$id)
 
 
 
@@ -160,7 +162,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.setName = function (name) {
 			// alert(this.FB.name)
 			// alert(name)
-			this.dayJson.title = name;
+			this._dayJson.title = name;
 			// this._name = name;
 			//console.log("self.FB")
 
@@ -262,17 +264,22 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			this.jsonObject = {};
 			this.jsonObject.title = name;
 			this.jsonObject.start = start;
-			this.jsonObject.listSource = listSource;
+			if(listSource){
+				this.jsonObject.listSource = listSource;
+			}
+			
 			this.jsonObject.durationEditable = false;
 			if (end) {
 				this.jsonObject.end = end;
 			}
 			this.jsonObject.index = this.jsonDays.length;
+			this.jsonObject.id = this.jsonDays.length;
 			this.jsonObject.activities = [];
 			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';
 			// this.jsonObject.start = "2015-02-10T16:00:00";
 			if(this.jsonObject.listSource == "externalAPI"){
+				this.jsonObject.url = "";
 				this.jsonObject.color = "green";
 				this.jsonObject.editable = false;
 				this.externalAPIEvents.push(this.jsonObject);
@@ -314,16 +321,43 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.removeDay = function (day){
 
 			
-			
-			// alert(1)
+			// alert(this.days[0]._name)
+			// alert(this.selectedDay.getName())
+			// alert(day._name)
 			var index = this.days.indexOf(day);
+			// alert(this.days[index]._name)
+			// alert(this.days[index]._id)
+			var d = this.days.splice(index, 1);
+			// alert(day._id)
+    		for(var i = 0; i < this.jsonDays.length; i += 1) {
+    			// alert(this.jsonDays[i].id)
+        		if(this.jsonDays[i].id === day._id) {
+        			var index = this.jsonDays.indexOf(this.jsonDays[i]);
+        			// alert(index + " index")
+        			// alert(index)
+        			// alert(this.jsonDays[index].id)
+        			// alert(this.jsonDays[index].title)
+        			var j =this.jsonDays.splice(index, 1);
+        			
+        		}
+    		}
+    		// alert("json" + j.title)
+    		// alert("days" + d._name)
+
+			var index = this.days.indexOf(day);
+			// console.log(index)
+			// console.log(day)
+			// console.log(this.days)
+			// console.log(this.jsonDays)
+
 			// alert(index)
 			// alert(2)
 			// this.jsonDays[index].remove()
 			// this.firebaseArray.$remove(index);
 			// delete this.jsonDays[2];
-			this.jsonDays.splice(index, 1);
-			this.days.splice(index, 1);
+			// alert(day.getName())
+			// this.jsonDays.splice(index, 1);
+			// this.days.splice(index, 1);
 
 		}
 		

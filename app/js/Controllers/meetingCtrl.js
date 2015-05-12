@@ -1,9 +1,13 @@
 meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
 
+// $rootScope.meetingCtrlGlobal.selectedDay
+// $rootScope.meetingCtrlGlobal.selectedJsonDay
 
+$scope.hello = function  () {
+	alert("hej")
+}
 	$rootScope.meetingCtrlGlobal = {
 		days: meetingAgendaModel.days,
-		selectedDay:meetingAgendaModel.selectedDay,
 		selectedDayIsNew:false,
 		selectedJsonDay: meetingAgendaModel.jsonDays[meetingAgendaModel.selectedDayIndex]
 	}
@@ -11,12 +15,22 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 	$scope.meetingCtrl = {
 		weekDay: "Mon",
 		weekDays: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
-		selectedDay: meetingAgendaModel.selectedDay,
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0
 	}
 
-
+	$scope.formatTime = function () {
+		var dateList = $rootScope.meetingCtrlGlobal.date.toString().split(" ");
+		var time = $rootScope.meetingCtrlGlobal.startTime;
+		var timearray = time.toString().split(" ");
+		time = timearray[4];
+		dateList[4] = time;
+		var start = dateList.join(" ")
+		var momentStart = moment(start);
+		var formatedStart = momentStart.format('YYYY-MM-DD hh:mm:ss a');
+		return formatedStart
+		
+	}
 
 	$scope.addNewDay = function () {
 		//if($scope.meetingCtrl.nameOfMeeting==undefined || $scope.meetingCtrl.nameOfMeeting==""){
@@ -31,70 +45,25 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 		//	}
 		//else{
 			if($rootScope.meetingCtrlGlobal.selectedDayIsNew==true){
-				var weekDay = $scope.meetingCtrl.weekDay;
-				
-				// alert($scope.meetingCtrl.date);
-				var dateList = $rootScope.meetingCtrlGlobal.date.toString().split(" ");
-				// alert(dateList)
-				// alert($scope.meetingCtrl.startTime)
-				var time = $rootScope.meetingCtrlGlobal.startTime;
-				var timearray = time.toString().split(" ");
-				time = timearray[4];
-				dateList[4] = time;
-				var start = dateList.join(" ")
+				formatedStart = $scope.formatTime()
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
-				var momentStart = moment(start);
-				var formatedStart = momentStart.format('YYYY-MM-DD hh:mm:ss a');
 				var dayJson = meetingAgendaModel.addJson(formatedStart,eventName);
-				// console.log(dayJson)
-				// $rootScope.myEvents.push(dayJson);
-				// console.log(dayJson);
-
-
-
-
-				var eventName = $scope.meetingCtrl.nameOfMeeting;
-				// alert($scope.meetingCtrl.date)
-				
-
-				// var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-				// var monthNumber = monthArray.indexOf(pelle[1])+1;
-				// console.log(monthNumber);
-				// if (monthNumber.length == 1) {
-				// 	monthNumber = "0"+monthNumber.toString();
-				// }
-				// var dateJson = pelle[3]+"-"+monthNumber+"-"+pelle[2];
-				// var time = $scope.meetingCtrl.startTime;
-				// var timearray = time.toString().split(" ");
-				// time = timearray[4];
-				// alert(monthNumber)
-				// var startJson = dateJson+"T"+time;
-				
-				// var dayJson = meetingAgendaModel.addJson($scope.meetingCtrl.date,eventName);
-
-				// $rootScope.Events.events.push(dayJson);
-				// alert($scope.meetingCtrl.nameOfMeeting);
-				// var day = meetingAgendaModel.addDay(5,0, "bengt");
-				// var day = meetingAgendaModel.addDay($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting,$scope.meetingCtrl.nameOfMeeting);
 				var day = meetingAgendaModel.addDay(dayJson);
-				$scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);
-				$scope.meetingCtrlGlobal.selectedDay = day;
-				// alert("This is meeting number " + $scope.dayIndex);
-				// console.log("meeting " + $scope.dayIndex + ": ");
-				// console.log("$scope.meetingCtrl.days: " + $scope.meetingCtrl.days);
-				// console.log($scope.meetingCtrl.days);
+				// $scope.dayIndex = $scope.meetingCtrlGlobal.days.indexOf(day);
+				$rootScope.meetingCtrlGlobal.setSelectedDay(day);
 				$rootScope.meetingCtrlGlobal.selectedDayIsNew = false;
-				meetingAgendaModel.selectedDay = day;
 				$rootScope.meetingCtrlGlobal.showMeetingEditorPopUp = false;
 				// $location.path('/meeting');
+				// alert($rootScope.meetingCtrlGlobal.selectedDay.getName())
 			}
 			else{
 				//Edit
 				meetingAgendaModel.jsonDays[0].title = $scope.meetingCtrl.nameOfMeeting;
-				var day = meetingAgendaModel.selectedDay;
+				var day = $rootScope.meetingCtrlGlobal.selectedDay;
 				day.setName($scope.meetingCtrl.nameOfMeeting);
 				day.setWeekDay($scope.meetingCtrl.weekDay);
 				day.setStart($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting);
+				// alert(meetingAgendaModel.selectedDay.getName())
 			}
 			$rootScope.meetingCtrlGlobal.showMeetingEditorPopUp=false; 
 		//}
@@ -102,12 +71,12 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 		
 
 		for(var i in $rootScope.meetingCtrlGlobal.days){
-			console.log($rootScope.meetingCtrlGlobal.days[i])
-			console.log($rootScope.meetingCtrlGlobal.days[i].getName())
-			console.log($rootScope.meetingCtrlGlobal.days[i].getWeekDay())
-			console.log($rootScope.meetingCtrlGlobal.days[i].getTotalLength())
-			console.log($rootScope.meetingCtrlGlobal.days[i].getStart())
-			console.log($rootScope.meetingCtrlGlobal.days[i].getEnd())
+			// console.log($rootScope.meetingCtrlGlobal.days[i])
+			// console.log($rootScope.meetingCtrlGlobal.days[i].getName())
+			// console.log($rootScope.meetingCtrlGlobal.days[i].getWeekDay())
+			// console.log($rootScope.meetingCtrlGlobal.days[i].getTotalLength())
+			// console.log($rootScope.meetingCtrlGlobal.days[i].getStart())
+			// console.log($rootScope.meetingCtrlGlobal.days[i].getEnd())
 		}
 
 
@@ -115,16 +84,20 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 
 	$scope.removeDay = function (day) {
 		// alert("hit")
-			meetingAgendaModel.removeDay(day);
+
+			meetingAgendaModel.removeDay(meetingAgendaModel.selectedDay);
 	}
 
 	$rootScope.go = function (path) {
 		$location.path(path);
 	}
 
-	$scope.setSelectedDay = function (day) {
+	$rootScope.meetingCtrlGlobal.setSelectedDay = function (day) {
 		// console.log("day input: " + day);
 		meetingAgendaModel.selectedDay = day;
+		$rootScope.meetingCtrlGlobal.selectedDay = day;
+		$rootScope.meetingCtrlGlobal.selectedJsonDay = day.dayJson;
+		$rootScope.meetingCtrlGlobal.selectedActivities = day._activities;
 		// console.log("meetingAgendaModel.selectedDay.name: " + meetingAgendaModel.selectedDay.name);
 		// console.log(meetingAgendaModel.selectedDay);
 		// $rootScope.variables.nameOfMeeting = day.getName();

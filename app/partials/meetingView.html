@@ -81,16 +81,35 @@
 <div ng-controller="meetingCtrl">
 <div ng-controller="activityCtrl" >
 
-<div ng-controller="dragAndDropCtrl">
+<div <div class="floatleft col-sm-9" >
+	    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
+	      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities" class="item" id="blocks">
+	      	<div class="well activityTest" style="height:{{activity.getLength() * 3}}px;">
+	      	<div class="col-sm-1">
+					<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>
+				</div>
+				<div class="col-sm-9">
+					<div>
+					{{activity.getName()}}
+					dsf
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); activityCtrlGlobal.showActivityInfo=true"></span>
+				</div>
+	      	</div>
+
+	      </li>
+	    </ul>
+	</div>flo>
 
 	<div class="col-sm-6"></div>
 	<div class="meetingContent col-sm-12 Center" style="background-color:">
 		
 		<div class="col-sm-4" style="float:center;">
 			<h1 style="width:100%">
-				<!-- {{meetingCtrlGlobal.selectedDay.getName()}} -->
+				{{meetingCtrlGlobal.selectedDay.getName()}}
 
-				{{meetingCtrlGlobal.selectedJsonDay.title}}
 			</h1>
 			<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
 				Add Activity
@@ -154,7 +173,7 @@
 			{{meetingCtrlGlobal.selectedDay.getWeekDay()}}
 
 			<div class="col-sm-12">
-				<button class="btn activity-btn" ng-click="removeDay(meetingCtrl.selectedDay); go('/calendarView')">
+				<button class="btn activity-btn" ng-click="removeDay(meetingCtrlGlobal.selectedDay); go('/calendarView')">
 						Remove
 				</button>
 				<button class="btn activity-btn" ng-click="meetingCtrlGlobal.showMeetingEditorPopUp=true;">
@@ -190,7 +209,7 @@
 </style>
 
 
-<div ng-controller="dragAndDropCtrl">
+<div >
 <!--   <div class="floatleft">
     <ul ui-sortable="sortableOptions" ng-model="list" class="list">
       <li ng-repeat="activity in list" class="item">

@@ -58,7 +58,7 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			$rootScope.activityCtrlGlobal.showActivityPopUpNew=false
 			var Activity = meetingAgendaModel.Activity;
 			var ActivityType = meetingAgendaModel.ActivityType;
-			$rootScope.meetingCtrlGlobal.selectedDay._addActivity(new Activity($scope.activityCtrlGlobal.ActivityName,$scope.activityCtrlGlobal.length,$scope.activityCtrlGlobal.typeId,$scope.activityCtrlGlobal.description),$scope.dayIndex);
+			meetingAgendaModel.selectedDay._addActivity(new Activity($scope.activityCtrlGlobal.ActivityName,$scope.activityCtrlGlobal.length,$scope.activityCtrlGlobal.typeId,$scope.activityCtrlGlobal.description),$scope.dayIndex);
 			$.each(ActivityType,function(index,type){
 			// console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
 			 });

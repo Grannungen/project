@@ -23,8 +23,8 @@ meetingAgendaPlanner.config(['$routeProvider',
       })
 
       .when('/meeting', {
-      templateUrl: 'partials/meetingView.html',
-      controller: 'meetingEditorCtrl'
+      templateUrl: 'partials/meetingView2.html',
+      controller: 'meetingCtrl'
       })
       .when('/dnd', {
       templateUrl: 'partials/dragndroptest.html',

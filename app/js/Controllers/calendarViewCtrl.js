@@ -56,9 +56,15 @@ $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalA
 
 
 $scope.alertEventOnClick=function (event) {
-
+	console.log(event);
+	var momentStart = moment(event);
+	console.log(event._d);
+	var formatedStart = momentStart.format('MMM DD YYYY hh:mm:ss a');
+	console.log("formatedStart");
+	console.log(formatedStart);
+	var formatedDate = new Date(formatedStart)
 	// console.log(event);
-	$rootScope.meetingCtrlGlobal.startTime = event._d;
+	$rootScope.meetingCtrlGlobal.startTime = formatedDate;
 	$rootScope.meetingCtrlGlobal.date = event._d;
 	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
 	$scope.meetingCtrlGlobal.showMeetingEditorPopUp=true;

@@ -31,7 +31,21 @@ $scope.hello = function  () {
 		return formatedStart
 		
 	}
+	$scope.testInput = function (argument) {
+		if($scope.meetingCtrl.nameOfMeeting==undefined || $scope.meetingCtrl.nameOfMeeting==""){
+				alert("Please enter a name for the meeting");
+				return false;
+			}
+		else if($rootScope.meetingCtrlGlobal.date==undefined){
+				alert("Please enter the date correctly");
+				return false;
+			}
 
+		else if($rootScope.meetingCtrlGlobal.startTime==undefined){
+				alert("Please enter start time correctly");
+				return false;
+			}
+	}
 	$scope.addNewDay = function () {
 		//if($scope.meetingCtrl.nameOfMeeting==undefined || $scope.meetingCtrl.nameOfMeeting==""){
 		//		alert("Please enter a name for the meeting");
@@ -44,7 +58,10 @@ $scope.hello = function  () {
 		//		alert("Please enter start time correctly");
 		//	}
 		//else{
+		var test = $scope.testInput()
+		if(test !=false){
 			if($rootScope.meetingCtrlGlobal.selectedDayIsNew==true){
+
 				formatedStart = $scope.formatTime()
 				var eventName = $scope.meetingCtrl.nameOfMeeting;
 				var dayJson = meetingAgendaModel.addJson(formatedStart,eventName);
@@ -55,17 +72,22 @@ $scope.hello = function  () {
 				$rootScope.meetingCtrlGlobal.showMeetingEditorPopUp = false;
 				// $location.path('/meeting');
 				// alert($rootScope.meetingCtrlGlobal.selectedDay.getName())
+
+				
+				
+
 			}
 			else{
 				//Edit
+				formatedStart = $scope.formatTime()
 				meetingAgendaModel.jsonDays[0].title = $scope.meetingCtrl.nameOfMeeting;
-				var day = $rootScope.meetingCtrlGlobal.selectedDay;
+				var day = meetingAgendaModel.selectedDay;
 				day.setName($scope.meetingCtrl.nameOfMeeting);
-				day.setWeekDay($scope.meetingCtrl.weekDay);
-				day.setStart($scope.meetingCtrl.startHoursMeeting, $scope.meetingCtrl.startMinutesMeeting);
-				// alert(meetingAgendaModel.selectedDay.getName())
+				day.setDate(formatedStart);
 			}
 			$rootScope.meetingCtrlGlobal.showMeetingEditorPopUp=false; 
+		}
+			
 		//}
 
 		

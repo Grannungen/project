@@ -57,12 +57,12 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
 
-	this.Activity = function(name,length,typeid,description, index){
-		var _name = name;
-		var _length = length;
-		var _typeid = typeid;
-		var _description = description;
-		this.index = index;
+	this.Activity = function(JsonActivity){
+		var _name = JsonActivity.name;
+		var _length = JsonActivity.Length;
+		//var _typeid = JsonActivity.typeid;
+		var _description = JsonActivity.description;
+		this.index = JsonActivity.index;
 		// console.log("name: " + _name);
 		
 
@@ -92,9 +92,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		}
 
 		// get the type id of the activity
-		this.getTypeId = function() {
-			return _typeid;
-		}
+		//this.getTypeId = function() {
+			//return _typeid;
+		//}
 		
 		// sets the description of the activity
 		this.setDescription = function(description) {
@@ -224,8 +224,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			} else {
 				this._activities.push(activity);
 			}
-			console.log("this.jsonDays")
-			console.log(_this.jsonDays)
 		};
 		
 		// removes an activity from specific position
@@ -274,7 +272,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			}
 			this.jsonObject.index = this.jsonDays.length;
 			this.jsonObject.id = this.jsonDays.length;
-			this.jsonObject.activities = [];
+			alert();
+			this.jsonObject.activities = ['!'];
 			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';
 			// this.jsonObject.start = "2015-02-10T16:00:00";
@@ -288,15 +287,18 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 				this.jsonDays.push(this.jsonObject);
 			}
 			
-			_this.addJsonActivity();
 			return this.jsonObject;
 
 		}
 
-		this.addJsonActivity = function(name,length,typeid,description, index) {
+		this.addJsonActivity = function(name,length,description,index) {
 			this.JsonActivity = {};
-			//gör liknande addJson-Day sättet
-			
+			this.JsonActivity.name = name;
+			this.JsonActivity.Length = length;
+			//this.JsonActivity.typeid = typeid;
+			this.JsonActivity.description = description;
+			this.JsonActivity.index = index;
+			return this.JsonActivity;
 		};
 
 

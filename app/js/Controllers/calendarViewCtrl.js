@@ -9,11 +9,13 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 
 
    $scope.fire = function () {
+   	// alert()
    		syncObject.$bindTo($rootScope, "syncObject").then(function () {
 	//console.log($scope.syncObject);
 	// meetingAgendaModel.jsonDays = $rootScope.syncObject
 	// meetingAgendaModel.days = [];
 	if(meetingAgendaModel.firebaseUpdated != true){
+		// alert()
 		for (var i = 0; i < firebaseArray.length; i++) {
   			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
   			meetingAgendaModel.addDay(firebaseArray[i])

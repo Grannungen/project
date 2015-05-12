@@ -3,22 +3,17 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		
 	}
 
-		    var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
+	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
     var syncObject = $firebaseObject(ref);
    var firebaseArray = $firebaseArray(ref);
 
 
    $scope.fire = function () {
    		syncObject.$bindTo($rootScope, "syncObject").then(function () {
-
-
 	//console.log($scope.syncObject);
-	
 	// meetingAgendaModel.jsonDays = $rootScope.syncObject
-
 	// meetingAgendaModel.days = [];
 	if(meetingAgendaModel.firebaseUpdated != true){
-
 		for (var i = 0; i < firebaseArray.length; i++) {
   			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
   			meetingAgendaModel.addDay(firebaseArray[i])
@@ -32,7 +27,7 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		// meetingAgendaModel.jsonDays = [{name:'berta'}]
 		// $rootScope.syncObject = [{name:'bertil'}]
 	}
-   		
+
 		
 
       
@@ -44,7 +39,7 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 
     });
    }
-   // $scope.fire()
+   $scope.fire()
 
 
    meetingAgendaModel.firebaseArray = firebaseArray;

@@ -9,7 +9,10 @@ meetingAgendaPlanner.config(['$routeProvider',
         templateUrl: 'partials/start-log-in.html',
         controller: 'meetingEditorCtrl'
       })
-
+      //.when('/home', {
+      // templateUrl: 'home/home.html',
+      //  controller: 'HomeCtrl'
+      //})
       
       .when('/calendarView', {
         templateUrl: 'partials/calendarView.html',

@@ -1,6 +1,10 @@
-meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
+meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $cookieStore) {
 
 // $rootScope.meetingCtrlGlobal.selectedJsonDay
+if(meetingAgendaModel.days.indexOf(meetingAgendaModel.selectedDay) in $cookieStore){
+	var index = indexOf(meetingAgendaModel.selectedDay);
+	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get('index')];
+}
 
 $scope.hello = function  () {
 	alert("hej")

@@ -2,7 +2,7 @@
 
 // meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource) {
 
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseObject) {
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseObject, $cookieStore) {
 	
 	var _this = this;
 	this.daysInFirebase;
@@ -45,7 +45,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// The possible activity types
 	var _this = this;
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
-
 	////////////////////////flytta till rootScope ////////////////////////
 	this.selectedDay;
 	this.firebaseUpdated;
@@ -325,7 +324,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 				day = new this.Day(dayJson);
 
 			}
-			this.days.push(day);
+
+		this.days.push(day);
+
 			console.log(this.days);
 			return day;
 		};
@@ -362,7 +363,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
     		// alert("json" + j.title)
     		// alert("days" + d._name)
 
-			var index = this.days.indexOf(day);
+			//var index = this.days.indexOf(day);
 			// console.log(index)
 			// console.log(day)
 			// console.log(this.days)

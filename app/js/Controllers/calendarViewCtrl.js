@@ -1,10 +1,7 @@
-meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $firebaseObject, $firebaseArray) {
+meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $firebaseObject, $firebaseArray, $cookieStore) {
 	$rootScope.activityPopUpCtrlGlobal = {
 		
 	}
-
-	
-
 
    $scope.fire = function () {
    	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
@@ -84,6 +81,7 @@ $scope.eventClickHandler = function (event) {
 			// alert(meetingAgendaModel.days[i]._name)
 			// alert("selectedDay before click " + meetingAgendaModel.selectedDay.getName())
 			$rootScope.meetingCtrlGlobal.setSelectedDay(meetingAgendaModel.days[i])
+			$cookieStore.put('dayByID', meetingAgendaModel.days.indexOf(meetingAgendaModel.selectedDay));
 			// alert("selectedDay after click " + meetingAgendaModel.selectedDay.getName())
 		}
 	}

@@ -1,5 +1,5 @@
 
-var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ngResource', 'firebase','ngDragDrop', 'ui.sortable', 'ui.calendar']);
+var meetingAgendaPlanner = angular.module('meetingAgendaPlanner', ['ngRoute','ngResource', 'firebase','ngDragDrop', 'ui.sortable', 'ui.calendar', 'ngCookies']);
 
 
 meetingAgendaPlanner.config(['$routeProvider',

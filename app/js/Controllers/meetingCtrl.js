@@ -1,6 +1,10 @@
-meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
+meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $cookieStore) {
 
 // $rootScope.meetingCtrlGlobal.selectedJsonDay
+if(meetingAgendaModel.days.indexOf(meetingAgendaModel.selectedDay) in $cookieStore){
+	var index = indexOf(meetingAgendaModel.selectedDay);
+	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get('index')];
+}
 
 $scope.hello = function  () {
 	alert("hej")
@@ -86,7 +90,6 @@ if(meetingAgendaModel.selectedDay != undefined){
 			else{
 				//Edit
 				formatedStart = $scope.formatTime()
-				meetingAgendaModel.jsonDays[0].title = $scope.meetingCtrl.nameOfMeeting;
 				var day = meetingAgendaModel.selectedDay;
 				day.setName($scope.meetingCtrl.nameOfMeeting);
 				day.setDate(formatedStart);
@@ -112,6 +115,7 @@ if(meetingAgendaModel.selectedDay != undefined){
 
 	$scope.removeDay = function (day) {
 		// alert("hit")
+			console.log(day);
 
 			meetingAgendaModel.removeDay(meetingAgendaModel.selectedDay);
 	}

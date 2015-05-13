@@ -3,22 +3,20 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		
 	}
 
-		    var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
-    var syncObject = $firebaseObject(ref);
-   var firebaseArray = $firebaseArray(ref);
+	
 
 
    $scope.fire = function () {
+   	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
+    var syncObject = $firebaseObject(ref);
+   var firebaseArray = $firebaseArray(ref);
+   	// alert()
    		syncObject.$bindTo($rootScope, "syncObject").then(function () {
-
-
 	//console.log($scope.syncObject);
-	
 	// meetingAgendaModel.jsonDays = $rootScope.syncObject
-
 	// meetingAgendaModel.days = [];
 	if(meetingAgendaModel.firebaseUpdated != true){
-
+		// alert()
 		for (var i = 0; i < firebaseArray.length; i++) {
   			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
   			meetingAgendaModel.addDay(firebaseArray[i])
@@ -32,7 +30,7 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		// meetingAgendaModel.jsonDays = [{name:'berta'}]
 		// $rootScope.syncObject = [{name:'bertil'}]
 	}
-   		
+
 		
 
       
@@ -43,11 +41,12 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 // $scope.eventSources = [firebaseArray, meetingAgendaModel.externalAPIEvents];
 
     });
+   		meetingAgendaModel.firebaseArray = firebaseArray;
    }
    // $scope.fire()
 
 
-   meetingAgendaModel.firebaseArray = firebaseArray;
+   
    // var list = [1,2,3]
    // firebaseArray.$add(list)
    // firebaseArray['Jp2wGkTS40v4EeOJgdA'] = "hej"
@@ -61,9 +60,15 @@ $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalA
 
 
 $scope.alertEventOnClick=function (event) {
-
+	console.log(event);
+	var momentStart = moment(event);
+	console.log(event._d);
+	var formatedStart = momentStart.format('MMM DD YYYY hh:mm:ss a');
+	console.log("formatedStart");
+	console.log(formatedStart);
+	var formatedDate = new Date(formatedStart)
 	// console.log(event);
-	$rootScope.meetingCtrlGlobal.startTime = event._d;
+	$rootScope.meetingCtrlGlobal.startTime = formatedDate;
 	$rootScope.meetingCtrlGlobal.date = event._d;
 	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
 	$scope.meetingCtrlGlobal.showMeetingEditorPopUp=true;
@@ -75,8 +80,11 @@ $scope.eventClickHandler = function (event) {
 		// alert(this.jsonDays[i].id)
 		if(meetingAgendaModel.days[i]._id == event.id) {
 			// alert(meetingAgendaModel.days[i]._name + "hit")
+			// alert(event.title)
+			// alert(meetingAgendaModel.days[i]._name)
+			// alert("selectedDay before click " + meetingAgendaModel.selectedDay.getName())
 			$rootScope.meetingCtrlGlobal.setSelectedDay(meetingAgendaModel.days[i])
-			// alert("sel")
+			// alert("selectedDay after click " + meetingAgendaModel.selectedDay.getName())
 		}
 	}
 	// meetingAgendaModel.selectedDayIndex = event.index;
@@ -95,28 +103,21 @@ $scope.eventClickHandler = function (event) {
 
 $scope.alertOnDrop = function(event) {
 	
-	if (event.listSource == "externalAPI") {
-		for (var i = 0; i < meetingAgendaModel.externalAPIEvents.length; i++) {
-			if (meetingAgendaModel.externalAPIEvents[i]._id == event._id) {
-				meetingAgendaModel.externalAPIEvents[i].start = event.start._d;
-				meetingAgendaModel.externalAPIEvents[i].end = event.end._d;
-				console.log(meetingAgendaModel.externalAPIEvents);
-			}
-		};
-	} else {
+	
 		for (var i = 0; i < meetingAgendaModel.jsonDays.length; i++) {
 			if (meetingAgendaModel.jsonDays[i]._id == event._id) {
+				alert()
 				meetingAgendaModel.jsonDays[i].start = event.start._d;
+				alert()
 			}
-		};
-	}
+		}
 }
 
 
 $scope.uiConfig = {
       calendar:{
         // height: 450,
-        editable: true,
+        editable: false,
         // showWeeks:true,
         header:{
           left: 'month agendaWeek agendaDay',

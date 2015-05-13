@@ -60,6 +60,7 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			var Activity = meetingAgendaModel.Activity;
 			var ActivityType = meetingAgendaModel.ActivityType;
 			var jsonActivity = meetingAgendaModel.addJsonActivity($scope.activityCtrlGlobal.ActivityName,$scope.activityCtrlGlobal.length, $scope.activityCtrlGlobal.description, 0);
+			meetingAgendaModel.selectedDay._dayJson.name = "ändrat"
 			if (meetingAgendaModel.selectedDay._dayJson.activities == undefined){
 				meetingAgendaModel.selectedDay._dayJson.activities = [];			
 			}

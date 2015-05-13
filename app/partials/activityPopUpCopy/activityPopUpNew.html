@@ -1,0 +1,41 @@
+<div id="edit-activity-window" class="well" ng-show="activityCtrlGlobal.showActivityPopUpNew">
+	<div class="col-sm-5 edit-activity-window-editor">
+		<div class="form-group">
+			<label>Activity Name:</label>
+			<input type:"text" class"form-control" ng-model="activityCtrlGlobal.ActivityName" value="fuck yeah!">
+		</div>
+
+
+		<div class="form-group">
+			<label>Length in minutes:</label>
+			<input type="number" name="number" ng-model="activityCtrlGlobal.length">
+		</div>
+
+	<!-- 		<div class="form-group">
+			<label>Start time:</label>
+			<input type="time" name="time">
+		</div>
+
+		<div class="form-group">
+			<label>End time:</label>
+			<input type="time" name="time">
+		</div> -->
+
+		<div class="form-group">
+			<label>Activity Type</label>
+			<select style="width:100%" ng-model="activityCtrlGlobal.typeId">
+				<option value={{ActivityType.indexOf(type)}} ng-repeat="type in ActivityType">{{type}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Description:</label>
+			<textarea rows="8" ng-model="activityCtrlGlobal.description"></textarea>
+		</div>
+	<!-- 		<div class="form-group">
+			<label>Color:</label>
+			<input type="color" value="#45c33b">
+		</div> -->
+		<button class="btn btn-info" ng-click="activityCtrlGlobal.showActivityPopUpNew=false">Cancel</button>
+		<button class="btn btn-info" ng-click="addNewActivity()">Done</button>
+	</div>
+</div>

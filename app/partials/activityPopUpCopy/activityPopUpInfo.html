@@ -1,0 +1,15 @@
+<div id="edit-activity-window" class="well" ng-show="activityCtrlGlobal.showActivityInfo">
+	<div class="col-sm-5 edit-activity-window-editor">
+		<p><label>Activity Name:</label>
+		{{activityCtrlGlobal.selectedActivity.getName()}}</p>
+		<p><label>Length in minutes:</label><b></b>
+		{{activityCtrlGlobal.selectedActivity.getLength()}}</p>
+		<p><label>Activity Type:</label>
+		{{activityCtrlGlobal.selectedActivity.getType()}}</p>
+		<p><label>Description:</label>
+		{{activityCtrlGlobal.selectedActivity.getDescription()}}</p>
+	</div>
+		<button class="btn btn-info" ng-click="activityCtrlGlobal.showActivityInfo=false; activityCtrlGlobal.showActivityPopUpEdit=true">Edit</button>
+		<button class="btn btn-info" ng-click="activityCtrlGlobal.showActivityInfo=false">Done</button>
+	</div>
+</div>

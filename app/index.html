@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- Notice the ng-app Angular directive. This tells Angular where the application starts and also
-which module to associate the app with. In app.js we create the "dinnerPlanner" module. -->
 <html lang="en" ng-app="meetingAgendaPlanner">
   <head>
     <meta charset="utf-8">
@@ -10,13 +8,12 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- less.js makes styling easier -->
-    <!--<script src="bower_components/less/dist/less.min.js"></script>-->
 
     <!--Moment script-->
     <script src="bower_components/moment/min/moment.min.js"></script>
@@ -25,35 +22,31 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
+
     <!--Cookies for everyone!-->   
     <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+
     <!-- Angular-dragdrop -->
     <script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>
 
     <!-- Jquery-ui -->
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+
     <!-- Jquery-ui touch devices-->
     <script src="dist/jquery.ui.touch-punch.min.js"></script>
 
     <!-- Ng-sortable -->
-    <script src="bower_components/ng-sortable/ng-sortable.min.js"></script>    
+    <script src="bower_components/ng-sortable/ng-sortable.min.js"></script>
 
+    <!-- ui-sortable -->
+    <script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
 
-
+    <!-- ui-calendar -->
     <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-
     <link href="bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" />
     <link href="bower_components/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print" />
     <script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
-
-
-
-
-    <!-- <link href="dist/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" /> -->
-
-   <!--  <script type="text/javascript" src="dist/js/bootstrap-datetimepicker.min.js"></script>-->
-    
 
   
     <!-- Firebase -->
@@ -63,17 +56,12 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
 
 
-<script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
-
-
-
-
     <!-- The application JavaScript code -->
     <script src="js/app.js"></script>
     <script src="js/Controllers/calendarViewCtrl.js"></script>
 
     <script src="js/Controllers/googleApiCtrl.js"></script>
-    <script src="js/Controllers/meetingEditorCtrl.js"></script>
+    <!-- // <script src="js/Controllers/meetingEditorCtrl.js"></script> -->
 
     <script src="js/Controllers/activityCtrl.js"></script>
     <script src="js/Controllers/meetingCtrl.js"></script>
@@ -88,34 +76,16 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   <link rel="stylesheet" href="css/meetingAgendaEditor.css">
   <link rel="stylesheet" href="css/weekView.css">
 
-  
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
-  <!-- <link rel="stylesheet" href="main.less"> -->
 
 
 <!-- test -->
-    <link rel="stylesheet" type="text/css" href="partials/test/ng-sortable.style.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="partials/test/ng-sortable.style.min.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="partials/test/plunker.css"> -->
-
-
-
-
-
-
-
-
   <body>
-
-<!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
-    ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
     <ng-include src="'partials/header.html'" ></ng-include>
     <ng-include src="'partials/navbar.html'"></ng-include>
-    <!-- <ng-include src="'partials/sidebar.html'"></ng-include> -->
-    <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
-    where you specify which partial should be loaded when. -->
     <div  ng-view>   
     </div>
-
   </body>
 </html>

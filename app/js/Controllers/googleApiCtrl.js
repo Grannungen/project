@@ -78,10 +78,8 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, $rootScope, m
             var start = events[i].start.dateTime;
             var end = events[i].end.dateTime;
             var name = events[i].summary;
-
             var day = meetingAgendaModel.addJson(start,name, "externalAPI", end);
             $rootScope.$apply()
-
             
           };
         });

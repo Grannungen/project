@@ -17,12 +17,8 @@
 <ng-include src="'partials/activityPopUpEdit.html'" ng-controller="activityCtrl"></ng-include>
 <ng-include src="'partials/meetingEditorPopUp.html'" ng-controller="meetingCtrl"></ng-include>
 
-	<div div ng-controller="activityCtrl">
+<div div ng-controller="activityCtrl">
 	<div class="col-sm-6">
-		
-
-		
-
 			<div class="col-sm-9">
 		    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
 		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities" class="item" id="blocks">

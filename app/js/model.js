@@ -291,7 +291,23 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 				this.jsonObject.end = end;
 			}
 			this.programCounter = this.programCounter +1;
-			this.jsonObject._id = this.programCounter;
+
+			var a = 0;
+			while(a == 0){
+				a = 1;
+				var rand = Math.random();
+				for (var i = 0; i < this.jsonDays.length; i++) {
+					if (this.jsonDays[i]._id == rand) {
+						a = 0;
+					}
+					
+					}
+			};
+			
+			this.jsonObject._id = rand;
+			
+
+			
 			
 			this.jsonObject.activities = ['!'];
 			// this.jsonObject.end = moments+activity...

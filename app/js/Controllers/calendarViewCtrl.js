@@ -108,6 +108,8 @@ $scope.alertOnDrop = function(event) {
 		for (var i = 0; i < meetingAgendaModel.jsonDays.length; i++) {
 			if (meetingAgendaModel.jsonDays[i]._id == event._id) {
 				meetingAgendaModel.jsonDays[i].start = event.start._d;
+				var date = moment(event.start._d).format('YYYY-MM-DD hh:mm:ss a');
+				meetingAgendaModel.days[i].setDate(date);
 				console.log(meetingAgendaModel.jsonDays);
 			}
 		}

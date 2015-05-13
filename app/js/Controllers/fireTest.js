@@ -3,88 +3,118 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		
 	}
 
-
-
-$scope.launchConfirmation = function() {
-	alert()
-  //They Confirmed
-  //Do Async stuff
-  $scope.confirmationOpen = true;
-}
-
 	$scope.splice = function () {
 		var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
 		var list = meetingAgendaModel.fireDays;
-		console.log("list before")
-		console.log(list)
 		list.splice(1,1);
-		console.log("splice")
-		console.log(list)
+		console
 		ref.set(list);
 	}
 
 
-  $scope.fire = function () {
+   $scope.fire = function () {
    	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
     var syncObject = $firebaseObject(ref);
    var firebaseArray = $firebaseArray(ref);
-
+   	// alert()
    		syncObject.$bindTo($rootScope, "syncObject").then(function () {
-
+	//console.log($scope.syncObject);
+	// meetingAgendaModel.jsonDays = $rootScope.syncObject
+	// meetingAgendaModel.days = [];
 	if(meetingAgendaModel.firebaseUpdated != true){
+		// alert()
 		for (var i = 0; i < firebaseArray.length; i++) {
   			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
   			meetingAgendaModel.addDay(firebaseArray[i])
 		}
 		console.log("$scope.syncObject");
 		console.log($scope.syncObject);
+		// meetingAgendaModel.jsonDays = [{name:'bertil'}]
+		// $rootScope.syncObject = meetingAgendaModel.jsonDays;
 		meetingAgendaModel.firebaseUpdated = true;
+		// alert()
+		// meetingAgendaModel.jsonDays = [{name:'berta'}]
+		// $rootScope.syncObject = [{name:'bertil'}]
 	}
-		meetingAgendaModel.firebaseArray = firebaseArray;
-   		console.log("firebaseArray")
-   		console.log(meetingAgendaModel.jsonDays)
-		$rootScope.syncObject = meetingAgendaModel.jsonDays;
+		var d = firebaseArray.$add({test:'2'})
+		console.log(d)    
+      // $rootScope.syncObject = [{name:'af'}, {name:'ad'}]
+
+// $scope.eventSources = [firebaseArray, meetingAgendaModel.externalAPIEvents];
 
     });
-   			
-   			// firebaseArray.$add({foo:'a'})
-   			// firebaseArray.$add("b")
-   			// alert()
-   			// firebaseArray.foo = "ö"
-   			// firebaseArray.$save(0)
-
+   		meetingAgendaModel.firebaseArray = firebaseArray;
    }
-   $scope.fire()
+   // $scope.fire()
 
 
 
-
-   $scope.firebase = function () {
+   $scope.fire2 = function () {
    	alert()
-
    	if(meetingAgendaModel.firebaseUpdated != true){
-	 	var list = [];
-	 	meetingAgendaModel.firebaseRef.on('value', function(snap) {
+   		var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
+    // var syncObject = $firebaseObject(ref);
+   		// syncObject.$bindTo($rootScope, "syncObject").then(function () {});
+
+	 // sync down from server
+	 var list = [];
+	 ref.on('value', function(snap) { 
 	 	list = snap.val();
-	 	console.log("list");
-	 	// meetingAgendaModel.jsonDays = list
-	 	console.log(list);
-	 	console.log(meetingAgendaModel.jsonDays)
-	 	for (var i = 0; i < list.length; i++) {
-	 		alert(list[i])
-	 		meetingAgendaModel.jsonDays.push(list[i])
-  			meetingAgendaModel.addDay(meetingAgendaModel.jsonDays[i])
-		}
+	 	console.log(list)
+	 // list.splice(1, 1);
+	 // ref.set(list);
+	 console.log(list)
+
 	 });
+	 // time to remove 'bar'!
+	 // this is the correct way to change an array
+	 console.log(list)
+	 // list.splice(1, 1);
+	 list.push("hje")
+	 list.push("hje")
+	 list.push("hje")
+	 list.push("hje")
+	 list.push("hje")
+	 ref.set(list);
 	meetingAgendaModel.firebaseUpdated = true;
+
    	}
+   	
    }
-   // $scope.firebase()
+   // $scope.fire2()
+
+   meetingAgendaModel.firebaseList();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   // var list = [1,2,3]
+   // firebaseArray.$add(list)
+   // firebaseArray['Jp2wGkTS40v4EeOJgdA'] = "hej"
+   // firebaseArray.$save('Jp2wGkTS40v4EeOJgdA')
+    
+
+
 
 
 $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalAPIEvents];
-
-
 
 
 $scope.alertEventOnClick=function (event) {
@@ -158,5 +188,9 @@ $scope.uiConfig = {
         eventResize: $scope.alertOnResize,
       }
     };
+
+
+
+
 
 });

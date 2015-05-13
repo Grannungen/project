@@ -52,10 +52,16 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// this.selectedDayIndex;
 	this.selectedActivity;
 	this.firebaseArray;
+	this.firebaseRef = new Firebase("https://brilliant-torch-7105.firebaseio.com/");
 	
 	// This is an activity constructor
 	// When you want to create a new activity you just call
 	// var act = new Activity("some activity",20,1,"Some description);
+
+
+
+
+
 
 	this.Activity = function(JsonActivity){
 		var _name = JsonActivity.name;
@@ -69,6 +75,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// sets the name of the activity
 		this.setName = function(name) {
 			_name = name;
+			// this.firebaseRef.set(this.jsonDays)
 		}
 
 		// get the name of the activity
@@ -79,6 +86,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// sets the length of the activity
 		this.setLength = function(length) {
 			_length = length;
+			// this.firebaseRef.set(this.jsonDays)
 		}
 
 		// get the name of the activity
@@ -89,6 +97,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// sets the typeid of the activity
 		this.setTypeId = function(typeid) {
 			_typeid = typeid;
+			// this.firebaseRef.set(this.jsonDays)
 		}
 
 		// get the type id of the activity
@@ -99,6 +108,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// sets the description of the activity
 		this.setDescription = function(description) {
 			_description = description;
+			// this.firebaseRef.set(this.jsonDays)
 		}
 
 		// get the description of the activity
@@ -164,6 +174,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		
 			this._dayJson.title = name;
 			this._name = name;
+			console.log(_this.jsonDays)
+			// _this.firebaseRef.set(this.jsonDays)
 			// this._name = name;
 			//console.log("self.FB")
 
@@ -185,6 +197,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.setDate = function(start) {
 			this._dayJson.start = start;
 			this._date = start;
+			// this.firebaseRef.set(this.jsonDays)
 		}
 
 		// returns the total length of the acitivities in 
@@ -252,7 +265,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	// this is our main module that contians days and praked activities
 	// this.Model = function(){
 		
-		
+		this.fireDays = [];
 		this.days = [];
 		this.jsonDays = [];
 		this.externalAPIEvents = [];
@@ -294,9 +307,13 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 				this.externalAPIEvents.push(this.jsonObject);
 			}
 			else{
+				console.log(this.jsonDays)
 				this.jsonDays.push(this.jsonObject);
+				// this.firebaseRef.set(this.jsonDays)
+
 			}
 			
+
 			return this.jsonObject;
 
 		}
@@ -330,16 +347,14 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			return day;
 		};
 
-		this.removeDay = function (day){
-
-			
+		this.removeDay = function (day){			
 			// alert(this.days[0]._name)
 			// alert(this.selectedDay.getName())
 			// alert(day._name)
 			var index = this.days.indexOf(day);
 			// alert(this.days[index]._name)
 			// alert(this.days[index]._id)
-			var d = this.days.splice(index, 1);
+			this.days.splice(index, 1);
 			// alert(day._id)
     		for(var i = 0; i < this.jsonDays.length; i += 1) {
     			// alert(this.jsonDays[i].id)
@@ -350,6 +365,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
         			// alert(this.jsonDays[index].id)
         			// alert(this.jsonDays[index].title)
         			var j =this.jsonDays.splice(index, 1);
+        			// this.firebaseRef.set(this.jsonDays)
         			
         		}
     		}

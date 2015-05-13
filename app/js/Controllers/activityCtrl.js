@@ -14,7 +14,7 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 		$rootScope.activityCtrlGlobal.selectedActivity = activity;
 		$rootScope.activityCtrlGlobal.selectedActivityName = activity.getName();
 		$rootScope.activityCtrlGlobal.selectedActivityLength = activity.getLength();
-		$rootScope.activityCtrlGlobal.selectedActivityTypeId = activity.getTypeId();
+		// $rootScope.activityCtrlGlobal.selectedActivityTypeId = activity.getTypeId();
 		$rootScope.activityCtrlGlobal.selectedActivityDescription = activity.getDescription();
 	}
 
@@ -80,7 +80,7 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			var activity = meetingAgendaModel.selectedActivity;
 			activity.setName($rootScope.activityCtrlGlobal.selectedActivityName);
 			activity.setLength($rootScope.activityCtrlGlobal.selectedActivityLength);
-			activity.setTypeId($scope.activityCtrlGlobal.typeId);
+			// activity.setTypeId($scope.activityCtrlGlobal.typeId);
 			activity.setDescription($rootScope.activityCtrlGlobal.selectedActivityDescription);
 		}
 		

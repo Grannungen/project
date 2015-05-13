@@ -282,7 +282,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			}
 			this.jsonObject.index = this.jsonDays.length;
 			this.jsonObject.id = this.jsonDays.length;
-			alert();
+			// alert();
 			this.jsonObject.activities = ['!'];
 			// this.jsonObject.end = moments+activity...
 			this.jsonObject.url = '#/meeting';

@@ -1,6 +1,5 @@
 meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
 
-// $rootScope.meetingCtrlGlobal.selectedDay
 // $rootScope.meetingCtrlGlobal.selectedJsonDay
 
 $scope.hello = function  () {
@@ -18,6 +17,13 @@ $scope.hello = function  () {
 		startHoursMeeting: 8,
 		startMinutesMeeting: 0
 	}
+
+if(meetingAgendaModel.selectedDay != undefined){
+	$rootScope.meetingCtrlGlobal.selectedDay = meetingAgendaModel.selectedDay //fixes the bug that you can't access the meeting the first time you create it
+	$rootScope.meetingCtrlGlobal.selectedActivities = meetingAgendaModel.selectedDay._activities;
+}
+
+
 
 	$scope.formatTime = function () {
 		var dateList = $rootScope.meetingCtrlGlobal.date.toString().split(" ");

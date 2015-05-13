@@ -1,0 +1,242 @@
+<style type="text/css">
+.dataElement {
+		border-style: dotted;
+		border-width: 1px;
+
+
+	}
+.activityElement {
+	margin-right: auto;
+	margin-left: auto;
+
+}
+
+.activityTest{
+	/*border: solid 1px;*/
+	text-align: center;
+	margin-top: 50 pt;
+	/*cursor: pointer;*/
+	vertical-align: middle;
+	/*width: 20%;*/
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+}
+
+.activityTest:hover{
+	background-color: lightgrey;
+}
+.activity-btn{
+	margin: 30px;
+}
+.activityTest:hover span{
+	/*display: auto;*/
+	visibility: visible;
+}
+
+.meetingContent{
+	margin-top: 70px;
+	text-align: center;
+}
+.Center{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+</style>
+<!-- <table ng-controller="weekViewCtrl">
+	<tbody >
+		<th style="width:100px">
+			<p style="font-weight:bold;text-align:center;">{{meeting.selectedDay.name}}</p>
+		</th>
+		<tr style="height:{{activity.getLength() * 5}}px" class="activityElement" ng-repeat="activity in meeting.selectedDay._activities">
+					<td class="dataElement ">
+						<p style=";text-align:center;">{{activity.getName()}}</p>
+					</td>
+					<td class="dataElement">
+						<p style=";text-align:center;">{{activity.getLength()}}</p>
+					</td>
+		</tr>	
+	</tbody>
+
+</table> -->
+
+<ng-include src="'partials/activityPopUpNew.html'" ng-controller="activityCtrl"></ng-include>
+<ng-include src="'partials/activityPopUpInfo.html'" ng-controller="activityCtrl"></ng-include>
+
+
+
+<ng-include src="'partials/activityPopUpEdit.html'" ng-controller="activityCtrl"></ng-include>
+
+
+
+
+<ng-include src="'partials/meetingEditorPopUp.html'" ng-controller="meetingCtrl"></ng-include>
+
+
+<!-- <div class="meetingContent col-sm-3" style="background-color:black">
+	da
+</div> -->
+<div ng-controller="meetingCtrl">
+<div ng-controller="activityCtrl" >
+
+<div <div class="floatleft col-sm-9" >
+	    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
+	      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities" class="item" id="blocks">
+	      	<div class="well activityTest" style="height:{{activity.getLength() * 3}}px;">
+	      	<div class="col-sm-1">
+					<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>
+				</div>
+				<div class="col-sm-9">
+					<div>
+					{{activity.getName()}}
+					dsf
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); activityCtrlGlobal.showActivityInfo=true"><p>{{activity}}</p></span>
+				</div>
+	      	</div>
+
+	      </li>
+	    </ul>
+	</div>flo>
+
+	<div class="col-sm-6"></div>
+	<div class="meetingContent col-sm-12 Center" style="background-color:">
+		
+		<div class="col-sm-4" style="float:center;">
+			<h1 style="width:100%">
+				{{meetingCtrlGlobal.selectedDay.getName()}}
+
+			</h1>
+			<button class="btn activity-btn" ng-click="activityCtrlGlobal.showActivityPopUpNew=true;">
+				Add Activity
+			</button>
+		  <div class="floatleft col-sm-9">
+		    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+		      <li ng-repeat="activity in list" class="item" id="blocks">
+		      	<div class="well activityTest" style="height:{{activity.getLength() * 3}}px;">
+		      					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>
+					</div>
+					<div class="col-sm-9">
+						<div>
+						{{activity.getName()}}
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); activityCtrlGlobal.showActivityInfo=true"></span>
+					</div>
+		      	</div>
+
+		      </li>
+		    </ul>
+	  </div>
+
+
+
+
+
+
+<!-- 			<div ui-sortable="sortableOptions" ng-model="list" class="col-sm-12">
+				<button class="btn activity-btn" ng-click="meeting.showEditor=true;">
+					Add Activity
+				</button>
+				<div class="activityTest well col-sm-12" style="height:{{activity.getLength() * 5}}px" ng-repeat="activity in meeting.selectedDay._activities">
+					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+					</div>
+					<div class="col-sm-9">
+						<div>
+						{{activity.getName()}}
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
+					</div>
+				</div>
+			</div> -->
+
+
+
+		</div>
+		<div class="col-sm-4 meetingContent" style="background-color: ;float:right;">
+			<h3>Start Time:</h3>
+			{{meetingCtrlGlobal.selectedDay.getStart()}}
+			<h3>End Time:</h3>
+			{{meetingCtrlGlobal.selectedDay.getEnd()}}
+			<h3>Total Length:</h3>
+			{{meetingCtrlGlobal.selectedDay.getTotalLength()}} min
+			<h3>Day:</h3>
+			{{meetingCtrlGlobal.selectedDay.getWeekDay()}}
+
+			<div class="col-sm-12">
+				<button class="btn activity-btn" ng-click="removeDay(meetingCtrlGlobal.selectedDay); go('/calendarView')">
+						Remove
+				</button>
+				<button class="btn activity-btn" ng-click="meetingCtrlGlobal.showMeetingEditorPopUp=true;">
+						Edit
+				</button>
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-sm-3"></div>
+
+
+
+</div><!-- dragAndDropCtrl end -->
+</div><!-- activityCtrl end -->
+</div><!-- meetingCtrl end -->
+
+
+
+
+
+<style type="text/css">
+	.list {
+	list-style: none outside none;
+	margin: 10px 0 30px;
+	}
+	.item {
+		cursor: move;
+	}
+	.floatleft {
+	  float: left;
+	}
+</style>
+
+
+<div >
+<!--   <div class="floatleft">
+    <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+      <li ng-repeat="activity in list" class="item">
+      	<div class="well activityTest" style="height:{{activity.getLength() * 5}}px">
+      					<div class="col-sm-1">
+				<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meeting.selectedDay)"></span>
+			</div>
+			<div class="col-sm-9">
+				<div>
+				{{activity.getName()}}
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<span class="glyphicon glyphicon-info-sign" aria-hidden="true" ng-click="setSelectedActivity(activity); meeting.showActivityInfo=true"></span>
+			</div>
+      	</div>
+
+      </li>
+    </ul>
+  </div> -->
+</div>
+
+
+
+<!-- <div class="col-sm-3 meetingContent" style="background-color:green">
+	ergerg
+</div> -->
+
+
+

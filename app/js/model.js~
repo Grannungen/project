@@ -68,11 +68,11 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		var _length = JsonActivity.Length;
 		//var _typeid = JsonActivity.typeid;
 		var _description = JsonActivity.description;
-		this._index = JsonActivity.index;
+		var _index = JsonActivity.index;
 		// console.log("name: " + _name);
 		
 		this.setIndex = function(index){
-			this._index = index;
+			_index = index;
 			_jsonActivity.index = index;
 		}
 		

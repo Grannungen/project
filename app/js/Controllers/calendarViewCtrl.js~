@@ -16,10 +16,8 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		for (var i = 0; i < firebaseArray.length; i++) {
   			meetingAgendaModel.jsonDays.push(firebaseArray[i]);
   			var day = meetingAgendaModel.addDay(firebaseArray[i]);
-			if (firebaseArray[i].activities != undefined){
-				for (var j=0; j < firebaseArray[i].activities.length;j++){
-					day._addActivity(new meetingAgendaModel.Activity(firebaseArray[i].activities[j]));
-				}
+			for (var j=0; j < firebaseArray[i].activities.length;j++){
+				day._addActivity(new meetingAgendaModel.Activity(firebaseArray[i].activities[j]));
 			}
 		}
 		console.log("$scope.syncObject");

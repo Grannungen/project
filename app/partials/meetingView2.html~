@@ -26,7 +26,7 @@
 
 			<div class="col-sm-9">
 		    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
-		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities | orderBy:'_index'" class="item" id="blocks">
+		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities | orderBy:'-index'" class="item" id="blocks">
 		      	<div class="well activityTest" style="height: 60px;">
 		      	<div class="col-sm-1">
 						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>

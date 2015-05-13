@@ -8,9 +8,9 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 		
 	}
 
-		$scope.setSelectedActivity = function (activity) {
+	$scope.setSelectedActivity = function (activity) {
+		console.log(activity.getName());
 		meetingAgendaModel.selectedActivity = activity;
-		$scope.activityCtrlGlobal.selectedActivity = meetingAgendaModel.selectedActivity;
 		$rootScope.activityCtrlGlobal.selectedActivity = activity;
 		$rootScope.activityCtrlGlobal.selectedActivityName = activity.getName();
 		$rootScope.activityCtrlGlobal.selectedActivityLength = activity.getLength();
@@ -26,7 +26,6 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 
 
 	var testInput = function () {
-		console.log("$scope.activityCtrlGlobal.ActivityName: " + $scope.activityCtrlGlobal.ActivityName)
 		if($scope.activityCtrlGlobal.showActivityPopUpNew==true){
 			if($scope.activityCtrlGlobal.ActivityName==undefined || $scope.activityCtrlGlobal.ActivityName==""){
 			alert("Please enter a name for the activity.")
@@ -59,12 +58,12 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			$rootScope.activityCtrlGlobal.showActivityPopUpNew=false
 			var Activity = meetingAgendaModel.Activity;
 			var ActivityType = meetingAgendaModel.ActivityType;
-			var jsonActivity = meetingAgendaModel.addJsonActivity($scope.activityCtrlGlobal.ActivityName,$scope.activityCtrlGlobal.length, $scope.activityCtrlGlobal.description, 0);
 			if (meetingAgendaModel.selectedDay._dayJson.activities == undefined){
 				meetingAgendaModel.selectedDay._dayJson.activities = [];			
 			}
+			var jsonActivity = meetingAgendaModel.addJsonActivity($scope.activityCtrlGlobal.ActivityName,$scope.activityCtrlGlobal.length, $scope.activityCtrlGlobal.description, meetingAgendaModel.selectedDay._dayJson.activities.length);
+			
 			meetingAgendaModel.selectedDay._dayJson.activities.push(jsonActivity);
-			console.log(meetingAgendaModel.selectedDay._dayJson);
 			meetingAgendaModel.selectedDay._addActivity(new Activity(jsonActivity));
 			$.each(ActivityType,function(index,type){
 			// console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
@@ -82,6 +81,7 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			activity.setLength($rootScope.activityCtrlGlobal.selectedActivityLength);
 			// activity.setTypeId($scope.activityCtrlGlobal.typeId);
 			activity.setDescription($rootScope.activityCtrlGlobal.selectedActivityDescription);
+			return activity;
 		}
 		
 	}

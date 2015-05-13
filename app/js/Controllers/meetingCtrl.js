@@ -90,7 +90,6 @@ if(meetingAgendaModel.selectedDay != undefined){
 			else{
 				//Edit
 				formatedStart = $scope.formatTime()
-				meetingAgendaModel.jsonDays[0].title = $scope.meetingCtrl.nameOfMeeting;
 				var day = meetingAgendaModel.selectedDay;
 				day.setName($scope.meetingCtrl.nameOfMeeting);
 				day.setDate(formatedStart);
@@ -116,6 +115,7 @@ if(meetingAgendaModel.selectedDay != undefined){
 
 	$scope.removeDay = function (day) {
 		// alert("hit")
+			console.log(day);
 
 			meetingAgendaModel.removeDay(meetingAgendaModel.selectedDay);
 	}

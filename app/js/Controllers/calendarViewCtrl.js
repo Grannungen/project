@@ -57,14 +57,9 @@ $scope.eventSources = [meetingAgendaModel.jsonDays, meetingAgendaModel.externalA
 
 
 $scope.alertEventOnClick=function (event) {
-	console.log(event);
 	var momentStart = moment(event);
-	console.log(event._d);
 	var formatedStart = momentStart.format('MMM DD YYYY hh:mm:ss a');
-	console.log("formatedStart");
-	console.log(formatedStart);
 	var formatedDate = new Date(formatedStart)
-	// console.log(event);
 	$rootScope.meetingCtrlGlobal.startTime = formatedDate;
 	$rootScope.meetingCtrlGlobal.date = event._d;
 	$rootScope.meetingCtrlGlobal.selectedDayIsNew=true;
@@ -72,17 +67,12 @@ $scope.alertEventOnClick=function (event) {
 }
 
 $scope.eventClickHandler = function (event) {
+	console.log(event);
 
-	for(var i = 0; i < meetingAgendaModel.days.length; i += 1) {
-		// alert(this.jsonDays[i].id)
-		if(meetingAgendaModel.days[i]._id == event.id) {
-			// alert(meetingAgendaModel.days[i]._name + "hit")
-			// alert(event.title)
-			// alert(meetingAgendaModel.days[i]._name)
-			// alert("selectedDay before click " + meetingAgendaModel.selectedDay.getName())
+	for(var i = 0; i < meetingAgendaModel.jsonDays.length; i += 1) {
+		if(meetingAgendaModel.jsonDays[i]._id == event._id) {
 			$rootScope.meetingCtrlGlobal.setSelectedDay(meetingAgendaModel.days[i])
 			$cookieStore.put('dayByID', meetingAgendaModel.days.indexOf(meetingAgendaModel.selectedDay));
-			// alert("selectedDay after click " + meetingAgendaModel.selectedDay.getName())
 		}
 	}
 	// meetingAgendaModel.selectedDayIndex = event.index;
@@ -100,13 +90,13 @@ $scope.eventClickHandler = function (event) {
 }
 
 $scope.alertOnDrop = function(event) {
+		console.log(event);
 	
 	
 		for (var i = 0; i < meetingAgendaModel.jsonDays.length; i++) {
 			if (meetingAgendaModel.jsonDays[i]._id == event._id) {
-				alert()
 				meetingAgendaModel.jsonDays[i].start = event.start._d;
-				alert()
+				console.log(meetingAgendaModel.jsonDays);
 			}
 		}
 }
@@ -115,7 +105,7 @@ $scope.alertOnDrop = function(event) {
 $scope.uiConfig = {
       calendar:{
         // height: 450,
-        editable: false,
+        	editable: true,
         // showWeeks:true,
         header:{
           left: 'month agendaWeek agendaDay',

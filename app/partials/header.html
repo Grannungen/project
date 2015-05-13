@@ -10,15 +10,10 @@
           <a href="" ng-click="">Registration</a>
           
           <form method="post" action="index.html">
-                <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-                <p><input type="password" name="password" value="" placeholder="Password"></p>
-                <p class="submit"><input type="submit" name="commit" value="Login"></p>
+                <p><input ng-model="user.email" type="email" name="login" value="" placeholder="Username or Email"></p>
+                <p><input ng-model="user.password" type="password" name="password" value="" placeholder="Password"></p>
+                <button type="button" ng-click="SignIn($event)" class="btn btn-lg btn-primary btn-block">SignIn</button>
           
             </form> 
-
-       
-        
-
-        </div>
-
     </div>
+</div>

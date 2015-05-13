@@ -2,37 +2,21 @@
 	#navBar {
 		background-color: lightgrey
 	}
+	#Menu {
+		width: 100%;
+	}
 </style>
 
 <ng-include src="'partials/meetingEditorPopUp.html'" ng-controller="meetingCtrl"></ng-include>
-<div class="col-sm-12" id="navBar" ng-controller="meetingEditorCtrl">
+<div class="col-sm-12" id="navBar">
 	<div class="col-md-4"></div>
 	<div class="col-md-4" id="Menu">
 	  <ul class="nav nav-pills " style="width:100%">
 	    <li style="float:right"><button class="btn btn-danger" ng-click="meetingCtrlGlobal.selectedDayIsNew=true; meetingCtrlGlobal.showMeetingEditorPopUp=true;">New Meeting</button></li>
-
-	  
-
-<!-- 	    <li ><a href="#/meetingAgendaEditor" ng-click="meeting.showMeetingEditorPopUp=true; hej()">New meeting</a></li> -->
 	    <li><a href="#/calendarView" class="btn btn-info">Calendar</a></li>
  		<ng-include src="'partials/quickstart.html'" ></ng-include>
-
 	  </ul>
-	  		
 	</div>
 	<div class="col-md-4">
-
 	</div>
-	    <!--<ng-include src="'partials/Calender.html'"></ng-include>-->
-	<!-- sideBar end -->
 </div>
-
-<style type="text/css">
-	#Menu {
-		/*background-color: lightgrey;*/
-		width: 100%;
-		/*border: dotted;*/
-		/*border-width: 1px;*/
-	}
-
-</style>

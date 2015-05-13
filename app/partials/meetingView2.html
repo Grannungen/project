@@ -19,11 +19,8 @@
 
 	<div ng-controller="activityCtrl">
 	<div ng-controller="dragAndDropCtrl">
+
 	<div class="col-sm-6">
-		
-
-		
-
 			<div class="col-sm-9">
 		    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
 		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities | orderBy:'_index'" class="item" id="blocks">

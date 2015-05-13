@@ -1,30 +1,29 @@
 meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, meetingAgendaModel) {
-	$rootScope.activityCtrlGlobal = {
+
+	$rootScope.activityCtrlGlobal = {	// Needed for access when mutliple activityCtrl are created.
 		selectedActivity:meetingAgendaModel.selectedActivity,
 		showActivityInfo: false
-
 	}
-	$scope.activityCtrl = {
-		
-	}
+	$scope.activityCtrl = {} //Makes it easier to see which controller the variablel belongs to.
 
+
+	//Sets the selected activity when the info button is clicked.
 	$scope.setSelectedActivity = function (activity) {
-		console.log(activity.getName());
 		meetingAgendaModel.selectedActivity = activity;
 		$rootScope.activityCtrlGlobal.selectedActivity = activity;
-		$rootScope.activityCtrlGlobal.selectedActivityName = activity.getName();
-		$rootScope.activityCtrlGlobal.selectedActivityLength = activity.getLength();
-		// $rootScope.activityCtrlGlobal.selectedActivityTypeId = activity.getTypeId();
-		$rootScope.activityCtrlGlobal.selectedActivityDescription = activity.getDescription();
+		$rootScope.activityCtrlGlobal.selectedActivityName = activity.getName(); //This will be the input value in the pop up 
+		$rootScope.activityCtrlGlobal.selectedActivityLength = activity.getLength(); //This will be the input value in the pop up 
+		// $rootScope.activityCtrlGlobal.selectedActivityTypeId = activity.getTypeId(); //This will be the input value in the pop up 
+		$rootScope.activityCtrlGlobal.selectedActivityDescription = activity.getDescription(); //This will be the input value in the pop up 
 	}
 
+	//removes the activity from selected day
 	$scope.removeActivity = function (activity, day){
-
 		var position = day._activities.indexOf(activity);
 		day._removeActivity(position);
 	}
 
-
+	// Will give an error message if the input is incorrect in the pop up.
 	var testInput = function () {
 		if($scope.activityCtrlGlobal.showActivityPopUpNew==true){
 			if($scope.activityCtrlGlobal.ActivityName==undefined || $scope.activityCtrlGlobal.ActivityName==""){
@@ -46,18 +45,15 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 				return false
 			}		
 		}
-
-
 	}
-	// Add activities to day by using addAvtivity(activity, day, position)
 
+	// Add activity to day
 	$scope.addNewActivity = function(){
-		
 		var bool = testInput()
 		if(bool !=false){
 			$rootScope.activityCtrlGlobal.showActivityPopUpNew=false
 			var Activity = meetingAgendaModel.Activity;
-			var ActivityType = meetingAgendaModel.ActivityType;
+			// var ActivityType = meetingAgendaModel.ActivityType;
 			if (meetingAgendaModel.selectedDay._dayJson.activities == undefined){
 				meetingAgendaModel.selectedDay._dayJson.activities = [];			
 			}
@@ -65,13 +61,10 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			
 			meetingAgendaModel.selectedDay._dayJson.activities.push(jsonActivity);
 			meetingAgendaModel.selectedDay._addActivity(new Activity(jsonActivity));
-			$.each(ActivityType,function(index,type){
-			// console.log("Day '" + ActivityType[index] + "' Length: " +  meetingAgendaModel.days[0].getLengthByType(index) + " min");
-			 });
-
-		}
-		
+		}	
 	}
+
+	//Will edit in the selected activity
 	$scope.changeActivity = function () {
 		var bool = testInput();
 		if(bool !=false){

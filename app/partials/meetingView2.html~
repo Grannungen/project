@@ -17,16 +17,16 @@
 <ng-include src="'partials/activityPopUpEdit.html'" ng-controller="activityCtrl"></ng-include>
 <ng-include src="'partials/meetingEditorPopUp.html'" ng-controller="meetingCtrl"></ng-include>
 
+<<<<<<< HEAD
 	<div ng-controller="activityCtrl">
 	<div ng-controller="dragAndDropCtrl">
+=======
+<div div ng-controller="activityCtrl">
+>>>>>>> 725257fc45893a908f1f45da67a4d5df872b9e4e
 	<div class="col-sm-6">
-		
-
-		
-
 			<div class="col-sm-9">
 		    <ul ui-sortable="sortableOptions" ng-model="meetingCtrlGlobal.selectedActivities" class="list">
-		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities | orderBy:'-index'" class="item" id="blocks">
+		      <li ng-repeat="activity in meetingCtrlGlobal.selectedActivities | orderBy:'_index'" class="item" id="blocks">
 		      	<div class="well activityTest" style="height: 60px;">
 		      	<div class="col-sm-1">
 						<span class="glyphicon glyphicon-remove" style="visibility:" ng-click="removeActivity(activity, meetingCtrlGlobal.selectedDay)"></span>

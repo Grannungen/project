@@ -1,4 +1,5 @@
 meetingAgendaPlanner.controller('dragAndDropCtrl', function ($scope, $rootScope, meetingAgendaModel) {
+<<<<<<< HEAD
 
   // var tmpList = [];
   // for (var i = 1; i <= 6; i++){
@@ -21,16 +22,15 @@ meetingAgendaPlanner.controller('dragAndDropCtrl', function ($scope, $rootScope,
   
   $scope.sortingLog = [];
   
+=======
+  //controller for drag and drop
+  meetingCtrlGlobal.selectedActivities = meetingAgendaModel.selectedDay._activities
+>>>>>>> 725257fc45893a908f1f45da67a4d5df872b9e4e
   $scope.sortableOptions = {
     update: function(e, ui) {
-	alert()
-      // var logEntry = tmpList.map(function(i){
-      //   return i.value;
-      // }).join(', ');
-      // $scope.sortingLog.push('Update: ' + logEntry);
     },
     stop: function(e, ui) {
-	alert();
+<<<<<<< HEAD
       // this callback has the changed model
       // var logEntry = tmpList.map(function(i){
       //   return i.value;
@@ -39,7 +39,9 @@ meetingAgendaPlanner.controller('dragAndDropCtrl', function ($scope, $rootScope,
       console.log($scope.list)
       meetingAgendaModel.updateActivityIndex();
       
+=======
+      meetingAgendaModel.updateActivityIndex($scope.list);
+>>>>>>> 725257fc45893a908f1f45da67a4d5df872b9e4e
     }
-
   };
 });

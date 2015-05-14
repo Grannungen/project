@@ -2,7 +2,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	
 
 	this.updateActivityIndex = function() {
-		alert();
 	 	for (var i = 0; i < _this.selectedDay._activities.length; i++) {
 	 		_this.selectedDay._activities[i].setIndex(i);
 		};
@@ -142,6 +141,9 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			var date = moment(this._date)
 			var totalLength = this.getTotalLength();
 			var end = date.add(totalLength, 'minutes')
+			if (totalLength != 0){
+				this._dayJson.end = end.format('YYYY-MM-DD hh:mm a');
+			}
 			return end.format('HH:mm a')
 		};
 

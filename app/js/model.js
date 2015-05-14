@@ -13,7 +13,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	var _this = this;
 	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
-	//Varables that need to be access from multiple controllers
+	//Variables that need to be access from multiple controllers
 	this.selectedDay;
 	this.firebaseUpdated;
 	this.selectedActivity;
@@ -25,13 +25,11 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	this.jsonDays = []; //Days stored without functions. Is used in firebase and fullcalendar.
 	this.externalAPIEvents = []; //Stores the event from external API i.e goole calendar. 
 
-
-
 	// This is an activity constructor
 	this.Activity = function(JsonActivity){
 		var _jsonActivity = JsonActivity;
 		var _name = JsonActivity.name;
-		var _length = JsonActivity.Length;
+		var _length = JsonActivity.length;
 		//var _typeid = JsonActivity.typeid;
 		var _description = JsonActivity.description;
 

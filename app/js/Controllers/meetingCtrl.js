@@ -8,9 +8,9 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 	$scope.meetingCtrl = {}	//Makes it easier to see which controller the variablel belongs to.
 
 	//sets the selectedDay from cookie.
-if(meetingAgendaModel.days.indexOf(meetingAgendaModel.selectedDay) in $cookieStore){
-	var index = indexOf(meetingAgendaModel.selectedDay);
-	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get('index')];
+if(meetingAgendaModel.days[meetingAgendaModel.selectedDayIndex-1] in $cookieStore){
+	var index = meetingAgendaModel.selectedDay._id;
+	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get(index)];
 }
 
 
@@ -90,6 +90,7 @@ if(meetingAgendaModel.selectedDay != undefined){
 	//Sets the selected day.
 	$rootScope.meetingCtrlGlobal.setSelectedDay = function (day) {
 		meetingAgendaModel.selectedDay = day;
+		$cookieStore.put('selectedDayByID', meetingAgendaModel.selectedDay._id);
 		$rootScope.meetingCtrlGlobal.selectedDay = day;
 		$rootScope.meetingCtrlGlobal.selectedJsonDay = day.dayJson;
 		$rootScope.meetingCtrlGlobal.selectedActivities = day._activities;

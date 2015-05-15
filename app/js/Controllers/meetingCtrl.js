@@ -1,5 +1,4 @@
 meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $cookieStore) {
-
 	$rootScope.meetingCtrlGlobal = {	// Needed for access when mutliple meetingCtrl are created.
 		days: meetingAgendaModel.days,
 		selectedDayIsNew:false,
@@ -7,11 +6,11 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 	}
 	$scope.meetingCtrl = {}	//Makes it easier to see which controller the variablel belongs to.
 
-	//sets the selectedDay from cookie.
-if(meetingAgendaModel.days[meetingAgendaModel.selectedDayIndex-1] in $cookieStore){
-	var index = meetingAgendaModel.selectedDay._id;
-	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get(index)];
-}
+// 	//sets the selectedDay from cookie.
+// if(meetingAgendaModel.days[meetingAgendaModel.selectedDayIndex-1] in $cookieStore){
+// 	var index = meetingAgendaModel.selectedDay._id;
+// 	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get(index)];
+// }
 
 
 
@@ -64,6 +63,7 @@ if(meetingAgendaModel.selectedDay != undefined){
 				$rootScope.meetingCtrlGlobal.setSelectedDay(day);
 				$rootScope.meetingCtrlGlobal.selectedDayIsNew = false;
 				$rootScope.meetingCtrlGlobal.showMeetingEditorPopUp = false;
+				$scope.meetingCtrl.nameOfMeeting = "";
 				// $location.path('/meeting');
 			}
 			//Edit the selected day according to input data
@@ -81,6 +81,15 @@ if(meetingAgendaModel.selectedDay != undefined){
 	$scope.removeDay = function (day) {
 			meetingAgendaModel.removeDay(meetingAgendaModel.selectedDay);
 	}
+
+	$scope.selectedDayUndefinedTest = function () {
+		meetingAgendaModel.meetingViewUpdated = true
+		$rootScope.meetingViewUpdated = true;
+		if(meetingAgendaModel.selectedDay == undefined && $rootScope.meetingViewUpdated){
+			$location.path("/calendarView");
+		}
+	}
+	$scope.selectedDayUndefinedTest()
 
 	//Redirect to the url in the variable path
 	$rootScope.go = function (path) {

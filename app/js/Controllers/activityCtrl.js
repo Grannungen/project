@@ -13,7 +13,6 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 		$rootScope.activityCtrlGlobal.selectedActivity = activity;
 		$rootScope.activityCtrlGlobal.selectedActivityName = activity.getName(); //This will be the input value in the pop up 
 		$rootScope.activityCtrlGlobal.selectedActivityLength = activity.getLength(); //This will be the input value in the pop up 
-		// $rootScope.activityCtrlGlobal.selectedActivityTypeId = activity.getTypeId(); //This will be the input value in the pop up 
 		$rootScope.activityCtrlGlobal.selectedActivityDescription = activity.getDescription(); //This will be the input value in the pop up 
 	}
 
@@ -34,6 +33,9 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 				alert("Please enter the time length of the activity.")
 				return false
 			}
+			if($scope.activityCtrlGlobal.description==undefined){
+				$scope.activityCtrlGlobal.description="";
+			}
 		}
 		if($scope.activityCtrlGlobal.showActivityPopUpEdit==true){
 			if($scope.activityCtrlGlobal.selectedActivityName==undefined || $scope.activityCtrlGlobal.selectedActivityName==""){
@@ -43,7 +45,11 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			if($scope.activityCtrlGlobal.selectedActivityLength==undefined){
 				alert("Please enter the time length of the activity.")
 				return false
-			}		
+			}
+			if($rootScope.activityCtrlGlobal.selectedActivityDescription){
+				$rootScope.activityCtrlGlobal.selectedActivityDescription="";
+			}
+				
 		}
 	}
 
@@ -53,10 +59,10 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 		if(bool !=false){
 			$rootScope.activityCtrlGlobal.showActivityPopUpNew=false
 			var Activity = meetingAgendaModel.Activity;
-			// var ActivityType = meetingAgendaModel.ActivityType;
 			if (meetingAgendaModel.selectedDay._dayJson.activities == undefined){
 				meetingAgendaModel.selectedDay._dayJson.activities = [];			
 			}
+
 			var jsonActivity = meetingAgendaModel.addJsonActivity($scope.activityCtrlGlobal.ActivityName,$scope.activityCtrlGlobal.length, $scope.activityCtrlGlobal.description, meetingAgendaModel.selectedDay._dayJson.activities.length);
 			
 			meetingAgendaModel.selectedDay._dayJson.activities.push(jsonActivity);
@@ -72,7 +78,6 @@ meetingAgendaPlanner.controller('activityCtrl', function ($scope, $rootScope, me
 			var activity = meetingAgendaModel.selectedActivity;
 			activity.setName($rootScope.activityCtrlGlobal.selectedActivityName);
 			activity.setLength($rootScope.activityCtrlGlobal.selectedActivityLength);
-			// activity.setTypeId($scope.activityCtrlGlobal.typeId);
 			activity.setDescription($rootScope.activityCtrlGlobal.selectedActivityDescription);
 			return activity;
 		}

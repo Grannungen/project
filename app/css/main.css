@@ -14,15 +14,6 @@
     }
 
 
-    #sideBar {
-    /*position:absolute;*/
-    height: 100%;
-    float: left;
-    /*left:0; top:100px; bottom: 0;*/
-    width: 15%;
-    background-color: #6FFECD;
-    
-    }
     #header {
         background-color: #9FCFDF;
         /*position: absolute;*/
@@ -83,7 +74,26 @@
         position: absolute;
         bottom: 10px; left: 0;
     }
-/*    #topStuff {
-        top: 10px; left: 0;
-        position: absolute;
-    }*/
+
+    .list {
+    list-style: none outside none;
+    margin: 10px 0 30px;
+    }
+    .item {
+        cursor: move;
+    }
+    .floatleft {
+      float: left;
+    }
+
+    #navBar {
+        background-color: lightgrey
+    }
+    #Menu {
+        width: 100%;
+    }
+
+    .fc-event-vert{
+        min-height: 1000px;
+    }
+

@@ -3,7 +3,6 @@ meetingAgendaPlanner.controller('calendarViewCtrl', function ($scope, $rootScope
 		
 	}
 
-
 	//download and pushes the firebasedata to meetingAgendaModel.days and meetingAgendaModel.jsonDays
    $scope.firebase = function () {
    	var ref = new Firebase("https://brilliant-torch-7105.firebaseio.com/");

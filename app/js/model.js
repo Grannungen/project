@@ -8,9 +8,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	}
 	
 
-	// The possible activity types
-	var _this = this;
-	this.ActivityType = ["Presentation","Group Work","Discussion","Break"]
 
 	//Variables that need to be access from multiple controllers
 	this.selectedDay;
@@ -28,8 +25,8 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 	this.Activity = function(JsonActivity){
 		var _jsonActivity = JsonActivity;
 		var _name = JsonActivity.name;
+
 		var _length = JsonActivity.length;
-		//var _typeid = JsonActivity.typeid;
 		var _description = JsonActivity.description;
 
 		this._index = JsonActivity.index;
@@ -69,15 +66,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			return _length;
 		}
 		
-		// sets the typeid of the activity
-		this.setTypeId = function(typeid) {
-			_typeid = typeid;
-		}
-
-		// get the type id of the activity
-		//this.getTypeId = function() {
-			//return _typeid;
-		//}
 		
 		// sets the description of the activity
 		this.setDescription = function(description) {
@@ -91,10 +79,6 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			return _description;
 		}
 		
-		// This method returns the string representation of the
-		this.getType = function () {
-			return _this.ActivityType[_typeid];
-		};
 	}
 
 	// This is a day consturctor. You can use it to create days, 
@@ -142,7 +126,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 			if (totalLength != 0){
 				this._dayJson.end = end.format('YYYY-MM-DD hh:mm a');
 			}
-			return end.format('HH:mm a')
+			return end.format('YYYY-MM-DD HH:mm a')
 		};
 
 		// returns the start date on the format YYYY-MM-DD
@@ -156,7 +140,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		// the start time of the day
 		this.getStart = function() {
 			var date = moment(this._date)
-			return date.format('HH:mm a');
+			return date.format('YYYY-MM-DD HH:mm a');
 		};
 		
 		
@@ -228,8 +212,7 @@ meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebas
 		this.addJsonActivity = function(name,length,description,index) {
 			this.JsonActivity = {};
 			this.JsonActivity.name = name;
-			this.JsonActivity.Length = length;	//length in minutes 
-			//this.JsonActivity.typeid = typeid;
+			this.JsonActivity.length = length;	//length in minutes 
 			this.JsonActivity.description = description;
 			this.JsonActivity.index = index;
 			return this.JsonActivity;

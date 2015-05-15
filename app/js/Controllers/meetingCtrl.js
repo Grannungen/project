@@ -82,6 +82,7 @@ if(meetingAgendaModel.selectedDay != undefined){
 			meetingAgendaModel.removeDay(meetingAgendaModel.selectedDay);
 	}
 
+	//Redirects to calendarView if selectedDay is undefined
 	$scope.selectedDayUndefinedTest = function () {
 		meetingAgendaModel.meetingViewUpdated = true
 		$rootScope.meetingViewUpdated = true;

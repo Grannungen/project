@@ -1,4 +1,4 @@
-meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseObject, $cookieStore) {
+meetingAgendaPlanner.factory('meetingAgendaModel', function ($resource, $firebaseObject) {
 	
 
 	this.updateActivityIndex = function() {

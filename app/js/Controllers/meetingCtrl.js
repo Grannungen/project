@@ -1,4 +1,4 @@
-meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location, $cookieStore) {
+meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, meetingAgendaModel, $location) {
 	$rootScope.meetingCtrlGlobal = {	// Needed for access when mutliple meetingCtrl are created.
 		days: meetingAgendaModel.days,
 		selectedDayIsNew:false,
@@ -11,7 +11,6 @@ meetingAgendaPlanner.controller('meetingCtrl', function ($scope, $rootScope, mee
 // 	var index = meetingAgendaModel.selectedDay._id;
 // 	meetingAgendaModel.selectedDay = meetingAgendaModel.days[$cookieStore.get(index)];
 // }
-
 
 
 if(meetingAgendaModel.selectedDay != undefined){
@@ -100,7 +99,7 @@ if(meetingAgendaModel.selectedDay != undefined){
 	//Sets the selected day.
 	$rootScope.meetingCtrlGlobal.setSelectedDay = function (day) {
 		meetingAgendaModel.selectedDay = day;
-		$cookieStore.put('selectedDayByID', meetingAgendaModel.selectedDay._id);
+		// $cookieStore.put('selectedDayByID', meetingAgendaModel.selectedDay._id);
 		$rootScope.meetingCtrlGlobal.selectedDay = day;
 		$rootScope.meetingCtrlGlobal.selectedJsonDay = day.dayJson;
 		$rootScope.meetingCtrlGlobal.selectedActivities = day._activities;

@@ -1,3 +1,5 @@
+//code borrowed from https://developers.google.com/google-apps/calendar/quickstart/js except for the last six lines.
+
 meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, $rootScope, meetingAgendaModel, $firebaseObject, $firebaseArray) {
       var CLIENT_ID = '907587605785-n1dav3sembqi5fap2h11bdc9oe662g69.apps.googleusercontent.com';
 
@@ -73,7 +75,7 @@ meetingAgendaPlanner.controller('googleApiCtrl', function ($scope, $rootScope, m
 
         request.execute(function(resp) {
           var events = resp.items;
-          console.log(events[0]);
+          // console.log(events[0]);
           for (var i = 0; i < events.length; i++) {
             var start = events[i].start.dateTime;
             var end = events[i].end.dateTime;
